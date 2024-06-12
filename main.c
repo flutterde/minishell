@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/11 21:20:03 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:33:56 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,23 @@ int	main(int ac, char **av, char **env)
 	tmp = head;
 	while (head)
 	{
-		printf("the Result: KEY (%s) VALUE (%s).\n", head->key, head->value);
+		ft_printf("the Result: KEY (%s) VALUE (%s).\n", head->key, head->value);
 		head = head->next;
 	}
+	head = tmp;
+	removeif_env(&head, "USER");
+	ft_printf("-------------  ------- --- ------ ------ ------- -\n");
+	while (head)
+	{
+		ft_printf("the Result: KEY (%s) VALUE (%s).\n", head->key, head->value);
+		head = head->next;
+	}
+	ft_printf("-------------  ------- --- ------ ------ ------- -\n");
 	head = tmp;
 	ls_clear_env(&head);
 	while (head)
 	{
-		printf("the Result: KEY (%s) VALUE (%s).\n", head->key, head->value);
+		ft_printf("the Result: KEY (%s) VALUE (%s).\n", head->key, head->value);
 		head = head->next;
 	}
 	

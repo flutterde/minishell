@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:04:58 by ochouati          #+#    #+#             */
-/*   Updated: 2024/02/29 12:12:25 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:48:38 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ char	*read_line(char **rest, int fd)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*rest[OPEN_MAX];
+	static char	*rest[1024];
 	char		*tmp;
 	char		*tmp2;
 
 	line = NULL;
-	if (fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > 1024)
 		return (NULL);
 	if ((fd <= 2 && fd != 0) || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (free(rest[fd]), rest[fd] = NULL, NULL);

@@ -6,11 +6,12 @@
 #    By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 14:16:38 by ochouati          #+#    #+#              #
-#    Updated: 2024/06/11 21:30:55 by ochouati         ###   ########.fr        #
+#    Updated: 2024/06/12 16:02:13 by ochouati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-UTILS = ./utils/ft_exit.c ./utils/lists/linked_init.c ./utils/lists/removeif_env.c
+UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/removeif_env.c\
+./utils/lists/linked_utils2_env.c 
 PARSING = ./parsing/dup_env.c ./parsing/ft_init.c
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/11 21:30:27 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:28:11 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ls_add2end_env(t_env **lst, t_env *new);
 void	ls_clear_env(t_env **lst);
 t_env	*dup_env(char **env);
 void	ls_delete1_env(t_env *node);
-void	removeif_env(t_env **head, char *str);
+int		removeif_env(t_env **head, char *str);
+t_env	*search_env(t_env *head, char *key);
+t_env	*get_prev_env(t_env *head, t_env *node);
 
 #endif

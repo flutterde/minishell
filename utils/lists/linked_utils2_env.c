@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_data.h                                   :+:      :+:    :+:   */
+/*   linked_utils2_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 16:47:55 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/12 13:12:27 by ochouati         ###   ########.fr       */
+/*   Created: 2024/06/12 13:13:07 by ochouati          #+#    #+#             */
+/*   Updated: 2024/06/12 16:17:15 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_DATA_H
-# define MINISHELL_DATA_H
+#include "../../minishell.h"
 
-typedef struct s_env {
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-}	t_env;
+t_env	*search_env(t_env *head, char *key)
+{
+	while (key && head)
+	{
+		if (!ft_strncmp(head->key, key, (ft_strlen(key) + 1)))
+			return (head);
+		head = head->next;
+	}
+	return (NULL);
+}
 
-typedef struct s_data {
-	t_env	*env;
-}	t_data;
-
-#endif
+t_env	*get_prev_env(t_env *head, t_env *node)
+{
+	if (!node || !head)
+		return (NULL);
+	while (head)
+	{
+		if (head->next == node)
+			return (head);
+		head = head->next;
+	}
+	return (NULL);
+}
