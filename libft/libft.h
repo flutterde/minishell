@@ -115,5 +115,6 @@ void	ft_print_numbers(int c, int *arr);
 int		ft_split_size(char **str);
 char	***ft_split3(char *str, char c1, char c2);
 char	**dup2dchar(char **str);
+char	*ft_strjoin3(char *s1, char *s2, char *s3);
 
 #endif
