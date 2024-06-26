@@ -25,11 +25,13 @@ void	_handler(char **env)
 
 	head = NULL;
 	tmp = NULL;
+	(void)tmp;
+	(void)head;
 	head = dup_env(env);
 	while (1)
 	{
 		line = readline(M_NAME);
-		add_history(line);
+		// add_history(line);
 		if (ft_strncmp(line, "exit", 4) == 0)
 		{
 			printf("Goodbye!\n");
