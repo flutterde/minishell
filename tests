@@ -1,0 +1,3 @@
+# EXPORT TESTS
+export v="'"Hello"'"   => v='Hello'
+export v=""Hello""     => v=Hello

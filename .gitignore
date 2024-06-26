@@ -13,6 +13,7 @@ text.txt
 *.obj
 *.elf
 
+
 # Linker output
 *.ilk
 *.map

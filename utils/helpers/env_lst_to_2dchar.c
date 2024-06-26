@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin3.c                                      :+:      :+:    :+:   */
+/*   env_lst_to_2dchar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 16:45:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 16:52:59 by ochouati         ###   ########.fr       */
+/*   Created: 2024/06/26 13:21:26 by ochouati          #+#    #+#             */
+/*   Updated: 2024/06/26 15:05:10 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-char	*ft_strjoin3(char *s1, char *s2, char *s3)
+char	**env_lst_to_2dchar(t_env *lst)
 {
-	char	*new;
-	int		l;
+	char	**new;
+	int		size;
 	int		i;
-	int		j;
 
-	l = ft_strlen(s1) + ft_strlen(s2) + ft_strlen(s3);
-	if (!l)
+	size = size_env(lst);
+	if (!size)
 		return (NULL);
-	new = malloc(l + 1);
+	new = malloc(sizeof(char *) * (size + 1));
 	if (!new)
 		return (NULL);
+	new[size] = NULL;
 	i = 0;
-	j = 0;
-	while (s1 && i < l && s1[j])
-		new[i++] = s1[j++];
-	j = 0;
-	while (s2 && i < l && s2[j])
-		new[i++] = s2[j++];
-	j = 0;
-	while (s3 && i < l && s3[j])
-		new[i++] = s3[j++];
-	return (new[i] = '\0', new);
+	while (lst)
+	{
+		new[i] = ft_strjoin3(lst->key, "=", lst->value);
+		if (!new[i])
+			return (ft_free_strs(new), NULL);
+		lst = lst->next;
+		i++;
+	}
+	return (new);
 }

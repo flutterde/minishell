@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin3.c                                      :+:      :+:    :+:   */
+/*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 16:45:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 16:52:59 by ochouati         ###   ########.fr       */
+/*   Created: 2024/06/26 12:32:00 by ochouati          #+#    #+#             */
+/*   Updated: 2024/06/26 13:20:23 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-char	*ft_strjoin3(char *s1, char *s2, char *s3)
+char	*get_cmd_path(char *path, char *cmd)
 {
 	char	*new;
-	int		l;
+	char	**spl;
 	int		i;
-	int		j;
 
-	l = ft_strlen(s1) + ft_strlen(s2) + ft_strlen(s3);
-	if (!l)
+	if (!path || !cmd)
 		return (NULL);
-	new = malloc(l + 1);
-	if (!new)
+	spl = ft_split(path, ':');
+	if (!spl)
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (s1 && i < l && s1[j])
-		new[i++] = s1[j++];
-	j = 0;
-	while (s2 && i < l && s2[j])
-		new[i++] = s2[j++];
-	j = 0;
-	while (s3 && i < l && s3[j])
-		new[i++] = s3[j++];
-	return (new[i] = '\0', new);
+	while (spl[i])
+	{
+		new = ft_strjoin3(spl[i], "/", cmd);
+		if (!new)
+			return (ft_free_strs(spl), NULL);
+		if (!access(new, X_OK))
+			return (ft_free_strs(spl), new);
+		free(new);
+		i++;
+	}
+	return (ft_free_strs(spl), NULL);
 }

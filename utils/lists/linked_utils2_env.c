@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:13:07 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/12 16:17:15 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:24:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ t_env	*search_env(t_env *head, char *key)
 		head = head->next;
 	}
 	return (NULL);
+}
+
+int	size_env(t_env *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }
 
 t_env	*get_prev_env(t_env *head, t_env *node)

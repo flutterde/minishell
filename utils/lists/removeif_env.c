@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:28:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/12 16:27:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:11:24 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 /// @brief this function remove a key from the ENV
 /// @param head linkedlist head
-/// @param str the key of the node
-int	removeif_env(t_env **head, char *str)
+/// @param key the key of the node
+int	removeif_env(t_env **head, char *key)
 {
 	t_env	*target;
 	t_env	*tmp;
 	t_env	*prev;
 
-	if (!head || !*head || !str)
+	if (!head || !*head || !key)
 		return (0);
-	target = search_env(*head, str);
+	target = search_env(*head, key);
 	if (!target)
 		return (0);
 	tmp = *head;
