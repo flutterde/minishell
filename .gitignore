@@ -5,6 +5,7 @@ minishell
 test.c
 text.txt
 .DS_Store
+.vscode/
 
 # Object files
 *.o
