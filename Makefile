@@ -6,7 +6,7 @@
 #    By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 14:16:38 by ochouati          #+#    #+#              #
-#    Updated: 2024/06/26 15:48:59 by ochouati         ###   ########.fr        #
+#    Updated: 2024/06/26 19:26:22 by ochouati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c 
 PARSING = ./parsing/dup_env.c ./parsing/ft_init.c
 
-FT_SRCS = ./src/built_in/ft_export.c
+FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c \
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address
 HEADERS = minishell.h
