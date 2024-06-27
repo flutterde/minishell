@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 16:47:55 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 12:22:46 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:52:41 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,10 @@ typedef struct s_env {
 typedef struct s_data {
 	t_env	*env;
 }	t_data;
+
+typedef enum s_cmd_type {
+	BUILT_IN,
+	
+} t_cmd_type;
 
 #endif

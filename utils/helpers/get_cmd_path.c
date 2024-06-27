@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:32:00 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 13:20:23 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:01:09 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_cmd_path(char *path, char *cmd)
 		new = ft_strjoin3(spl[i], "/", cmd);
 		if (!new)
 			return (ft_free_strs(spl), NULL);
-		if (!access(new, X_OK))
+		if (!access(new, X_OK)) // make sure the permissions are right
 			return (ft_free_strs(spl), new);
 		free(new);
 		i++;

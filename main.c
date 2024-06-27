@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 16:49:40 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:09:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	_handler(char **env)
 
 int	main(int ac, char **av, char **env)
 {
-	atexit(_leaks); // delete this at the end
+	// printf("%d\n", );
+	// atexit(_leaks); // delete this at the end
 	(void)ac;
 	(void)av;
 	_handler(env);
