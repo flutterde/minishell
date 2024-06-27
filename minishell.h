@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 16:20:33 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:19:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 void	ft_init(int ac, char **av, char **env, t_env *envs);
 void	ft_exit(char *msg, int status, int fd);
+
+/* -- PARSING PART -- */
+// utils
+char	**initial_split_line(char *line);
 
 /* -->> ENV_LINKED_LISTS <<-- */
 /*			ENV					*/

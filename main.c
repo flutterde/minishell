@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 16:49:40 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:22:05 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	_handler(char **env)
 	while (1)
 	{
 		line = readline(M_NAME);
-		// add_history(line);
+		add_history(line);
 		if (ft_strncmp(line, "exit", 4) == 0)
 		{
 			printf("Goodbye!\n");
 			free(line);
 			exit(0);
 		}
-		printf("%s\n", line);
+		initial_split_line(line);
 		free(line);
 		line = NULL;
 	}
@@ -46,7 +46,7 @@ void	_handler(char **env)
 
 int	main(int ac, char **av, char **env)
 {
-	atexit(_leaks); // delete this at the end
+	atexit(_leaks); //todo: delete this at the end
 	(void)ac;
 	(void)av;
 	_handler(env);

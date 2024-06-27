@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+         #
+#    By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 14:16:38 by ochouati          #+#    #+#              #
-#    Updated: 2024/06/26 19:26:22 by ochouati         ###   ########.fr        #
+#    Updated: 2024/06/27 13:20:08 by mboujama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/removeif_env.c\
 ./utils/lists/linked_utils2_env.c ./utils/helpers/ft_errno.c ./utils/helpers/get_cmd_path.c\
 ./utils/helpers/env_lst_to_2dchar.c 
-PARSING = ./parsing/dup_env.c ./parsing/ft_init.c
+PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c \
 
