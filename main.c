@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 14:12:44 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/27 13:09:21 by ochouati         ###   ########.fr       */
+/*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
+/*   Updated: 2024/06/27 20:58:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	_handler(char **env)
 	while (1)
 	{
 		line = readline(M_NAME);
-		// add_history(line);
+		add_history(line);
 		if (ft_strncmp(line, "exit", 4) == 0)
 		{
 			printf("Goodbye!\n");
 			free(line);
 			exit(0);
 		}
-		printf("%s\n", line);
+		initial_split_line(line);
 		free(line);
 		line = NULL;
 	}
@@ -48,6 +48,7 @@ int	main(int ac, char **av, char **env)
 {
 	// printf("%d\n", );
 	// atexit(_leaks); // delete this at the end
+	atexit(_leaks); //todo: delete this at the end
 	(void)ac;
 	(void)av;
 	_handler(env);

@@ -6,8 +6,8 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 16:47:55 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/27 12:52:41 by ochouati         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2024/06/27 20:57:37 by ochouati         ###   ########.fr       */
+/*                                                                           */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_DATA_H
@@ -21,6 +21,14 @@ typedef struct s_env {
 	char			*value;
 	struct s_env	*next;
 }	t_env;
+
+typedef struct s_cmd
+{
+	char			*path;
+	char			*cmd;
+	char			**args;
+	struct s_cmd	*next;
+}	t_cmd;
 
 typedef struct s_data {
 	t_env	*env;
