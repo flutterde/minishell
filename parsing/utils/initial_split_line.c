@@ -3,50 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   initial_split_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:11:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/06/27 21:00:55 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:18:34 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int	next_quote(char *str, char type)
+static int	len_word(char *str, char type)
 {
 	int	i;
+	int	in_qt;
 
-	if (!str)
-		return (0);
-	i = -1;
-	while (str[i] != type)
+	i = 0;
+	in_qt = 0;
+	while (str[i] && (str[i] != '|' || in_qt))
+	{
+		if (str[i] == type)
+			in_qt = !in_qt;
 		i++;
+	}
 	return (i);
 }
 
-int	count_words(char *s, char sep, char type)
+static int	count_words(char *s, char sep, char type)
 {
 	int	count;
 	int	i;
+	int	in_qt;
 
 	count = 0;
+	in_qt = 0;
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == sep)
+		if (s[i] == sep && !in_qt)
 			i++;
 		else
 		{
-			printf("-----> new word <-----\n");
-			while (s[i] && s[i] != sep)
+			while (s[i] && (s[i] != sep || in_qt))
 			{
-				printf("%d %c\n", i, s[i]);
 				if (s[i] == type)
-				{
-					//? skip until the next quote.
-					i += next_quote(&s[i], type);
-					printf("next quote in ==> %d\n", i);
-				}
+					in_qt = !in_qt;
 				i++;
 			}
 			count++;
@@ -64,31 +64,52 @@ static char	get_type(char *line)
 	return (0);
 }
 
-char	**smart_split(char *line)
+
+static char	**smart_split(char *line)
 {
 	char	**tab;
-	char	type; // is there '' or "" ?
+	char	type;
+	int		len;
+	int		tab_i;
 
 	type = get_type(line);
-	printf("type == %c\n", type);
-	printf("%d\n", count_words(line, '|', type));
-	tab = (char **) malloc(sizeof(char *) * count_words(line, '|', type));
+	tab = (char **) malloc(sizeof(char *) * count_words(line, '|', type) + 1);
 	if (!tab)
 		return (0);
+	tab_i = 0;
+	while (*line)
+	{
+		if (*line == '|')
+			line++;
+		else
+		{
+			len = len_word(line, type);
+			tab[tab_i] = ft_substr(line, 0, len);
+			line += len;
+			tab_i++;
+		}
+	}
+	tab[tab_i] = NULL;
 	return (tab);
 }
 
 char	**initial_split_line(char *line)
 {
 	char	**tab;
+	int		i;
 
+	i = 0;
 	if (!line)
 		return (NULL);
-	tab = ft_split(line, '|');
 	if (ft_strchr(line, '\'') || ft_strchr(line, '\"'))
 		tab = smart_split(line);
 	else
 		tab = ft_split(line, '|');
+	while (tab[i])
+	{
+		tab[i] = ft_strtrim(tab[i], " ");
+		i++;
+	}
 	ft_print_strs(tab);
 	return (tab);
 }

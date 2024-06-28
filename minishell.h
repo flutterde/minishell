@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/27 13:19:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/06/28 09:28:47 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ char	**env_lst_to_2dchar(t_env *lst);
 /* -> SRCS <- */
 // The export function,
 // TODO:: handle this case: (key="vghvhv"), the (") will displayed as a value
-int	ft_export(t_env **lst, char *str);
+int		ft_export(t_env **lst, char *str);
 
 #endif
