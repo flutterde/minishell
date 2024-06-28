@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 20:33:16 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/28 20:37:46 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ t_env	*get_prev_env(t_env *head, t_env *node);
 void	ft_errno(int nbr);
 char	*get_cmd_path(char *path, char *cmd);
 char	**env_lst_to_2dchar(t_env *lst);
+void	_print_env(t_env *env);
 
 /* -- SRCS -- */
 
 /* -- BUILT-IN PART -- */
 // TODO:: handle this case: (key="vghvhv"), the (") will displayed as a value
 int		ft_export(t_env **lst, char *str);
-void	_print_env(t_env *env);
+int		ft_pwd(t_env *env);
 
 #endif
