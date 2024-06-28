@@ -6,7 +6,7 @@
 #    By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 14:16:38 by ochouati          #+#    #+#              #
-#    Updated: 2024/06/28 18:26:12 by ochouati         ###   ########.fr        #
+#    Updated: 2024/06/28 20:33:09 by ochouati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c 
 PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c
 
-FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c \
+FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address

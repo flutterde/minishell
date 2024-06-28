@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 18:26:26 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/28 20:33:16 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ void	ft_errno(int nbr);
 char	*get_cmd_path(char *path, char *cmd);
 char	**env_lst_to_2dchar(t_env *lst);
 
-/* -> SRCS <- */
-// The export function,
+/* -- SRCS -- */
+
+/* -- BUILT-IN PART -- */
 // TODO:: handle this case: (key="vghvhv"), the (") will displayed as a value
 int		ft_export(t_env **lst, char *str);
 void	_print_env(t_env *env);

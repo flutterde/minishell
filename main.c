@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 19:30:36 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/28 20:33:41 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	_handler(char **env)
 		else if (ft_strncmp(line, "unset", ft_strlen(line)) == 0)
 			_print_env(head);
 		char **sts = initial_split_line(line);
-		ft_print_strs(sts);
+		// ft_print_strs(sts);
 		ft_free_strs(sts);
 		free(line);
 		line = NULL;
