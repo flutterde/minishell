@@ -4,3 +4,9 @@ export v=""Hello""     => v=Hello
 ❯ export SHLVL=ko
 ❯ env | grep SHLVL
 SHLVL=0
+
+
+
+# PARSING trees lexer
+ls > file1.txt -al
+''''l''''s''   => ls

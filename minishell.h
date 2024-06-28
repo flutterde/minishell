@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 17:40:42 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:26:26 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ char	**env_lst_to_2dchar(t_env *lst);
 // The export function,
 // TODO:: handle this case: (key="vghvhv"), the (") will displayed as a value
 int		ft_export(t_env **lst, char *str);
+void	_print_env(t_env *env);
 
 #endif
