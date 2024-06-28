@@ -1,3 +1,6 @@
 # EXPORT TESTS
 export v="'"Hello"'"   => v='Hello'
 export v=""Hello""     => v=Hello
+❯ export SHLVL=ko
+❯ env | grep SHLVL
+SHLVL=0

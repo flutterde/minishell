@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initial_split_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:11:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/06/28 11:18:34 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:10:06 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	get_type(char *line)
 	return (0);
 }
 
-
+// TODO: if can't allocate, free, print error and exit
 static char	**smart_split(char *line)
 {
 	char	**tab;
@@ -73,7 +73,7 @@ static char	**smart_split(char *line)
 	int		tab_i;
 
 	type = get_type(line);
-	tab = (char **) malloc(sizeof(char *) * count_words(line, '|', type) + 1);
+	tab = malloc(sizeof(char *) * count_words(line, '|', type) + 1);
 	if (!tab)
 		return (0);
 	tab_i = 0;
@@ -85,6 +85,8 @@ static char	**smart_split(char *line)
 		{
 			len = len_word(line, type);
 			tab[tab_i] = ft_substr(line, 0, len);
+			if (!tab[tab_i])
+				ft_exit("Can't allocate", 1, 2); // change this
 			line += len;
 			tab_i++;
 		}
@@ -96,6 +98,7 @@ static char	**smart_split(char *line)
 char	**initial_split_line(char *line)
 {
 	char	**tab;
+	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -107,9 +110,11 @@ char	**initial_split_line(char *line)
 		tab = ft_split(line, '|');
 	while (tab[i])
 	{
+		tmp = tab[i];
 		tab[i] = ft_strtrim(tab[i], " ");
+		free(tmp);
+		tmp = NULL;
 		i++;
 	}
-	ft_print_strs(tab);
 	return (tab);
 }
