@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 17:55:52 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:58:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	_handler(char **env)
 			free(line);
 			exit(0);
 		}
+		else if (ft_strncmp(line, "pwd", 4) == 0)
+			ft_pwd(head);
 		char **sts = initial_split_line(line);
-		ft_print_strs(sts);
+		// ft_print_strs(sts);
 		ft_free_strs(sts);
 		free(line);
 		line = NULL;
