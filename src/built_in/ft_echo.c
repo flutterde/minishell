@@ -6,35 +6,18 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:26:31 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/26 19:28:55 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:25:06 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int	__expand(t_env *lst, char *str)
+int	ft_echo(t_cmd *cmd, char *str)
 {
-	int	i;
-
-	i = 0;
-	(void)lst;
-	(void)str;
-	(void)i;
-	return (1);
-}
-
-static int	__no_expand(t_env *lst, char *str)
-{
-	(void)lst;
-	(void)str;
-	return (1);
-}
-
-int	ft_echo(t_env *lst, char *str, bool expand)
-{
-	if (!lst || !str)
+	if (!cmd || !str)
 		return (0);
-	if (expand)
-		return (__expand(lst, str));
-	return (__no_expand(lst, str));
+	if (cmd->args && cmd->args[0] && cmd->args[1]
+		&& !ft_strncmp(cmd->args[1], "git -n", ft_strlen(cmd->args[1])))
+		return (printf("%s\n"), 1);
+	return (printf("%s"), 2);
 }

@@ -16,6 +16,8 @@
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
 
+int	g_sig;
+
 typedef struct s_env {
 	char			*key;
 	char			*value;
@@ -26,16 +28,14 @@ typedef struct s_cmd
 {
 	char			*path;
 	char			*cmd;
+	t_env			*env;
 	char			**args;
 	struct s_cmd	*next;
 }	t_cmd;
 
-typedef struct s_data {
-	t_env	*env;
-}	t_data;
-
 typedef enum s_cmd_type {
 	BUILT_IN,
+	BUILT_IN_FORK,
 } t_cmd_type;
 
 #endif

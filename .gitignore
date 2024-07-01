@@ -20,6 +20,7 @@ en.subject.pdf
 *.ilk
 *.map
 *.exp
+*.zip
 
 # Precompiled Headers
 *.gch

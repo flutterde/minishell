@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:05:48 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/11 17:00:42 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:46:48 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ char	***ft_split3(char *str, char c1, char c2);
 char	**dup2dchar(char **str);
 char	*ft_strjoin3(char *s1, char *s2, char *s3);
 void	mini_printf(int fd, const char *str, ...);
+int		ft_isspace(char c);
 
 #endif

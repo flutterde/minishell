@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 20:37:46 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:47:47 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
+# include <sys/wait.h>
 
 void	ft_init(int ac, char **av, char **env, t_env *envs);
 void	ft_exit(char *msg, int status, int fd);
@@ -48,13 +49,16 @@ t_env	*get_prev_env(t_env *head, t_env *node);
 void	ft_errno(int nbr);
 char	*get_cmd_path(char *path, char *cmd);
 char	**env_lst_to_2dchar(t_env *lst);
-void	_print_env(t_env *env);
+t_cmd	*set_data(t_env *env, char *path, char **args, char *cmd);
 
 /* -- SRCS -- */
+void	ft_execve(t_cmd *cmd);
 
 /* -- BUILT-IN PART -- */
-// TODO:: handle this case: (key="vghvhv"), the (") will displayed as a value
+// TODO:: handle this case (in export): (key="vghvhv"), the (") will displayed as a value
+void	_print_env(t_env *env);
 int		ft_export(t_env **lst, char *str);
 int		ft_pwd(t_env *env);
+int		ft_echo(t_cmd *cmd, char *str);
 
 #endif

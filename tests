@@ -5,8 +5,17 @@ export v=""Hello""     => v=Hello
 ❯ env | grep SHLVL
 SHLVL=0
 
-
+# BUILTIN that will run in main process:
+	-env
+	-export
+	-cd
+	-exit
+	-unset
 
 # PARSING trees lexer
 ls > file1.txt -al
 ''''l''''s''   => ls
+
+echo "hello'World'" ==> hello'World'
+
+echo " .. ""'$ $USER' $"  =>  .. '$ ochouati' $

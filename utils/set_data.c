@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   set_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 17:35:05 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 15:01:41 by ochouati         ###   ########.fr       */
+/*   Created: 2024/06/29 15:07:17 by ochouati          #+#    #+#             */
+/*   Updated: 2024/06/30 19:05:11 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_exit(char *msg, int status, int fd)
+t_cmd	*set_data(t_env *env, char *path, char **args, char *cmd)
 {
-	ft_putendl_fd(msg, fd);
-	exit(status);
+	t_cmd	*new;
+
+	if (!env || !path || !args || !cmd || !*args)
+		return (ft_printf("NO> args.\n"), NULL);
+	new = ft_calloc(sizeof(new) * 1, sizeof(t_cmd));
+	if (!new)
+		return (NULL);
+	new->args = args;
+	new->cmd = cmd;
+	new->env = env;
+	new->path = path;
+	return (new);
 }

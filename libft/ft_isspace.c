@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 17:35:05 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 15:01:41 by ochouati         ###   ########.fr       */
+/*   Created: 2024/03/28 19:43:16 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/01 14:45:56 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	ft_exit(char *msg, int status, int fd)
+int	ft_isspace(char c)
 {
-	ft_putendl_fd(msg, fd);
-	exit(status);
+	if ((c == '\t') || (c == '\n') || (c == '\v') 
+		|| (c == '\f') || (c == '\r') || (c == ' '))
+		return (1);
+	return (0);
 }
