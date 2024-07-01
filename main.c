@@ -6,45 +6,41 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 20:38:03 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:05:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	_leaks(void)
+static void	minishell(t_data *data)
 {
-	system("leaks minishell");
-}
-
-void	_handler(char **env)
-{
-	t_env	*head;
-	t_env	*tmp;
 	char	*line;
+	char	*parsed;
+	char	**splitted;
 
-	head = NULL;
-	tmp = NULL;
-	(void)tmp;
-	(void)head;
-	head = dup_env(env);
 	while (1)
 	{
 		line = readline(M_NAME);
 		add_history(line);
-		if (ft_strncmp(line, "exit", ft_strlen(line)) == 0)
+		if (ft_strlen(line) > 0
+			&& ft_strncmp(line, "exit", ft_strlen(line)) == 0)
 		{
-			printf("Goodbye!\n");
+			ft_printf("Goodbye!\n");
 			free(line);
 			exit(0);
 		}
 		else if (ft_strncmp(line, "env", ft_strlen(line)) == 0)
-			_print_env(head);
+			_print_env(data->env);
 		else if (ft_strncmp(line, "pwd", ft_strlen(line)) == 0)
-			ft_pwd(head);
-		char **sts = initial_split_line(line);
-		// ft_print_strs(sts);
-		ft_free_strs(sts);
+			ft_pwd(data->env);
+		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
+			ft_export_no_args(data->env);
+		splitted = initial_split_line(line);
+		parsed = parse_quote(data, line);
+		ft_printf("[%s]\n", parsed);
+		// ft_export_no_args(head);
+		// ft_print_strs(splitted);
+		ft_free_strs(splitted);
 		free(line);
 		line = NULL;
 	}
@@ -52,11 +48,14 @@ void	_handler(char **env)
 
 int	main(int ac, char **av, char **env)
 {
-	// printf("%d\n", );
-	// atexit(_leaks); // delete this at the end
-	atexit(_leaks); //todo: delete this at the end
+	t_data	*data;
+
 	(void)ac;
 	(void)av;
-	_handler(env);
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (1);
+	data->env = dup_env(env);
+	minishell(data);
 	return (0);
 }

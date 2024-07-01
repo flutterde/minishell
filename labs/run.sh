@@ -1,2 +1,2 @@
-cc -Wall -Wextra -Werror main.c helpers.c ../libft/libft.a -o app
+cc -Wall -Wextra -Werror -lreadline main.c helpers.c parse_quote.c ../libft/libft.a -o app
 ./app

@@ -36,6 +36,6 @@ typedef struct s_data {
 
 typedef enum s_cmd_type {
 	BUILT_IN,
-} t_cmd_type;
+}	t_cmd_type;
 
 #endif

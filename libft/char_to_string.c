@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   char_to_string.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 16:27:06 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/30 10:45:32 by mboujama         ###   ########.fr       */
+/*   Created: 2024/06/29 12:58:35 by mboujama          #+#    #+#             */
+/*   Updated: 2024/06/30 15:12:56 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*char_to_string(char c)
 {
-	size_t	len;
-	size_t	i;
-	size_t	j;
-	char	*nstr;
+	char	*str;
 
-	if (!s1 || !s2)
+	str = malloc(2);
+	if (!str)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	nstr = malloc(sizeof(char) * (len + 1));
-	if (!nstr)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-		nstr[j++] = ((char *)s1)[i++];
-	i = 0;
-	while (s2[i])
-		nstr[j++] = ((char *)s2)[i++];
-	nstr[j] = '\0';
-	free(s1);
-	return (nstr);
+	str[0] = c;
+	str[1] = '\0';
+	return (str);
 }
