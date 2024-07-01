@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 15:47:47 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:39:06 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
+
+# define S_QUOTE 39 // '
+# define D_QUOTE 34 // "
+
 # include <sys/wait.h>
 
 void	ft_init(int ac, char **av, char **env, t_env *envs);
@@ -31,6 +35,7 @@ void	ft_exit(char *msg, int status, int fd);
 /* -- PARSING PART -- */
 // utils
 char	**initial_split_line(char *line);
+char	*parse_quote(t_data *data, char *str);
 
 /* -->> ENV_LINKED_LISTS <<-- */
 /*			ENV					*/
@@ -49,6 +54,8 @@ t_env	*get_prev_env(t_env *head, t_env *node);
 void	ft_errno(int nbr);
 char	*get_cmd_path(char *path, char *cmd);
 char	**env_lst_to_2dchar(t_env *lst);
+void	_print_env(t_env *env);
+int		ft_export_no_args(t_env *env);
 t_cmd	*set_data(t_env *env, char *path, char **args, char *cmd);
 
 /* -- SRCS -- */

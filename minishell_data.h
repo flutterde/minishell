@@ -33,9 +33,12 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
+typedef struct s_data {
+	t_env	*env;
+}	t_data;
+
 typedef enum s_cmd_type {
 	BUILT_IN,
-	BUILT_IN_FORK,
-} t_cmd_type;
+}	t_cmd_type;
 
 #endif

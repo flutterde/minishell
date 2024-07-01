@@ -6,8 +6,8 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:05:48 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 14:46:48 by ochouati         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2024/07/01 16:46:36 by ochouati         ###   ########.fr       */
+/*                                                                           */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
@@ -62,7 +62,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa(int n);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -101,6 +101,7 @@ bool	_is_dg(char c1, char c2);
 bool	_is_hx(char c1, char c2);
 bool	_is_ss(char c1, char c2);
 bool	_is_speci_format(char c1, char c2);
+
 // ADDITIONNAL
 void	ft_swap(int *xp, int *yp);
 void	ft_sort_int_tab(int *tab, int size);
@@ -118,5 +119,7 @@ char	**dup2dchar(char **str);
 char	*ft_strjoin3(char *s1, char *s2, char *s3);
 void	mini_printf(int fd, const char *str, ...);
 int		ft_isspace(char c);
+char	*char_to_string(char c);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

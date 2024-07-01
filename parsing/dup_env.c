@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:48:34 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/28 17:56:20 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:08:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static t_env	*new_node(char *str)
 
 t_env	*dup_env(char **env)
 {
-	int		i;
 	t_env	*head;
 	t_env	*new;
+	int		i;
 
 	if (!env || !*env)
 		return (NULL);

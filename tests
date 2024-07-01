@@ -19,3 +19,11 @@ ls > file1.txt -al
 echo "hello'World'" ==> hello'World'
 
 echo " .. ""'$ $USER' $"  =>  .. '$ ochouati' $
+echo MOAD"$USER"'$USER'
+
+|ls |||||||||||| grep |--- vdvdgh""''  "|"d
+
+
+
+# Testat Lmla7
+where is ???????????"declare -x _=/usr/bin/make", :: when you run "export" this one should not be in the output

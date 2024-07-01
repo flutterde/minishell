@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:26:31 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 16:25:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:47:37 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ft_echo(t_cmd *cmd, char *str)
 		return (0);
 	if (cmd->args && cmd->args[0] && cmd->args[1]
 		&& !ft_strncmp(cmd->args[1], "git -n", ft_strlen(cmd->args[1])))
-		return (printf("%s\n"), 1);
-	return (printf("%s"), 2);
+		return (printf("%s\n", str), 1);
+	return (printf("%s", str), 2);
 }

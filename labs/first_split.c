@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_env.c                                        :+:      :+:    :+:   */
+/*   first_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 18:15:45 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/29 08:44:32 by mboujama         ###   ########.fr       */
+/*   Created: 2024/07/01 18:53:04 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/01 19:22:08 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+// todo:: here , I'm spliting for && and ||.
 
-void	_print_env(t_env *env)
+char	**first_split(char *str)
 {
-	while (env)
-	{
-		printf("%s=%s\n", env->key, env->value);
-		env = env->next;
-	}
+	
 }

@@ -6,64 +6,61 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 15:01:52 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:21:02 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	_leaks(void)
+static void	minishell(t_data *data)
 {
-	system("leaks minishell");
-}
-
-void	__handler_helper(t_env *env, char **line)
-{
-	(void)env;
-
-	char **sts = initial_split_line(*line);
-	ft_print_strs(sts);
-	ft_free_strs(sts);
-	free(*line);
-	*line = NULL;
-}
-
-
-
-void	_handler(char **env)
-{
-	t_env	*head;
 	char	*line;
-	// t_cmd	*cmd;
+	char	*parsed;
+	// char	**splitted;
 
-	head = NULL;
-	head = dup_env(env);
+	(void)data;
 	while (1)
 	{
 		line = readline(M_NAME);
 		if (!ft_strlen(line))
 			continue ;
 		add_history(line);
-		if (ft_strncmp(line, "exit", ft_strlen(line)) == 0)
+		if (ft_strlen(line) > 0
+			&& ft_strncmp(line, "exit", ft_strlen(line)) == 0)
 		{
-			ft_printf("Gooooooooodbye!\n");
+			ft_printf("Goodbye!\n");
+			free(line);
 			exit(0);
 		}
-		if (ft_strncmp(line, "env", ft_strlen(line)) == 0)
-			_print_env(head);
+		else if (ft_strncmp(line, "env", ft_strlen(line)) == 0)
+			_print_env(data->env);
 		else if (ft_strncmp(line, "pwd", ft_strlen(line)) == 0)
-			ft_pwd(head);
-		__handler_helper(head, &line);
+			ft_pwd(data->env);
+		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
+			ft_export_no_args(data->env);
+		// splitted = initial_split_line(line);
+		
+		parsed = parse_quote(data, line);
+		ft_printf("[%s]\n", parsed);
+		// ft_export_no_args(head);
+		// ft_print_strs(splitted);
+		// ft_free_strs(splitted);
+		free(line);
+		line = NULL;
 	}
 }
 
 
 int	main(int ac, char **av, char **env)
 {
-	//atexit(_leaks); //todo: delete this at the end
+	t_data	*data;
 
 	(void)ac;
 	(void)av;
-	_handler(env);
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (1);
+	data->env = dup_env(env);
+	minishell(data);
 	return (0);
 }
