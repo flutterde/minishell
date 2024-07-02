@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:55:32 by mboujama          #+#    #+#             */
-/*   Updated: 2024/06/29 11:01:20 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:01:00 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ typedef struct s_cmd {
 	char			*path;
 	char			*cmd;
 }	t_cmd;
+
+typedef enum {
+	OR,
+	AND,
+	END,
+} t_next_type;
+
+typedef struct s_lst {
+	char			*tmp;
+	struct s_lst	*head;
+	struct s_lst	*left;
+	struct s_lst	*right;
+	t_next_type		next_type;
+}	t_lst;
 
 char	*cmd_path(char *path, char *cmd);
 int		parse_quote(char *str);
