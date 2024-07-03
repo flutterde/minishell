@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:55:32 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/02 15:01:00 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:49:26 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <errno.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+
+#define CHAR1 1
 
 typedef struct s_cmd {
 	struct s_cmd	*next;

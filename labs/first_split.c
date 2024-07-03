@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:53:04 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/02 18:40:11 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:07:22 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,11 @@ int	_count_ops(char *str, char *sep)
 		{
 			if (_is_paren(str[i]))
 				skip_word(str, &i);
-			else if (str[i] == sep[0] || str[i] == sep[1])
+			else if (str[i] == sep[0] && str[i] == sep[1])
 			{
+				// TODO:: how about change str[i] to CHAR1, and then split by it.
+				str[i] = CHAR1; // change the char to CHAR1
+				str[i + 1] = CHAR1; // change the char to CHAR1
 				i += 2;
 				break;
 			}
@@ -119,7 +122,7 @@ int	_count_ops(char *str, char *sep)
 char	**first_split(char *str, char *sep)
 {
 	(void)str;
-	// char	**split;
+	char	**split;
 	int		i;
 	int		j;
 	int		count;
@@ -128,19 +131,24 @@ char	**first_split(char *str, char *sep)
 	j = 0;
 	(void)j;
 	(void)i;
+	// todo:: count the number of && and || in the string.
 	count = _count_ops(str, sep);
-	printf("=======> count: %d\n", count);
+	ft_printf("=======> count: %d\n", count);
 	if (count == 1 && str[0] == '(' && str[ft_strlen(str) - 1] == ')')
 	{
 		str = ft_substr(str, 1, ft_strlen(str) - 2);
 		count = _count_ops(str, sep);
-		printf("====AFTER===> count: %d\n", count);
+		ft_printf("====AFTER===> count: %d\n", count);
 	}
-	// todo:: count the number of && and || in the string.
+	split = ft_split(str, CHAR1);
+	ft_printf(" ---- ------ ----- After the Spliy ---- ------ ----- \n");
+	ft_print_strs(split);
+	ft_printf(" ---- ------ ----- End After the Spliy ---- ------ ----- \n");
 	return (NULL);
 }
 
-
+// ! how we can split the string by && and ||. ? what first && or || ?
+// ! what about change the separators to some inusual ascii characters, and then split by them with split ?
 int	main(void)
 {
 	// char	*str = "echo hi1 && (echo hi2 && echo hi3 || echo hiX && echo HiY)) && echo hi4 || echo hi5 || echo hi6";
@@ -148,7 +156,10 @@ int	main(void)
 	char	*str = "(ech h1 && echo hi2 && (echo hi3 || echo hiX && echo HiY) && echo hi4 || echo hi5 || echo hi6)";
 
 	// str = readline("Enter a string: ");
-	first_split(str, "||");
+	// ! Make sure that str is not a Read-Only string.
+	first_split(ft_strdup(str), "||");
+	// char	*join = ft_strjoin3("&&", char_to_string(CHAR1), ("||"));
+	// printf("You entered: %s\n", join);
 	// printf("You entered: %d\n", _is_paren(str[0]));
 	return (0);
 }
