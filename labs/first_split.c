@@ -126,8 +126,16 @@ char	**first_split(char *str, char *sep)
 
 	i = 0;
 	j = 0;
+	(void)j;
+	(void)i;
 	count = _count_ops(str, sep);
 	printf("=======> count: %d\n", count);
+	if (count == 1 && str[0] == '(' && str[ft_strlen(str) - 1] == ')')
+	{
+		str = ft_substr(str, 1, ft_strlen(str) - 2);
+		count = _count_ops(str, sep);
+		printf("====AFTER===> count: %d\n", count);
+	}
 	// todo:: count the number of && and || in the string.
 	return (NULL);
 }
@@ -135,9 +143,11 @@ char	**first_split(char *str, char *sep)
 
 int	main(void)
 {
-	char	*str;
+	// char	*str = "echo hi1 && (echo hi2 && echo hi3 || echo hiX && echo HiY)) && echo hi4 || echo hi5 || echo hi6";
+	// char	*str = "(ech h1 && echo hi2 && (echo hi3 || echo hiX && echo HiY) && echo hi4 || echo hi5 || echo hi6)";
+	char	*str = "(ech h1 && echo hi2 && (echo hi3 || echo hiX && echo HiY) && echo hi4 || echo hi5 || echo hi6)";
 
-	str = readline("Enter a string: ");
+	// str = readline("Enter a string: ");
 	first_split(str, "||");
 	// printf("You entered: %d\n", _is_paren(str[0]));
 	return (0);
