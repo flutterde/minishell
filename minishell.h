@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:27:04 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:44:57 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,20 @@ void	ft_init(int ac, char **av, char **env, t_env *envs);
 void	ft_exit(char *msg, int status, int fd);
 
 /* -- PARSING PART -- */
+int		create_lexer(char *line);
 // utils
 char	**initial_split_line(char *line);
 char	*parse_quote(t_data *data, char *str);
-t_lex	*lex_create_node(char *str, t_token type, int len, t_status status);
+char	*handle_spaces(t_parse *parse_dt);
+char	get_type(char ch);
+int		search_len(char *str);
+// lists
 t_lex	*lex_getlast(t_lex *lst);
+t_lex	*lex_create_node(char *str, t_token type, int len, t_status status);
 void	lex_add_back(t_lex **list, t_lex *new);
 
-/* -->> ENV_LINKED_LISTS <<-- */
-/*			ENV					*/
+/* -- ENV_LINKED_LISTS -- */
+// ENV
 t_env	*ls_create_env(char *key, char *val);
 t_env	*ls_last_env(t_env *lst);
 void	ls_add2end_env(t_env **lst, t_env *new);
@@ -53,7 +58,7 @@ int		removeif_env(t_env **head, char *key);
 t_env	*search_env(t_env *head, char *key);
 t_env	*get_prev_env(t_env *head, t_env *node);
 
-/* -> HELPERS FUNCTIONS <- */
+/* -- HELPERS FUNCTIONS -- */
 void	ft_errno(int nbr);
 char	*get_cmd_path(char *path, char *cmd);
 char	**env_lst_to_2dchar(t_env *lst);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initial_split_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:11:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/06/28 18:10:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:31:48 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	count_words(char *s, char sep, char type)
 	return (count);
 }
 
-static char	get_type(char *line)
+static char	_get_type(char *line)
 {
 	if (ft_strchr(line, '\''))
 		return ('\'');
@@ -72,7 +72,7 @@ static char	**smart_split(char *line)
 	int		len;
 	int		tab_i;
 
-	type = get_type(line);
+	type = _get_type(line);
 	tab = malloc(sizeof(char *) * count_words(line, '|', type) + 1);
 	if (!tab)
 		return (0);

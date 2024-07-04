@@ -5,14 +5,14 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c ./utils/set_data.c \
 
 PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c \
- ./parsing/utils/parse_quote.c
+./parsing/utils/parse_quote.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c \
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c 
 
 PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c \
-./parsing/utils/parse_quote.c
+./parsing/utils/parse_quote.c ./parsing/utils/parse_quote_helpers.c ./parsing/create_lexer.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c

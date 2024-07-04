@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:27:47 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:31:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	minishell(t_data *data)
 {
 	char	*line;
 	char	*parsed;
-	char	**splitted;
+	// char	**splitted;
 
 	(void)data;
 	while (1)
@@ -38,18 +38,17 @@ static void	minishell(t_data *data)
 			pwd_cmd();
 		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
 			ft_export_no_args(data->env);
-		splitted = initial_split_line(line);
+		// splitted = initial_split_line(line);
 		
 		parsed = parse_quote(data, line);
 		ft_printf("[%s]\n", parsed);
 		// ft_export_no_args(head);
-		ft_print_strs(splitted);
-		ft_free_strs(splitted);
+		// ft_print_strs(splitted);
+		// ft_free_strs(splitted);
 		free(line);
 		line = NULL;
 	}
 }
-
 
 int	main(int ac, char **av, char **env)
 {

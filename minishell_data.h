@@ -18,12 +18,54 @@
 
 int	g_sig;
 
+/* -- ENUMS -- */
+typedef enum e_token {
+	WORD = -1,
+	WHITE_SPACE = ' ',
+	NEW_LINE = '\n',
+	QUOTE = '\'',
+	DOUBLE_QUOTE = '"', 
+	ESCAPE = '\\',
+	ENV = '$',
+	PIPE_LINE = '|',
+	REDIR_IN = '<',
+	REDIR_OUT = '>',
+	HERE_DOC,
+	DREDIR_OUT,
+}	t_token;
+
+typedef enum s_status {
+	GENERAL,
+	IN_D_QUOTE,
+	IN_S_QUOTE
+}	t_status;
+
+/* -- PARSING STRUCT -- */
+typedef struct s_parse {
+	char	*new_str;
+	int		in_d_quote;
+	int		in_s_quote;
+	char	*str_char;
+	char	type_q;
+}	t_parse;
+
+/* -- ENVIRONEMNT STRUCT -- */
 typedef struct s_env {
 	char			*key;
 	char			*value;
 	struct s_env	*next;
 }	t_env;
 
+/* -- LEXER -- */
+typedef struct s_lex {
+	char			*string;
+	int				len;
+	t_status		state;
+	t_token			type;
+	struct s_lex	*next;
+}	t_lex;
+
+/* -- COMMAND STRUCT -- */
 typedef struct s_cmd
 {
 	char			*path;
@@ -33,41 +75,9 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
+/* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data {
 	t_env	*env;
 }	t_data;
-
-typedef enum s_cmd_type {
-	BUILT_IN,
-}	t_cmd_type;
-
-typedef enum e_token {
-    WORD = -1,
-    WHITE_SPACE = ' ',
-    NEW_LINE = '\n',
-    QUOTE = '\'',
-    DOUBLE_QUOTE = '"', 
-    ESCAPE = '\\',
-    ENV = '$',
-    PIPE_LINE = '|',
-    REDIR_IN = '<',
-    REDIR_OUT = '>',
-    HERE_DOC,
-    DREDIR_OUT,
-}    t_token;
-
-typedef enum s_status {
-    GENERAL,
-    IN_D_QUOTE,
-    IN_S_QUOTE
-}    t_status;
-
-typedef struct s_lex {
-	char			*string;
-	int				len;
-	t_status		state;
-	t_token			type;
-	struct s_lex	*next;
-}	t_lex;
 
 #endif
