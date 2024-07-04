@@ -9,7 +9,8 @@ macros_bonus.c ft_helpers.c ft_hexa_handler.c ./ft_swap.c ./ft_sort_int_tab.c ./
 ./ft_lstdelone_bonus.c ./ft_lstclear_bonus.c ./ft_lstiter_bonus.c ./ft_lstmap_bonus.c \
 ./ft_print_strs.c  ft_first_word.c ft_last_word.c ft_atol.c ft_print_numbers.c ft_split3.c \
 ft_split_size.c ./dup2dchar.c ./ft_strjoin3.c ./mini_printf.c ./ft_isspace.c \
-ft_split_size.c ./dup2dchar.c ./ft_strjoin3.c ./mini_printf.c ./char_to_string.c ./ft_strcmp.c
+ft_split_size.c ./dup2dchar.c ./ft_strjoin3.c ./mini_printf.c ./char_to_string.c ./ft_strcmp.c \
+./dup_2d_array.c ./insert_to2d_array.c 
 
 
 
