@@ -20,14 +20,14 @@ int	g_sig;
 
 /* -- ENUMS -- */
 typedef enum e_token {
-	WORD = -1,
+	ESCAPE = '\\',
 	WHITE_SPACE = ' ',
 	NEW_LINE = '\n',
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '"', 
-	ESCAPE = '\\',
-	ENV = '$',
 	PIPE_LINE = '|',
+	WORD = -1,
+	ENV = '$',
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
 	HERE_DOC,
@@ -35,9 +35,9 @@ typedef enum e_token {
 }	t_token;
 
 typedef enum s_status {
-	GENERAL,
-	IN_D_QUOTE,
-	IN_S_QUOTE
+	GENERAL = 'G',
+	IN_D_QUOTE = 'D',
+	IN_S_QUOTE = 'S'
 }	t_status;
 
 /* -- PARSING STRUCT -- */
@@ -64,6 +64,13 @@ typedef struct s_lex {
 	t_token			type;
 	struct s_lex	*next;
 }	t_lex;
+
+typedef struct s_lex_helper {
+	int		in_s_quote;
+	int		in_d_quote;
+	t_lex	*lexer;
+	t_lex	*lex;
+}	t_lex_helper;
 
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd

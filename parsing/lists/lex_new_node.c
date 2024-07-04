@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_create_node.c                                  :+:      :+:    :+:   */
+/*   lex_new_node.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:12 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:21:28 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:02:43 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_lex	*lex_create_node(char *str, t_token type, int len, t_status status)
+t_lex	*lex_new_node(char *str, t_token type, int len, t_status status)
 {
 	t_lex	*new;
 
