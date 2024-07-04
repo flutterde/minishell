@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 16:39:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:27:04 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	ft_exit(char *msg, int status, int fd);
 // utils
 char	**initial_split_line(char *line);
 char	*parse_quote(t_data *data, char *str);
+t_lex	*lex_create_node(char *str, t_token type, int len, t_status status);
+t_lex	*lex_getlast(t_lex *lst);
+void	lex_add_back(t_lex **list, t_lex *new);
 
 /* -->> ENV_LINKED_LISTS <<-- */
 /*			ENV					*/
@@ -65,7 +68,8 @@ void	ft_execve(t_cmd *cmd);
 // TODO:: handle this case (in export): (key="vghvhv"), the (") will displayed as a value
 void	_print_env(t_env *env);
 int		ft_export(t_env **lst, char *str);
-int		ft_pwd(t_env *env);
+// int		ft_pwd(t_env *env);
 int		ft_echo(t_cmd *cmd, char *str);
+int		pwd_cmd(void);
 
 #endif

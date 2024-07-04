@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/02 18:29:56 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:27:47 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	minishell(t_data *data)
 		else if (ft_strncmp(line, "env", ft_strlen(line)) == 0)
 			_print_env(data->env);
 		else if (ft_strncmp(line, "pwd", ft_strlen(line)) == 0)
-			ft_pwd(data->env);
+			pwd_cmd();
 		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
 			ft_export_no_args(data->env);
 		splitted = initial_split_line(line);

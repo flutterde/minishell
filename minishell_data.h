@@ -41,4 +41,33 @@ typedef enum s_cmd_type {
 	BUILT_IN,
 }	t_cmd_type;
 
+typedef enum e_token {
+    WORD = -1,
+    WHITE_SPACE = ' ',
+    NEW_LINE = '\n',
+    QUOTE = '\'',
+    DOUBLE_QUOTE = '"', 
+    ESCAPE = '\\',
+    ENV = '$',
+    PIPE_LINE = '|',
+    REDIR_IN = '<',
+    REDIR_OUT = '>',
+    HERE_DOC,
+    DREDIR_OUT,
+}    t_token;
+
+typedef enum s_status {
+    GENERAL,
+    IN_D_QUOTE,
+    IN_S_QUOTE
+}    t_status;
+
+typedef struct s_lex {
+	char			*string;
+	int				len;
+	t_status		state;
+	t_token			type;
+	struct s_lex	*next;
+}	t_lex;
+
 #endif

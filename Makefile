@@ -17,10 +17,13 @@ PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c
 
+LEX_SRCS = ./parsing/lists/lex_create_node.c ./parsing/lists/lex_add_back.c \
+./parsing/lists/lex_getlast.c 
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address
 HEADERS = minishell.h
-SRC = main.c $(PARSING) $(UTILS) $(FT_SRCS)\
+SRC = main.c $(PARSING) $(UTILS) $(FT_SRCS) $(LEX_SRCS) \
 
 NAME = minishell
 

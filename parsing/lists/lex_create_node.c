@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   lex_create_node.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 19:44:59 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 14:33:44 by ochouati         ###   ########.fr       */
+/*   Created: 2024/07/04 15:33:12 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/04 16:21:28 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// int	ft_pwd(t_env *env)
-// {
-// 	t_env	*pwd;
-
-// 	if (!env)
-// 		return (0);
-// 	pwd = search_env(env, "PWD");
-// 	printf("%s\n", pwd->value);
-// 	return (1);
-// }
-
-int	pwd_cmd(void)
+t_lex	*lex_create_node(char *str, t_token type, int len, t_status status)
 {
-	char	*dir;
+	t_lex	*new;
 
-	dir = ft_calloc(2000, 1);
-	if (!dir)
-		return (mini_printf(2, "Error\n"), -1);
-	getcwd(dir, 1999);
-	printf("%s\n", dir);
-	return (free(dir), dir = NULL, 0);
+	new = ft_calloc(1, sizeof(t_lex));
+	if (!new)
+		return (NULL);
+	new->string = str;
+	new->type = type;
+	new->len = len;
+	new->state = status;
+	return (new);
 }
