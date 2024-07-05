@@ -15,10 +15,11 @@ PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_
 ./parsing/utils/parse_quote.c ./parsing/utils/parse_quote_helpers.c ./parsing/create_lexer.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
-./src/ft_execve.c ./src/built_in/ft_export_no_args.c
+./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c 
 
 LEX_SRCS = ./parsing/lists/lex_create_node.c ./parsing/lists/lex_add_back.c \
-./parsing/lists/lex_getlast.c 
+./parsing/lists/lex_getlast.c ./parsing/lists/lex_clear_list.c ./parsing/lists/lex_delete_node.c \
+
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address

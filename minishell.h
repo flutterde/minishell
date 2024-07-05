@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:44:57 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:39:48 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int		search_len(char *str);
 t_lex	*lex_getlast(t_lex *lst);
 t_lex	*lex_create_node(char *str, t_token type, int len, t_status status);
 void	lex_add_back(t_lex **list, t_lex *new);
+void	lex_delete_node(t_lex *node);
+void	lex_clear_list(t_lex **list);
 
 /* -- ENV_LINKED_LISTS -- */
 // ENV
@@ -76,5 +78,6 @@ int		ft_export(t_env **lst, char *str);
 // int		ft_pwd(t_env *env);
 int		ft_echo(t_cmd *cmd, char *str);
 int		pwd_cmd(void);
+char	*ft_cd(char *arg);
 
 #endif
