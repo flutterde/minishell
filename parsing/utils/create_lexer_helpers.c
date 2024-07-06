@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/06 07:07:56 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 10:03:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,38 +63,49 @@ void	lex_red_out(t_lex_helper *lex, char **line)
 void	lex_env(t_lex_helper *lex, char **line)
 {
 	char	*str;
+	char	*ch;
 
 	str = ft_strdup("");
 	if (!str)
 		return ;
-	str = ft_strjoin(str, char_to_str(**line));
+	ch = char_to_str(**line);
+	str = ft_strjoin(str, ch);
+	free(ch);
 	if (!str)
 		return ;
 	(*line)++;
 	while (**line && ft_isalnum(*(*line)))
 	{
-		str = ft_strjoin(str, char_to_str(**line));
+		ch = char_to_str(**line);
+		str = ft_strjoin(str, ch);
 		if (!str)
 			return ;
+		free(ch);
 		(*line)++;
 	}
 	(*line)--;
-	lex->lex = lex_new_node(str, ENV, ft_strlen(str), _status(*lex));
+	if (lex->in_s_quote)
+		lex->lex = lex_new_node(str, WORD, ft_strlen(str), _status(*lex));
+	else
+		lex->lex = lex_new_node(str, ENV, ft_strlen(str), _status(*lex));
 	lex_add_back(&lex->lexer, lex->lex);
 }
 
 void	lex_word(t_lex_helper *lex, char **line)
 {
 	char	*str;
+	char	*ch;
 
 	str = ft_strdup("");
 	if (!str)
 		return ;
 	while (**line && **line != QUOTE && **line != D_QUOTE && **line != ' ')
 	{
-		str = ft_strjoin(str, char_to_str(**line));
+		ch = char_to_str(**line);
+		str = ft_strjoin(str, ch);
 		if (!str)
 			return ;
+		free(ch);
 		(*line)++;
 	}
 	(*line)--;

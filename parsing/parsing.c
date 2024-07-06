@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 17:35:05 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 13:40:46 by mboujama         ###   ########.fr       */
+/*   Created: 2024/07/06 10:46:04 by mboujama          #+#    #+#             */
+/*   Updated: 2024/07/06 14:43:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_exit(char *msg, int status, int fd)
+int	parsing(t_data *data, char *line)
 {
-	ft_putendl_fd(msg, fd);
-	exit(status);
+	t_lex	*tmp;
+
+	tmp = data->lexer;
+	data->lexer = create_lexer(line);
+	print_lexer(data->lexer);
+	if (!ft_strcmp(data->lexer->string, "|"))
+		return (mini_printf(2, "minishell: syntax err near unexpected token `|'\n"), 0);
+	while (data->lexer)
+	{
+		check_syntax(data->lexer);
+		data->lexer = data->lexer->next;
+	}
+	return (1);
 }

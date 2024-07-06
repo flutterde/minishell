@@ -85,6 +85,7 @@ typedef struct s_cmd
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data {
 	t_env	*env;
+	t_lex	*lexer;
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 06:59:02 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:40:52 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		ft_init(int ac, char **av, char **env, t_env *envs);
 void		ft_exit(char *msg, int status, int fd);
 
 /* -- PARSING PART -- */
+int			parsing(t_data *data, char *line);
 t_lex		*create_lexer(char *line);
 // utils
 char		**initial_split_line(char *line);
@@ -45,6 +46,7 @@ void		lex_red_in(t_lex_helper *lex, char **line);
 void		lex_red_out(t_lex_helper *lex, char **line);
 void		lex_env(t_lex_helper *lex, char **line);
 void		lex_word(t_lex_helper *lex, char **line);
+int			check_syntax(t_lex *lex);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_new_node(char *str, t_token type, int len, t_status status);

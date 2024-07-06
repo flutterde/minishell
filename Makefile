@@ -7,9 +7,9 @@ FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_
 ./src/ft_execve.c \
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c 
 
-PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c \
-./parsing/utils/parse_quote.c ./parsing/utils/parse_quote_helpers.c ./parsing/create_lexer.c \
-./parsing/utils/create_lexer_helpers.c
+PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c \
+./parsing/initial_split_line.c ./parsing/parse_quote.c ./parsing/utils/parse_quote_helpers.c \
+./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c
