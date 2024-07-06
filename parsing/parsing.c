@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 16:27:06 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/05 11:52:13 by mboujama         ###   ########.fr       */
+/*   Created: 2024/07/06 10:46:04 by mboujama          #+#    #+#             */
+/*   Updated: 2024/07/06 14:43:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+int	parsing(t_data *data, char *line)
 {
-	size_t	len;
-	size_t	i;
-	size_t	j;
-	char	*nstr;
+	t_lex	*tmp;
 
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	nstr = malloc(sizeof(char) * (len + 1));
-	if (!nstr)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-		nstr[j++] = ((char *)s1)[i++];
-	i = 0;
-	while (s2[i])
-		nstr[j++] = ((char *)s2)[i++];
-	nstr[j] = '\0';
-	free(s1);
-	return (nstr);
+	tmp = data->lexer;
+	data->lexer = create_lexer(line);
+	print_lexer(data->lexer);
+	if (!ft_strcmp(data->lexer->string, "|"))
+		return (mini_printf(2, "minishell: syntax err near unexpected token `|'\n"), 0);
+	while (data->lexer)
+	{
+		check_syntax(data->lexer);
+		data->lexer = data->lexer->next;
+	}
+	return (1);
 }

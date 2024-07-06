@@ -6,11 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:11:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 12:31:48 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:41:11 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
 static int	len_word(char *str, char type)
 {

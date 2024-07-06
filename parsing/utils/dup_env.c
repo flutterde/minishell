@@ -6,11 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:48:34 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 12:26:46 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 10:56:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 // ? increment SHLVL
 static void	__shell_level(t_env *head)

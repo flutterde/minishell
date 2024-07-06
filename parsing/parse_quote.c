@@ -6,11 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:42:22 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 19:04:21 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 10:56:09 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
 static void	expand_env(t_env *env, t_parse *parse_dt, char *search)
 {
