@@ -6,52 +6,55 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 20:30:54 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 07:07:05 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_status	_status(t_lex_helper lex)
+void	other_cases_2(t_lex_helper *lex, char **line)
 {
-	if (lex.in_d_quote)
-		return (D_QUOTE);
-	else if (lex.in_s_quote)
-		return (S_QUOTE);
+	if (**line == '\n')
+	{
+		lex->lex = lex_new_node(char_to_str('\n'), NEW_LINE, 1, _status(*lex));
+		lex_add_back(&lex->lexer, lex->lex);
+	}
+	else if (**line == '<')
+		lex_red_in(lex, line);
+	else if (**line == '>')
+		lex_red_out(lex, line);
+	else if (**line == '$')
+		lex_env(lex, line);
 	else
-		return (GENERAL);
+		lex_word(lex, line);
 }
 
-void	other_cases_2(t_lex_helper *lex, char *line)
+void	other_cases(t_lex_helper *lex, char **line)
 {
-	(void) lex;
-	if (*line == '$')
-		return ;
-}
-
-void	other_cases(t_lex_helper *lex, char *line)
-{
-	if (*line == '\\')
+	if (**line == '\\')
 	{
 		lex->lex = lex_new_node(char_to_str('\\'), S_QUOTE, 1, _status(*lex));
+		if (!lex->lex)
+			return ;
 		lex_add_back(&lex->lexer, lex->lex);
 	}
-	else if (*line == '|')
+	else if (**line == '|')
 	{
-		lex->lex = lex_new_node(char_to_str('|'), S_QUOTE, 1, _status(*lex));
+		lex->lex = lex_new_node(char_to_str('|'), PIPE_LINE, 1, _status(*lex));
+		if (!lex->lex)
+			return ;
 		lex_add_back(&lex->lexer, lex->lex);
 	}
-	else if (*line == ' ')
+	else if (**line == ' ')
 	{
-		lex->lex = lex_new_node(char_to_str(' '), S_QUOTE, 1, _status(*lex));
+		lex->lex = lex_new_node(char_to_str(' '),
+				WHITE_SPACE, 1, _status(*lex));
+		if (!lex->lex)
+			return ;
 		lex_add_back(&lex->lexer, lex->lex);
 	}
-	else if (*line == '\n')
-	{
-		lex->lex = lex_new_node(char_to_str('\n'), S_QUOTE, 1, _status(*lex));
-		lex_add_back(&lex->lexer, lex->lex);
-	}
-	other_cases_2(lex, line);
+	else
+		other_cases_2(lex, line);
 }
 
 t_lex	*create_lexer(char *line)
@@ -67,17 +70,17 @@ t_lex	*create_lexer(char *line)
 		if (*line == '\'')
 		{
 			lex.in_s_quote = !lex.in_s_quote;
-			lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, _status(lex));
+			lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, GENERAL);
 			lex_add_back(&lex.lexer, lex.lex);
 		}
 		else if (*line == '\"')
 		{
 			lex.in_d_quote = !lex.in_d_quote;
-			lex.lex = lex_new_node(char_to_str('\"'), S_QUOTE, 1, _status(lex));
+			lex.lex = lex_new_node(char_to_str('\"'), S_QUOTE, 1, GENERAL);
 			lex_add_back(&lex.lexer, lex.lex);
 		}
 		else
-			other_cases(&lex, line);
+			other_cases(&lex, &line);
 		line++;
 	}
 	return (lex.lexer);

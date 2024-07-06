@@ -26,12 +26,12 @@ typedef enum e_token {
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '"', 
 	PIPE_LINE = '|',
-	WORD = -1,
-	ENV = '$',
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
 	HERE_DOC,
 	DREDIR_OUT,
+	WORD = -1,
+	ENV = '$',
 }	t_token;
 
 typedef enum s_status {

@@ -1,18 +1,15 @@
-
-
 UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/removeif_env.c \
 ./utils/lists/linked_utils2_env.c ./utils/helpers/ft_errno.c ./utils/helpers/get_cmd_path.c \
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c ./utils/set_data.c \
-
-PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c \
-./parsing/utils/parse_quote.c
+./utils/helpers/print_lexer.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c \
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c 
 
 PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c \
-./parsing/utils/parse_quote.c ./parsing/utils/parse_quote_helpers.c ./parsing/create_lexer.c
+./parsing/utils/parse_quote.c ./parsing/utils/parse_quote_helpers.c ./parsing/create_lexer.c \
+./parsing/utils/create_lexer_helpers.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c
