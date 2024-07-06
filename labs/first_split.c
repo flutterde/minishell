@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:53:04 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/03 19:07:22 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:04:21 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int	main(void)
 	// str = readline("Enter a string: ");
 	// ! Make sure that str is not a Read-Only string.
 	first_split(ft_strdup(str), "||");
-	// char	*join = ft_strjoin3("&&", char_to_string(CHAR1), ("||"));
+	// char	*join = ft_strjoin3("&&", char_to_str(CHAR1), ("||"));
 	// printf("You entered: %s\n", join);
 	// printf("You entered: %d\n", _is_paren(str[0]));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 19:39:48 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:41:46 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <unistd.h>
 # include <errno.h>
 
-# define S_QUOTE 39 // '
-# define D_QUOTE 34 // "
+# define S_QUOTE 39
+# define D_QUOTE 34
 
 # include <sys/wait.h>
 
@@ -33,7 +33,7 @@ void	ft_init(int ac, char **av, char **env, t_env *envs);
 void	ft_exit(char *msg, int status, int fd);
 
 /* -- PARSING PART -- */
-int		create_lexer(char *line);
+t_lex	*create_lexer(char *line);
 // utils
 char	**initial_split_line(char *line);
 char	*parse_quote(t_data *data, char *str);
@@ -42,7 +42,7 @@ char	get_type(char ch);
 int		search_len(char *str);
 // lists
 t_lex	*lex_getlast(t_lex *lst);
-t_lex	*lex_create_node(char *str, t_token type, int len, t_status status);
+t_lex	*lex_new_node(char *str, t_token type, int len, t_status status);
 void	lex_add_back(t_lex **list, t_lex *new);
 void	lex_delete_node(t_lex *node);
 void	lex_clear_list(t_lex **list);
@@ -63,6 +63,7 @@ t_env	*get_prev_env(t_env *head, t_env *node);
 /* -- HELPERS FUNCTIONS -- */
 void	ft_errno(int nbr);
 char	*get_cmd_path(char *path, char *cmd);
+char	*get_absolute_path(char *path, t_env *env);
 char	**env_lst_to_2dchar(t_env *lst);
 void	_print_env(t_env *env);
 int		ft_export_no_args(t_env *env);

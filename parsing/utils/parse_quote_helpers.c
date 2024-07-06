@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:28:33 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 14:48:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:04:21 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ char	*handle_spaces(t_parse *parse_dt)
 			&& !parse_dt->in_d_quote && !parse_dt->in_s_quote)
 		{
 			if (parse_dt->new_str[i - 1] != ' ')
-				str = ft_strjoin(str, char_to_string(parse_dt->new_str[i]));
+				str = ft_strjoin(str, char_to_str(parse_dt->new_str[i]));
 			else
 				continue ;
 		}
 		else
-			str = ft_strjoin(str, char_to_string(parse_dt->new_str[i]));
+			str = ft_strjoin(str, char_to_str(parse_dt->new_str[i]));
 	}
 	return (free(parse_dt->new_str), parse_dt->new_str = NULL, str);
 }

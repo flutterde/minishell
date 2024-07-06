@@ -119,7 +119,7 @@ char	**dup2dchar(char **str);
 char	*ft_strjoin3(char *s1, char *s2, char *s3);
 void	mini_printf(int fd, const char *str, ...);
 int		ft_isspace(char c);
-char	*char_to_string(char c);
+char	*char_to_str(char c);
 int		ft_strcmp(char *s1, char *s2);
 char	**dup_2d_array(char **arr);
 char	**insert_to2d_array(char **arr, char *str);

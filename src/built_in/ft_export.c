@@ -6,21 +6,21 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:44:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/30 13:01:05 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:00:29 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
- int	export_without_args(t_env *lst)
-{
-	while (lst)
-	{
-		printf("declare -x %s=%s\n", lst->key, lst->value);
-		lst = lst->next;
-	}
-	return (1);
-}
+//  int	export_without_args(t_env *lst)
+// {
+// 	while (lst)
+// 	{
+// 		printf("declare -x %s=%s\n", lst->key, lst->value);
+// 		lst = lst->next;
+// 	}
+// 	return (1);
+// }
 
 int	ft_export(t_env **lst, char *str)
 {

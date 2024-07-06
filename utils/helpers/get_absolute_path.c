@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execve.c                                        :+:      :+:    :+:   */
+/*   get_absolute_path.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 20:36:43 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/05 17:52:55 by ochouati         ###   ########.fr       */
+/*   Created: 2024/07/05 19:37:26 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/05 19:53:59 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	ft_execve(t_cmd *cmd)
+char	*get_absolute_path(char *command, t_env *env)
 {
-	int		_id;
-	int		_status;
+	char	*pwd;
 
-	_id = fork();
-	if (!_id)
-	{
-		if (execve(cmd->path, cmd->args, env_lst_to_2dchar(cmd->env)))
-		{
-			ft_errno(errno);
-			exit(errno);
-		}
-	}
-	else
-	{
-		if (waitpid(_id, &_status, 0) == -1)
-			ft_errno(errno);
-	}
+	if (!command || !env)
+		return (NULL);
+	pwd = getenv("PWD");
+	if (command[0] == '/')
+		return (ft_strdup(command));
+	if (!pwd)
+		return (NULL);
+	if (command[0] == '.' && command[1] == '/')
+		return (ft_strjoin(pwd, command + 1));
+	return (get_cmd_path(getenv("PATH"), command));
 }

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:42:22 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 14:54:36 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:04:21 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*parse_quote(t_data *data, char *str)
 			parse_dt.in_d_quote = !parse_dt.in_d_quote;
 		else
 		{
-			parse_dt.str_char = char_to_string(*str);
+			parse_dt.str_char = char_to_str(*str);
 			parse_dt.new_str = ft_strjoin(parse_dt.new_str, parse_dt.str_char);
 			free(parse_dt.str_char);
 		}

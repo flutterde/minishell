@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:31:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:45:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 static void	minishell(t_data *data)
 {
 	char	*line;
-	char	*parsed;
+	// char	*parsed;
 	// char	**splitted;
+	t_lex	*lex;
 
 	(void)data;
 	while (1)
@@ -38,10 +39,16 @@ static void	minishell(t_data *data)
 			pwd_cmd();
 		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
 			ft_export_no_args(data->env);
+		lex = create_lexer(line);
+		while (lex)
+		{
+			printf("==> |	%s	|	%d	|	%d	|\n", lex->string, lex->state, lex->len);
+			lex = (lex)->next;
+		}
 		// splitted = initial_split_line(line);
 		
-		parsed = parse_quote(data, line);
-		ft_printf("[%s]\n", parsed);
+		// parsed = parse_quote(data, line);
+		// ft_printf("[%s]\n", parsed);
 		// ft_export_no_args(head);
 		// ft_print_strs(splitted);
 		// ft_free_strs(splitted);
