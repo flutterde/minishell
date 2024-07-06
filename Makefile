@@ -3,15 +3,11 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c ./utils/set_data.c \
 ./utils/helpers/get_absolute_path.c 
 
-PARSING = ./parsing/dup_env.c ./parsing/ft_init.c ./parsing/utils/initial_split_line.c \
-./parsing/utils/parse_quote.c
-./utils/helpers/print_lexer.c
-
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
-./src/ft_execve.c \
+./src/ft_execve.c  \
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c 
 
-PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c \
+PARSING = ./utils/helpers/ft_print_lexer.c ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c \
 ./parsing/initial_split_line.c ./parsing/parse_quote.c ./parsing/utils/parse_quote_helpers.c \
 ./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
 
@@ -23,7 +19,7 @@ LEX_SRCS = ./parsing/lists/lex_new_node.c ./parsing/lists/lex_add_back.c \
 
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline  -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address
 HEADERS = minishell.h
 SRC = main.c $(PARSING) $(UTILS) $(FT_SRCS) $(LEX_SRCS) \
 

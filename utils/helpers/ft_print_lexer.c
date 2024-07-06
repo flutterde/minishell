@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_lexer.c                                      :+:      :+:    :+:   */
+/*   ft_print_lexer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 06:56:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/06 08:53:27 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:24:43 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	print_lexer(t_lex *lex)
+void	ft_print_lexer(t_lex *lex)
 {
 	printf("-------------------------------------------------------------------------\n");
 	printf("|	content		|	state	|	len	|	token	|\n");

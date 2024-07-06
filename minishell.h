@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 15:03:32 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:25:48 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ char	**env_lst_to_2dchar(t_env *lst);
 void	_print_env(t_env *env);
 int		ft_export_no_args(t_env *env);
 t_cmd	*set_data(t_env *env, char *path, char **args, char *cmd);
-void	print_lexer(t_lex *lex);
+void	ft_print_lexer(t_lex *lex);
 
 /* -- SRCS -- */
 void		ft_execve(t_cmd *cmd);
 
 /* -- BUILT-IN PART -- */
 // TODO:: handle this case (in export): (key="vghvhv"), the (") will displayed as a value
-void		_print_env(t_env *env);
-int			ft_export(t_env **lst, char *str);
+void	_print_env(t_env *env);
+int		ft_export(t_env **lst, char *str);
 // int		ft_pwd(t_env *env);
 int		ft_echo(t_cmd *cmd, char *str);
 int		pwd_cmd(void);
