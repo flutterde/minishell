@@ -63,6 +63,7 @@ typedef struct s_lex {
 	t_status		state;
 	t_token			type;
 	struct s_lex	*next;
+	struct s_lex	*prev;
 }	t_lex;
 
 typedef struct s_lex_helper {

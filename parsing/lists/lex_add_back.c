@@ -12,12 +12,21 @@
 
 #include "../../minishell.h"
 
+static void	_add_null(t_lex *node)
+{
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->prev = NULL;
+}
+
 void	lex_add_back(t_lex **list, t_lex *new)
 {
 	t_lex	*last;
 
-	if (!new)
+	if (!new || !list)
 		return ;
+	_add_null(new);
 	if (!*list)
 	{
 		(*list) = new;
@@ -26,5 +35,6 @@ void	lex_add_back(t_lex **list, t_lex *new)
 	last = lex_getlast(*list);
 	if (!last)
 		return ;
+	new->prev = last;
 	last->next = new;
 }
