@@ -6,6 +6,7 @@ app
 test.c
 text.txt
 .DS_Store
+*.js
 
 # Object files
 *.o
