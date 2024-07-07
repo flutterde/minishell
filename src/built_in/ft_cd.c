@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:53:19 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/07 18:58:56 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 19:37:30 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ char	*ft_cd(char *arg)
 	if (!dir)
 		return (mini_printf(2, "Error\n"), NULL);
 	getcwd(dir, 1999);
-	if (!ft_strlen(arg))
+	if (!ft_strlen(arg) || !ft_strcmp(arg, "~"))
 	{
 		home = getenv("HOME");
-		if (chdir(home))
-			return (ft_errno(errno), NULL);
+		if (chdir(home) == -1)
+			return (free(dir), mini_printf(2, "Error: %s\n",
+				strerror(errno)), NULL);
 		getcwd(dir, 1999);
 		return (new = ft_strdup(dir), free(dir), new);
 	}
-	if (chdir(home))
-		return (ft_errno(errno), NULL);
+	else if (chdir(arg) == -1)
+		return (mini_printf(2, "Error: cd: %s: %s\n", arg,
+			strerror(errno)), free(dir), NULL);
 	getcwd(dir, 1999);
 	return (new = ft_strdup(dir), free(dir), new);
 }

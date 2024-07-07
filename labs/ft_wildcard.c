@@ -6,15 +6,19 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:17:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/07 15:00:08 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:42:53 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 #include "head.h"
 
+// tests: "*_*_*.c", "*.js", "something.*", "something.*.c", "something.*.c*"
 static int	is_pattern_match(char *file, char *wcard)
 {
+	int	i;
+
+	i = 0;
 
 }
 

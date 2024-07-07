@@ -29,3 +29,21 @@ ls '' -la ===> SHould not be "ls  -la" because the first argument is empty
 
 # Testat Lmla7
 where is ??????????? "declare -x _=/usr/bin/make", :: when you run "export" this one should not be in the output
+cd -
+
+bash-3.2$ echo **************.dl
+**************.dl
+bash-3.2$ echo "**************.dl"
+**************.dl
+bash-3.2$ ec
+bash-3.2$ echo **************.c
+main.c
+bash-3.2$ echo "**************.c"
+**************.c
+bash-3.2$ echo '**************.c'
+**************.c
+bash-3.2$ echo **************.c
+main.c
+bash-3.2$ echo **************.ck
+**************.ck
+bash-3.2$ 

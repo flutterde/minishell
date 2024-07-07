@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex_clear_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:34:24 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 18:38:56 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:26:52 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	lex_clear_list(t_lex **list)
 
 	if (!list || !*list)
 		return ;
+	while ((*list)->prev)
+		(*list) = (*list)->prev;
 	while (*list)
 	{
 		tmp = (*list)->next;
