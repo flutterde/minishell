@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/06 10:03:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/07 10:46:29 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	lex_word(t_lex_helper *lex, char **line)
 	str = ft_strdup("");
 	if (!str)
 		return ;
-	while (**line && **line != QUOTE && **line != D_QUOTE && **line != ' ')
+	while (**line && **line != QUOTE && **line != D_QUOTE
+		&& **line != ' ' && **line != '|')
 	{
 		ch = char_to_str(**line);
 		str = ft_strjoin(str, ch);

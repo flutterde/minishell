@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:33:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:19:50 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:41:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	_handler(char *s1, char *s2)
 {
 	ft_printf("-----------------------\n");
 	char *n1 = cd_cmd(s1);
+	ft_printf("the path 1 :: %s\n", n1);
 	char *n2 = cd_cmd(s2);
+	ft_printf("the path 2 :: %s\n", n2);
 	// ft_print_strs(av);
 	free(n1);
 	free(n2);
@@ -63,6 +65,6 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	_handler(av[1], av[2]);
-	system("leaks a.out");
+	// system("leaks a.out");
 	return (0);
 }

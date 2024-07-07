@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 13:40:22 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:47:48 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	leaks(void)
 static void	minishell(t_data *data)
 {
 	char	*line;
+	char	*tmp;
 
 	atexit(leaks);
 	while (1)
@@ -31,9 +32,16 @@ static void	minishell(t_data *data)
 		if (ft_strlen(line) > 0
 			&& ft_strncmp(line, "exit", ft_strlen(line)) == 0)
 		{
+			lex_clear_list(&data->lexer);
 			ft_printf("Goodbye!\n");
 			free(line);
 			exit(0);
+		}
+		else if (!ft_strncmp(line, "cd", 2))
+		{
+			char *str = ft_cd(line + 3);
+			printf("the str: %s.\n", str);
+			free(str);
 		}
 		else if (ft_strncmp(line, "env", ft_strlen(line)) == 0)
 			_print_env(data->env);
@@ -41,8 +49,13 @@ static void	minishell(t_data *data)
 			pwd_cmd();
 		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
 			ft_export_no_args(data->env);
-		parsing(data, line);
+		tmp = line;
+		line = ft_strtrim(tmp, " ");
+		if (!parsing(data, line))
+			lex_clear_list(&data->lexer);
+		free(tmp);
 		free(line);
+		lex_clear_list(&data->lexer);
 		line = NULL;
 	}
 }

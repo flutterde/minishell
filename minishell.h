@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 16:20:28 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:18:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ void		lex_red_out(t_lex_helper *lex, char **line);
 void		lex_env(t_lex_helper *lex, char **line);
 void		lex_word(t_lex_helper *lex, char **line);
 int			check_syntax(t_lex *lex);
+int			consec_spaces(t_lex *str, t_token token);
+int			rev_consec_spaces(t_lex *lex, t_token token);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_new_node(char *str, t_token type, int len, t_status status);
 void		lex_add_back(t_lex **list, t_lex *new);
-void	lex_delete_node(t_lex *node);
-void	lex_clear_list(t_lex **list);
+void		lex_delete_node(t_lex *node);
+void		lex_clear_list(t_lex **list);
 
 /* -- ENV_LINKED_LISTS -- */
 // ENV
