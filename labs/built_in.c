@@ -6,11 +6,13 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:33:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 16:19:50 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:58:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
+#include <errno.h>
+#include <string.h>
 
 int	pwd_cmd(void)
 {
@@ -24,7 +26,33 @@ int	pwd_cmd(void)
 	return (free(dir), dir = NULL, 0);
 }
 
-char	*cd_cmd(char *arg)
+// char	*cd_cmd(char *arg)
+// {
+// 	char	*dir;
+// 	char	*home;
+// 	char	*new;
+
+// 	dir = ft_calloc(2000, sizeof(char));
+// 	if (!dir)
+// 		return (mini_printf(2, "Error can't allocate\n"), NULL);
+// 	getcwd(dir, 1999);
+// 	if (!ft_strlen(arg))
+// 	{
+// 		home = getenv("HOME");
+// 		//chdir(home); // ! handle error
+// 		if (chdir(home) == -1)
+// 			return (mini_printf(2, "Error: %s\n", strerror(errno)), NULL);
+// 		getcwd(dir, 1999);
+// 		printf("the PWD>: %s\n", dir);
+// 		return (new = ft_strdup(dir), free(dir), new);
+// 	}
+// 	chdir(arg); // ! handle error
+// 	getcwd(dir, 1999);
+// 	printf("the PWD: %s\n", dir);
+// 	return (new = ft_strdup(dir), free(dir), new);
+// }
+
+char	*ft_cd(char *arg)
 {
 	char	*dir;
 	char	*home;
@@ -34,24 +62,30 @@ char	*cd_cmd(char *arg)
 	if (!dir)
 		return (mini_printf(2, "Error\n"), NULL);
 	getcwd(dir, 1999);
-	if (!ft_strlen(arg))
+	if (!ft_strlen(arg) || !ft_strcmp(arg, "~"))
 	{
 		home = getenv("HOME");
-		chdir(home); // ! handle error
+		if (chdir(home) == -1)
+			return (free(dir), mini_printf(2, "Error: %s\n",
+				strerror(errno)), NULL);
 		getcwd(dir, 1999);
 		return (new = ft_strdup(dir), free(dir), new);
 	}
-	chdir(arg); // ! handle error
+	else if (chdir(arg) == -1)
+		return (mini_printf(2, "Error: cd: %s: %s\n", arg,
+			strerror(errno)), free(dir), NULL);
 	getcwd(dir, 1999);
 	return (new = ft_strdup(dir), free(dir), new);
 }
 
 void	_handler(char *s1, char *s2)
 {
-	ft_printf("-----------------------\n");
-	char *n1 = cd_cmd(s1);
-	char *n2 = cd_cmd(s2);
-	// ft_print_strs(av);
+	ft_printf("--=>> -------(s1 = %s)-----(s2 = %s)-----------\n", s1, s2);
+	char *n1 = ft_cd("/root");
+	ft_printf("n1 = %s\n", n1);
+	char *n2 = ft_cd("/dev");
+	ft_printf("n2 = %s\n", n2);
+
 	free(n1);
 	free(n2);
 	ft_printf("-----------------------\n");
@@ -62,7 +96,8 @@ void	_handler(char *s1, char *s2)
 int	main(int ac, char **av)
 {
 	(void)ac;
-	_handler(av[1], av[2]);
+	_handler(av[1], av[0]);
+	pwd_cmd();
 	system("leaks a.out");
 	return (0);
 }

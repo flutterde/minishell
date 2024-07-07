@@ -6,12 +6,17 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:17:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 18:08:34 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:00:08 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 #include "head.h"
+
+static int	is_pattern_match(char *file, char *wcard)
+{
+
+}
 
 static int	_compare_end(char *wcard, char *file)
 {
@@ -87,24 +92,42 @@ char	**ft_wildcard(char *str, char *dir_path)
 	return (files);
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **envp)
 {
 	char	**files;
+	char	**tmp;
+	char	**tmp2;
+	int		i = 0;
 
 	if (ac != 3)
 		return (ft_printf("ERROR\n"), 1);
+	tmp = ft_split("ls", ' ');
 	files = ft_wildcard(av[1], av[2]);
 	if (!files)
 		return (ft_printf("NO_Files\n"), 1);
+	while (files && files[i])
+	{
+		tmp2 = tmp;
+		tmp = insert_to2d_array(tmp, files[i]);
+		i++;
+		ft_free_strs(tmp2);
+	}
 	ft_printf("Files:\n");
 	ft_print_strs(files);
 	ft_printf("----------------\n");
+	int status;
+	i = fork();
+	if (!i)
+	{
+		if(execve("/bin/ls", tmp, envp))
+		{
+			ft_printf("ERROR\n");
+			exit(1);
+		}
+	}
+	waitpid(i, &status, 0);
 	ft_free_strs(files);
-	// int i;
-	// i = fork();
-	// if (!i)
-	// {
-	// }
+	ft_free_strs(tmp);
 	// system("leaks app");
 	return (0);
 }
