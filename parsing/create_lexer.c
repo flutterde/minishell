@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/06 07:07:05 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/08 10:47:45 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	other_cases_2(t_lex_helper *lex, char **line)
 {
-	if (**line == '\n')
-	{
-		lex->lex = lex_new_node(char_to_str('\n'), NEW_LINE, 1, _status(*lex));
-		lex_add_back(&lex->lexer, lex->lex);
-	}
-	else if (**line == '<')
+	if (**line == '<')
 		lex_red_in(lex, line);
 	else if (**line == '>')
 		lex_red_out(lex, line);
@@ -40,7 +35,7 @@ void	other_cases(t_lex_helper *lex, char **line)
 	}
 	else if (**line == '|')
 	{
-		lex->lex = lex_new_node(char_to_str('|'), PIPE_LINE, 1, _status(*lex));
+		lex->lex = lex_new_node(char_to_str('|'), PIPELINE, 1, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);

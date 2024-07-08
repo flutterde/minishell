@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:46:04 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/07 15:27:16 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:21:37 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	parsing(t_data *data, char *line)
 	tmp = data->lexer;
 	ft_print_lexer(tmp);
 	if (!ft_strcmp(tmp->string, "|"))
-		return (mini_printf(2,
-				"minishell: syntax error near unexpected token `|'\n"), 0);
+		return (data->last_exit = 258, mini_printf(2,
+				"minishell: syntax error near unexpected token `|'\n"), 258);
 	while (tmp)
 	{
-		if (!check_syntax(tmp))
+		if (!check_syntax(data, tmp))
 			return (0);
 		tmp = tmp->next;
 	}
