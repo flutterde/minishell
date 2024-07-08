@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/07 12:51:37 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/08 10:49:03 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,19 @@ int	rev_consec_spaces(t_lex *lex, t_token token)
 		lex = lex->prev;
 	}
 	lex = tmp;
+	return (1);
+}
+
+int	check_chars_env(t_lex *lex)
+{
+	int	i;
+
+	i = 1;
+	while (lex->string[i])
+	{
+		if (!ft_isalnum(lex->string[i]) && lex->string[i] != '_')
+			return (0);
+		i++;
+	}
 	return (1);
 }

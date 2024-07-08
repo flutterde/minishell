@@ -47,3 +47,6 @@ main.c
 bash-3.2$ echo **************.ck
 **************.ck
 bash-3.2$ 
+
+
+echo *".c" => echo *.c

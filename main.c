@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/07 20:46:35 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:04:50 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	minishell(t_data *data)
 	while (1)
 	{
 		line = readline(M_NAME);
-		if (!ft_strlen(line))
+		if (!ft_strlen(ft_strtrim(line, " ")))
 			continue ;
 		add_history(line);
 		if (ft_strlen(line) > 0
@@ -39,18 +39,16 @@ static void	minishell(t_data *data)
 		}
 		else if (!ft_strncmp(line, "cd", 2))
 		{
-			// get current directory_path
-			char *str = ft_cd(line + 3);
-			// save the current directory_path in the env OLDPWD=old_path
-			printf("the str: %s.\n", str);
-			free(str);
+			cd_handler(data->env, line + 3);
 		}
-		else if (ft_strncmp(line, "env", ft_strlen(line)) == 0)
+		else if (!ft_strncmp(line, "env", ft_strlen(line)))
 			_print_env(data->env);
-		else if (ft_strncmp(line, "pwd", ft_strlen(line)) == 0)
+		else if (!ft_strncmp(line, "pwd", ft_strlen(line)))
 			pwd_cmd();
-		else if (ft_strncmp(line, "export", ft_strlen(line)) == 0)
+		else if (!ft_strncmp(line, "export", ft_strlen(line)))
 			ft_export_no_args(data->env);
+		else if (!ft_strncmp(line, "$?", 2))
+			ft_printf("%d\n", data->last_exit);
 		tmp = line;
 		line = ft_strtrim(tmp, " ");
 		if (!parsing(data, line))

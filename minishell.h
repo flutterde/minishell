@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/07 19:38:10 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:12:06 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void		lex_red_in(t_lex_helper *lex, char **line);
 void		lex_red_out(t_lex_helper *lex, char **line);
 void		lex_env(t_lex_helper *lex, char **line);
 void		lex_word(t_lex_helper *lex, char **line);
-int			check_syntax(t_lex *lex);
+int			check_syntax(t_data *data, t_lex *lex);
 int			consec_spaces(t_lex *str, t_token token);
 int			rev_consec_spaces(t_lex *lex, t_token token);
+int			check_chars_env(t_lex *lex);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_new_node(char *str, t_token type, int len, t_status status);
@@ -92,5 +93,7 @@ int		ft_export(t_env **lst, char *str);
 int		ft_echo(t_cmd *cmd, char *str);
 int		pwd_cmd(void);
 char	*ft_cd(char *arg);
+void	cd_handler(t_env *env, char *path);
+
 
 #endif

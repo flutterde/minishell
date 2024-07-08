@@ -22,13 +22,12 @@ int	g_sig;
 typedef enum e_token {
 	ESCAPE = '\\',
 	WHITE_SPACE = ' ',
-	NEW_LINE = '\n',
 	QUOTE = '\'',
-	DOUBLE_QUOTE = '"', 
-	PIPE_LINE = '|',
+	DOUBLE_QUOTE = '"',
+	PIPELINE = '|',
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
-	HERE_DOC,
+	HEREDOC,
 	DREDIR_OUT,
 	WORD = -1,
 	ENV = '$',
@@ -87,6 +86,7 @@ typedef struct s_cmd
 typedef struct s_data {
 	t_env	*env;
 	t_lex	*lexer;
+	int		last_exit;
 }	t_data;
 
 #endif
