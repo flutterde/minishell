@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/09 13:15:25 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:13:37 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,28 @@ int	check_chars_env(t_lex *lex)
 
 int	quotes_check(t_data *data, t_lex *lex)
 {
-	t_lex	*tmp;
-	int		nb_s_quote;
-	int		nb_d_quote;
+	t_quote	quote;
 
-	nb_d_quote = 0;
-	nb_s_quote = 0;
-	tmp = lex;
-	while (tmp)
+	ft_bzero(&quote, sizeof(t_quote));
+	quote.tmp = lex;
+	while (quote.tmp)
 	{
-		if (tmp->type == S_QUOTE && tmp->state == GENERAL)
-			nb_s_quote++;
-		else if (tmp->type == D_QUOTE && tmp->state == GENERAL)
-			nb_d_quote++;
-		tmp = tmp->next;
+		if (quote.tmp->type == S_QUOTE && !quote.in_d_quote)
+		{
+			quote.in_s_quote = !quote.in_s_quote;
+			quote.nb_s_quote++;
+		}
+		else if (quote.tmp->type == D_QUOTE && !quote.in_s_quote)
+		{
+			quote.in_d_quote = !quote.in_d_quote;
+			quote.nb_d_quote++;
+		}
+		quote.tmp = quote.tmp->next;
 	}
-	if (nb_d_quote % 2 != 0)
+	if (quote.nb_d_quote % 2 != 0)
 		return (data->last_exit = 258, mini_printf(2,
 				"minishell: syntax error near \"\n"), 0);
-	else if (nb_s_quote % 2 != 0)
+	else if (quote.nb_s_quote % 2 != 0)
 		return (data->last_exit = 258, mini_printf(2,
 				"minishell: syntax error near \'\n"), 0);
 	return (1);

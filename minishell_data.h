@@ -73,6 +73,15 @@ typedef struct s_parse {
 	char	type_q;
 }	t_parse;
 
+typedef struct s_quote
+{
+	int		nb_s_quote;
+	int		nb_d_quote;
+	int		in_s_quote;
+	int		in_d_quote;
+	t_lex	*tmp;
+}	t_quote;
+
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd
 {
