@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_lexer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 06:56:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/06 15:24:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:33:53 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_print_lexer(t_lex *lex)
 {
 	printf("-------------------------------------------------------------------------\n");
-	printf("|	content		|	state	|	len	|	token	|\n");
+	printf("|	content		|	state	|	len	|	type	|\n");
 	printf("-------------------------------------------------------------------------\n");
 	while (lex)
 	{

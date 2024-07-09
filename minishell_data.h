@@ -16,7 +16,8 @@
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
 
-int	g_sig;
+# define D_QUOTE 34
+# define S_QUOTE 39
 
 /* -- ENUMS -- */
 typedef enum e_token {
@@ -38,15 +39,6 @@ typedef enum s_status {
 	IN_D_QUOTE = 'D',
 	IN_S_QUOTE = 'S'
 }	t_status;
-
-/* -- PARSING STRUCT -- */
-typedef struct s_parse {
-	char	*new_str;
-	int		in_d_quote;
-	int		in_s_quote;
-	char	*str_char;
-	char	type_q;
-}	t_parse;
 
 /* -- ENVIRONEMNT STRUCT -- */
 typedef struct s_env {
@@ -71,6 +63,15 @@ typedef struct s_lex_helper {
 	t_lex	*lexer;
 	t_lex	*lex;
 }	t_lex_helper;
+
+/* -- PARSING STRUCT -- */
+typedef struct s_parse {
+	char	*new_str;
+	int		in_d_quote;
+	int		in_s_quote;
+	char	*str_char;
+	char	type_q;
+}	t_parse;
 
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd

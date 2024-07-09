@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/08 17:12:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:23:46 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@
 # include <errno.h>
 # include <dirent.h>
 # include <string.h>
-
-# define S_QUOTE 39
-# define D_QUOTE 34
-
 # include <sys/wait.h>
 
 void		ft_init(int ac, char **av, char **env, t_env *envs);
@@ -52,6 +48,7 @@ int			check_syntax(t_data *data, t_lex *lex);
 int			consec_spaces(t_lex *str, t_token token);
 int			rev_consec_spaces(t_lex *lex, t_token token);
 int			check_chars_env(t_lex *lex);
+int			quotes_check(t_data *data, t_lex *lex);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_new_node(char *str, t_token type, int len, t_status status);
@@ -73,27 +70,27 @@ t_env		*search_env(t_env *head, char *key);
 t_env		*get_prev_env(t_env *head, t_env *node);
 
 /* -- HELPERS FUNCTIONS -- */
-void	ft_errno(int nbr);
-char	*get_cmd_path(char *path, char *cmd);
-char	*get_absolute_path(char *path, t_env *env);
-char	**env_lst_to_2dchar(t_env *lst);
-void	_print_env(t_env *env);
-int		ft_export_no_args(t_env *env);
-t_cmd	*set_data(t_env *env, char *path, char **args, char *cmd);
-void	ft_print_lexer(t_lex *lex);
+void		ft_errno(int nbr);
+char		*get_cmd_path(char *path, char *cmd);
+char		*get_absolute_path(char *path, t_env *env);
+char		**env_lst_to_2dchar(t_env *lst);
+void		_print_env(t_env *env);
+int			ft_export_no_args(t_env *env);
+t_cmd		*set_data(t_env *env, char *path, char **args, char *cmd);
+void		ft_print_lexer(t_lex *lex);
 
 /* -- SRCS -- */
 void		ft_execve(t_cmd *cmd);
 
 /* -- BUILT-IN PART -- */
 // TODO:: handle this case (in export): (key="vghvhv"), the (") will displayed as a value
-void	_print_env(t_env *env);
-int		ft_export(t_env **lst, char *str);
-// int		ft_pwd(t_env *env);
-int		ft_echo(t_cmd *cmd, char *str);
-int		pwd_cmd(void);
-char	*ft_cd(char *arg);
-void	cd_handler(t_env *env, char *path);
+void		_print_env(t_env *env);
+int			ft_export(t_env **lst, char *str);
+// int			ft_pwd(t_env *env);
+int			ft_echo(t_cmd *cmd, char *str);
+int			pwd_cmd(void);
+char		*ft_cd(char *arg);
+void		cd_handler(t_env *env, char *path);
 
 
 #endif

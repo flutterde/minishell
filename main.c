@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/08 16:04:50 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:33:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,43 +20,42 @@ void	leaks(void)
 static void	minishell(t_data *data)
 {
 	char	*line;
-	char	*tmp;
+	char	*trimmed_line;
 
 	atexit(leaks);
 	while (1)
 	{
 		line = readline(M_NAME);
-		if (!ft_strlen(ft_strtrim(line, " ")))
+		trimmed_line = ft_strtrim(line, " ");
+		free(line);
+		if (!ft_strlen(trimmed_line))
+		{
+			free(trimmed_line);
 			continue ;
-		add_history(line);
-		if (ft_strlen(line) > 0
-			&& ft_strncmp(line, "exit", ft_strlen(line)) == 0)
+		}
+		add_history(trimmed_line);
+		if (ft_strlen(trimmed_line) > 0
+			&& ft_strncmp(trimmed_line, "exit", ft_strlen(trimmed_line)) == 0)
 		{
 			lex_clear_list(&data->lexer);
 			ft_printf("Goodbye!\n");
-			free(line);
+			free(trimmed_line);
 			exit(0);
 		}
 		else if (!ft_strncmp(line, "cd", 2))
-		{
-			cd_handler(data->env, line + 3);
-		}
-		else if (!ft_strncmp(line, "env", ft_strlen(line)))
+			cd_handler(data->env, trimmed_line + 3);
+		else if (!ft_strncmp(trimmed_line, "env", ft_strlen(trimmed_line)))
 			_print_env(data->env);
-		else if (!ft_strncmp(line, "pwd", ft_strlen(line)))
+		else if (!ft_strncmp(trimmed_line, "pwd", ft_strlen(trimmed_line)))
 			pwd_cmd();
-		else if (!ft_strncmp(line, "export", ft_strlen(line)))
+		else if (!ft_strncmp(trimmed_line, "export", ft_strlen(trimmed_line)))
 			ft_export_no_args(data->env);
-		else if (!ft_strncmp(line, "$?", 2))
+		else if (!ft_strncmp(trimmed_line, "$?", 2))
 			ft_printf("%d\n", data->last_exit);
-		tmp = line;
-		line = ft_strtrim(tmp, " ");
-		if (!parsing(data, line))
+		if (!parsing(data, trimmed_line))
 			lex_clear_list(&data->lexer);
-		free(tmp);
-		free(line);
+		free(trimmed_line);
 		lex_clear_list(&data->lexer);
-		line = NULL;
 	}
 }
 

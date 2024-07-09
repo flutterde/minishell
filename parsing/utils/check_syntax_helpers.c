@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/08 10:49:03 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:15:25 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,31 @@ int	check_chars_env(t_lex *lex)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	quotes_check(t_data *data, t_lex *lex)
+{
+	t_lex	*tmp;
+	int		nb_s_quote;
+	int		nb_d_quote;
+
+	nb_d_quote = 0;
+	nb_s_quote = 0;
+	tmp = lex;
+	while (tmp)
+	{
+		if (tmp->type == S_QUOTE && tmp->state == GENERAL)
+			nb_s_quote++;
+		else if (tmp->type == D_QUOTE && tmp->state == GENERAL)
+			nb_d_quote++;
+		tmp = tmp->next;
+	}
+	if (nb_d_quote % 2 != 0)
+		return (data->last_exit = 258, mini_printf(2,
+				"minishell: syntax error near \"\n"), 0);
+	else if (nb_s_quote % 2 != 0)
+		return (data->last_exit = 258, mini_printf(2,
+				"minishell: syntax error near \'\n"), 0);
 	return (1);
 }

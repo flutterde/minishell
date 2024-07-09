@@ -1,0 +1,14 @@
+Makefile
+labs
+libft
+ls
+main.c
+minishell
+minishell.h
+minishell_data.h
+parsing
+save.sh
+src
+test.output
+tests
+utils
