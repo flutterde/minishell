@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:55:32 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/03 18:49:26 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:00:19 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <stdbool.h>
+# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>

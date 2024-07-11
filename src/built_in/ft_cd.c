@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:53:19 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/08 15:42:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:32:49 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,33 @@ char	*ft_cd(char *arg)
 	return (new = ft_strdup(dir), free(dir), new);
 }
 
+static void	_set2null(char **s1, char **s2, char **s3)
+{
+	*s1 = NULL;
+	*s2 = NULL;
+	*s3 = NULL;
+}
+
+static void	_free_srcs(char **s1, char **s2, char **s3)
+{
+	free(*s1);
+	free(*s2);
+	free(*s3);
+	*s1 = NULL;
+	*s2 = NULL;
+	*s3 = NULL;
+}
+
 void	cd_handler(t_env *env, char *path)
 {
 	char	*oldpwd;
 	char	*new;
+	char	*_new;
 	t_env	*node;
 
 	if (!env)
 		return ;
+	_set2null(&oldpwd, &_new, &new);
 	node = search_env(env, "PWD");
 	if (node)
 	{
@@ -56,7 +75,11 @@ void	cd_handler(t_env *env, char *path)
 	new = ft_cd(path);
 	if (new)
 	{
-		ft_export(&env, ft_strjoin3("OLDPWD", "=", oldpwd));
-		ft_export(&env, ft_strjoin3("PWD", "=", new));
+		_new = ft_strjoin3("OLDPWD", "=", oldpwd);
+		ft_export(&env, _new);
+		free(_new);
+		_new = ft_strjoin3("PWD", "=", new);
+		ft_export(&env, _new);
 	}
+	_free_srcs(&_new, &new, &oldpwd);
 }

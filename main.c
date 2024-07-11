@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/09 09:33:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:11:59 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ static void	minishell(t_data *data)
 		if (ft_strlen(trimmed_line) > 0
 			&& ft_strncmp(trimmed_line, "exit", ft_strlen(trimmed_line)) == 0)
 		{
-			lex_clear_list(&data->lexer);
-			ft_printf("Goodbye!\n");
 			free(trimmed_line);
-			exit(0);
+			break ;
+			// lex_clear_list(&data->lexer);
+			// ft_printf("Goodbye!\n");
+			// exit(0);
 		}
 		else if (!ft_strncmp(line, "cd", 2))
 			cd_handler(data->env, trimmed_line + 3);
@@ -70,5 +71,6 @@ int	main(int ac, char **av, char **env)
 		return (1);
 	data->env = dup_env(env);
 	minishell(data);
+	clear_data(&data);
 	return (0);
 }
