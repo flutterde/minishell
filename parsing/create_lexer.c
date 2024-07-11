@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/09 14:48:11 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:08:45 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ t_lex	*create_lexer(char *line)
 	{
 		if (*line == '\'')
 		{
-			lex.in_s_quote = !lex.in_s_quote;
 			lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, GENERAL);
+			lex.in_s_quote = !lex.in_s_quote;
 			lex_add_back(&lex.lexer, lex.lex);
 		}
 		else if (*line == '\"')
