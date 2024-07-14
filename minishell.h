@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/14 13:04:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:16:09 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,14 @@ void		cmd_clear(t_cmd **lst);
 t_cmd		*cmd_create(char *path, char **args);
 t_cmd		*cmd_getlast(t_cmd *lst);
 void		cmd_addback(t_cmd **lst, t_cmd *new);
+
+// Rediretions LIST
+void		red_clear(t_redire **lst);
+t_redire	*red_getlast(t_redire *lst);
+t_redire	*red_create(char *delim, char *file, t_token type);
+void		red_addback(t_redire **lst, t_redire *new);
+void		red_delete1(t_redire *node);
+void		red_clear(t_redire **lst);
 
 void		ft_free(void **ptr);
 // testing

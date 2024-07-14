@@ -28,8 +28,8 @@ typedef enum e_token {
 	PIPELINE = '|',
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
-	HEREDOC,
-	DREDIR_OUT,
+	HEREDOC, // <<
+	DREDIR_OUT, // >>
 	WORD = -1,
 	ENV = '$',
 }	t_token;
@@ -82,6 +82,7 @@ typedef struct s_quote
 	t_lex	*tmp;
 }	t_quote;
 
+/// @brief herdoc <<, append >>, out >, in < 
 typedef struct s_redire {
 	t_token			type;
 	char			*file;

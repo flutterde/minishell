@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 18:38:36 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/14 14:56:30 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:48:51 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ void	herdoc_handler(t_data *data, char *eof)
 		free(str);
 		str = get_next_line(0);
 	}
-	
 }
