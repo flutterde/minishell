@@ -14,11 +14,12 @@ FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_
 LEX_SRCS = ./parsing/lists/lex_new_node.c ./parsing/lists/lex_add_back.c \
 ./parsing/lists/lex_getlast.c ./parsing/lists/lex_clear_list.c ./parsing/lists/lex_delete_node.c \
 
+ADD_ONS = ./utils/ft_free.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address
 HEADERS = minishell.h
-SRC = main.c $(PARSING) $(UTILS) $(FT_SRCS) $(LEX_SRCS) \
+SRC = main.c $(PARSING) $(UTILS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) src/execve_handler.c \
 
 NAME = minishell
 

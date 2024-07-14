@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_absolute_path.c                                :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 19:37:26 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/12 10:32:33 by ochouati         ###   ########.fr       */
+/*   Created: 2024/07/13 11:03:25 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/13 11:04:22 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-char	*get_absolute_path(char *command, t_env *env)
+void	ft_free(void **ptr)
 {
-	char	*pwd;
-
-	if (!command || !env)
-		return (NULL);
-	pwd = getenv("PWD");
-	if (command[0] == '/')
-		return (ft_strdup(command));
-	if (!pwd)
-		return (NULL);
-	if (command[0] == '.' && command[1] == '/')
-		return (ft_strjoin(ft_strdup(pwd), command + 1));
-	return (get_cmd_path(getenv("PATH"), command));
+	free(*ptr);
+	*ptr = NULL;
 }

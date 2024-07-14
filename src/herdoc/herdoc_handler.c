@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_absolute_path.c                                :+:      :+:    :+:   */
+/*   herdoc_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 19:37:26 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/12 10:32:33 by ochouati         ###   ########.fr       */
+/*   Created: 2024/07/13 18:38:36 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/14 14:56:30 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*get_absolute_path(char *command, t_env *env)
+void	herdoc_handler(t_data *data, char *eof)
 {
-	char	*pwd;
+	int		fd;
+	char	*fl;
+	char	*str;
 
-	if (!command || !env)
-		return (NULL);
-	pwd = getenv("PWD");
-	if (command[0] == '/')
-		return (ft_strdup(command));
-	if (!pwd)
-		return (NULL);
-	if (command[0] == '.' && command[1] == '/')
-		return (ft_strjoin(ft_strdup(pwd), command + 1));
-	return (get_cmd_path(getenv("PATH"), command));
+	fl = ft_random(30);
+	if (!fl)
+		return ;
+	fd = open(fl, O_RDWR | O_CREAT | O_APPEND);
+	str = get_next_line(0);
+	while (ft_strcmp(str, eof))
+	{
+		write(fd, str, ft_strlen(str));
+		free(str);
+		str = get_next_line(0);
+	}
+	
 }

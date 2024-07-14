@@ -82,6 +82,13 @@ typedef struct s_quote
 	t_lex	*tmp;
 }	t_quote;
 
+typedef struct s_redire {
+	t_token			type;
+	char			*file;
+	char			*delim; // "" | NULL
+	struct s_redire	*next;
+}	t_redire;
+
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd
 {
@@ -89,6 +96,7 @@ typedef struct s_cmd
 	char			*cmd;
 	t_env			*env;
 	char			**args;
+	t_redire		*redi;
 	struct s_cmd	*next;
 }	t_cmd;
 

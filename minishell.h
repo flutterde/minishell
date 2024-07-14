@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/09 15:06:14 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:04:06 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <errno.h>
 # include <dirent.h>
@@ -84,7 +85,6 @@ void		ft_print_lexer(t_lex *lex);
 void		ft_execve(t_cmd *cmd);
 
 /* -- BUILT-IN PART -- */
-// TODO:: handle this case (in export): (key="vghvhv"), the (") will displayed as a value
 void		_print_env(t_env *env);
 int			ft_export(t_env **lst, char *str);
 // int			ft_pwd(t_env *env);
@@ -93,5 +93,15 @@ int			pwd_cmd(void);
 char		*ft_cd(char *arg);
 void		cd_handler(t_env *env, char *path);
 
+// CMD LIST 
+void		cmd_delete1(t_cmd *node);
+void		cmd_clear(t_cmd **lst);
+t_cmd		*cmd_create(char *path, char **args);
+t_cmd		*cmd_getlast(t_cmd *lst);
+void		cmd_addback(t_cmd **lst, t_cmd *new);
+
+void		ft_free(void **ptr);
+// testing
+int			execve_handler(t_data *data, char *prompt);
 
 #endif

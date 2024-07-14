@@ -23,13 +23,13 @@ echo MOAD"$USER"'$USER'
 
 |ls |||||||||||| grep |--- vdvdgh""''  "|"d
 
-(echo hi1 && (echo hi2 && echo hi3 || echo hiX && echo HiY)) && echo hi4 || echo hi5 || echo hi6 => hi1 \nhi2 \nhi3 \nHiY \nhi4
+# (echo hi1 && (echo hi2 && echo hi3 || echo hiX && echo HiY)) && echo hi4 || echo hi5 || echo hi6 => hi1 \nhi2 \nhi3 \nHiY \nhi4
 
 ls '' -la ===> SHould not be "ls  -la" because the first argument is empty
 
 # Testat Lmla7
 where is ??????????? "declare -x _=/usr/bin/make", :: when you run "export" this one should not be in the output
-cd -
+# cd -
 
 bash-3.2$ echo **************.dl
 **************.dl

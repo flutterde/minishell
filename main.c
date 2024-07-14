@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/09 15:11:59 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/12 10:27:42 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ static void	minishell(t_data *data)
 		{
 			free(trimmed_line);
 			break ;
-			// lex_clear_list(&data->lexer);
-			// ft_printf("Goodbye!\n");
-			// exit(0);
 		}
 		else if (!ft_strncmp(line, "cd", 2))
 			cd_handler(data->env, trimmed_line + 3);
@@ -53,6 +50,8 @@ static void	minishell(t_data *data)
 			ft_export_no_args(data->env);
 		else if (!ft_strncmp(trimmed_line, "$?", 2))
 			ft_printf("%d\n", data->last_exit);
+		else
+			execve_handler(data, trimmed_line);
 		if (!parsing(data, trimmed_line))
 			lex_clear_list(&data->lexer);
 		free(trimmed_line);
