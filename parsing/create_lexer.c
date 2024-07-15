@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/09 16:08:45 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:17:25 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 void	other_cases_2(t_lex_helper *lex, char **line)
 {
-	if (**line == '<')
+	if (**line == ' ')
+	{
+		lex->lex = lex_new_node(char_to_str(' '),
+				WHITE_SPACE, 1, _status(*lex));
+		if (!lex->lex)
+			return ;
+		lex_add_back(&lex->lexer, lex->lex);
+	}
+	else if (**line == '<')
 		lex_red_in(lex, line);
 	else if (**line == '>')
 		lex_red_out(lex, line);
@@ -26,24 +34,20 @@ void	other_cases_2(t_lex_helper *lex, char **line)
 
 void	other_cases(t_lex_helper *lex, char **line)
 {
-	if (**line == '\\')
+	if (**line == '\"')
 	{
-		lex->lex = lex_new_node(char_to_str('\\'), S_QUOTE, 1, _status(*lex));
-		if (!lex->lex)
-			return ;
+		if (lex->in_s_quote)
+			lex->lex = lex_new_node(char_to_str('\"'), D_QUOTE, 1, S_QUOTE);
+		else
+		{
+			lex->lex = lex_new_node(char_to_str('\"'), D_QUOTE, 1, GENERAL);
+			lex->in_d_quote = !lex->in_d_quote;
+		}
 		lex_add_back(&lex->lexer, lex->lex);
 	}
 	else if (**line == '|')
 	{
 		lex->lex = lex_new_node(char_to_str('|'), PIPELINE, 1, _status(*lex));
-		if (!lex->lex)
-			return ;
-		lex_add_back(&lex->lexer, lex->lex);
-	}
-	else if (**line == ' ')
-	{
-		lex->lex = lex_new_node(char_to_str(' '),
-				WHITE_SPACE, 1, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);
@@ -64,14 +68,13 @@ t_lex	*create_lexer(char *line)
 	{
 		if (*line == '\'')
 		{
-			lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, GENERAL);
-			lex.in_s_quote = !lex.in_s_quote;
-			lex_add_back(&lex.lexer, lex.lex);
-		}
-		else if (*line == '\"')
-		{
-			lex.in_d_quote = !lex.in_d_quote;
-			lex.lex = lex_new_node(char_to_str('\"'), D_QUOTE, 1, GENERAL);
+			if (lex.in_d_quote)
+				lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, D_QUOTE);
+			else
+			{
+				lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, GENERAL);
+				lex.in_s_quote = !lex.in_s_quote;
+			}
 			lex_add_back(&lex.lexer, lex.lex);
 		}
 		else
@@ -80,3 +83,16 @@ t_lex	*create_lexer(char *line)
 	}
 	return (lex.lexer);
 }
+
+// if (*line == '\'')
+// {
+// 	lex.lex = lex_new_node(char_to_str('\''), S_QUOTE, 1, GENERAL);
+// 	lex.in_s_quote = !lex.in_s_quote;
+// 	lex_add_back(&lex.lexer, lex.lex);
+// }
+// else if (*line == '\"')
+// {
+// 	lex.in_d_quote = !lex.in_d_quote;
+// 	lex.lex = lex_new_node(char_to_str('\"'), D_QUOTE, 1, GENERAL);
+// 	lex_add_back(&lex.lexer, lex.lex);
+// }

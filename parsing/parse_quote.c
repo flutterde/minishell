@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:42:22 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/06 10:56:09 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:39:05 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	ft_expand(t_env *env, t_parse *parse_dt, char **str)
 	if (!search)
 		return ;
 	i = 0;
-	printf("STR 3 = %s\n", *str);
 	while (i < len)
 	{
 		search[i] = **str;

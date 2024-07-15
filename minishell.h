@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/15 14:33:53 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:18:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		clear_data(t_data **data);
 /* -- PARSING PART -- */
 int			parsing(t_data *data, char *line);
 t_lex		*create_lexer(char *line);
+int			join_lexer(t_data *data);
 // utils
 char		**initial_split_line(char *line);
 char		*parse_quote(t_data *data, char *str);
@@ -51,6 +52,7 @@ int			consec_spaces(t_lex *str, t_token token);
 int			rev_consec_spaces(t_lex *lex, t_token token);
 int			check_chars_env(t_lex *lex);
 int			quotes_check(t_data *data, t_lex *lex);
+int			ft_expander(t_data *data, t_lex *lexer);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_new_node(char *str, t_token type, int len, t_status status);

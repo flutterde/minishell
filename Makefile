@@ -6,7 +6,7 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 PARSING = ./utils/helpers/ft_print_lexer.c ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c \
 ./parsing/initial_split_line.c ./parsing/parse_quote.c ./parsing/utils/parse_quote_helpers.c \
 ./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
-./parsing/utils/check_syntax_helpers.c
+./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/utils/ft_expander.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c 
