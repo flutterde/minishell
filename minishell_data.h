@@ -29,6 +29,7 @@ typedef enum e_token {
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
 	HEREDOC, // <<
+	SUPER_HEREDOC, // << $ ex
 	DREDIR_OUT, // >>
 	WORD = -1,
 	ENV = '$',
@@ -82,13 +83,19 @@ typedef struct s_quote
 	t_lex	*tmp;
 }	t_quote;
 
-/// @brief herdoc <<, append >>, out >, in < 
-typedef struct s_redire {
+/// @brief herdoc <<, in < 
+typedef struct s_inred {
 	t_token			type;
 	char			*file;
 	char			*delim; // "" | NULL
-	struct s_redire	*next;
-}	t_redire;
+	struct s_inred	*next;
+}	t_inred;
+
+typedef struct s_outred {
+	t_token			type;
+	char			*file;
+	struct s_outred	*next;
+}	t_outred;
 
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd
@@ -97,15 +104,17 @@ typedef struct s_cmd
 	char			*cmd;
 	t_env			*env;
 	char			**args;
-	t_redire		*redi;
+	t_outred		*out;
+	t_inred			*in;
 	struct s_cmd	*next;
 }	t_cmd;
 
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data {
-	t_env	*env;
-	t_lex	*lexer;
-	int		last_exit;
+	t_env		*env;
+	t_lex		*lexer;
+	int			last_exit;
+	uint32_t	npipes;
 }	t_data;
 
 #endif
