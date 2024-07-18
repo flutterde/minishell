@@ -4,7 +4,7 @@ make fclean
 rm -rf .vscode
 rm -rf ./labs/app
 rm -rf minishell.dSYM
-zip -r ../minishell-backup/../minishel-backup/$(date +"%Y-%m-%d_%H-%M-%S").zip *
+zip -r ../minishel-backup/$(date +"%Y-%m-%d_%H-%M-%S").zip *
 clear
 
 
