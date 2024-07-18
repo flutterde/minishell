@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:46:04 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/15 14:53:34 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:43:56 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ int	parsing(t_data *data, char *line)
 	tmp = data->lexer;
 	if (!ft_expander(data, tmp))
 		return (0);
+	tmp = data->lexer;
+	if (!quotes_check(data, tmp))
+		return (0);
 	ft_print_lexer(tmp);
-	ft_printf("====> here\n");
-	// tmp = data->lexer;
-	// if (!quotes_check(data, tmp))
-	// 	return (0);
-	// if (!join_lexer(data))
-	// 	return (0);
+	if (!join_lexer(data))
+		return (0);
 	return (1);
 }

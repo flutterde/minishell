@@ -22,7 +22,7 @@
 /* -- ENUMS -- */
 typedef enum e_token {
 	ESCAPE = '\\',
-	WHITE_SPACE = ' ',
+	W_SPACE = ' ',
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '"',
 	PIPELINE = '|',
@@ -52,7 +52,7 @@ typedef struct s_env {
 typedef struct s_lex {
 	char			*string;
 	int				len;
-	t_status		state;
+	t_status		status;
 	t_token			type;
 	struct s_lex	*next;
 	struct s_lex	*prev;
@@ -83,18 +83,20 @@ typedef struct s_quote
 	t_lex	*tmp;
 }	t_quote;
 
+/* -- REDIRECTION STRUCT -- */
 /// @brief herdoc <<, in < 
-typedef struct s_inred {
+typedef struct s_in_red {
 	t_token			type;
 	char			*file;
 	char			*delim; // "" | NULL
-	struct s_inred	*next;
+	bool			to_expand;
+	struct s_in_red	*next;
 }	t_inred;
 
-typedef struct s_outred {
-	t_token			type;
-	char			*file;
-	struct s_outred	*next;
+typedef struct s_out_red {
+	t_token				type;
+	char				*file;
+	struct s_out_red	*next;
 }	t_outred;
 
 /* -- COMMAND STRUCT -- */
@@ -106,6 +108,7 @@ typedef struct s_cmd
 	char			**args;
 	t_outred		*out;
 	t_inred			*in;
+	bool			is_ambiguous;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -115,6 +118,7 @@ typedef struct s_data {
 	t_lex		*lexer;
 	int			last_exit;
 	uint32_t	npipes;
+	t_cmd		*command;
 }	t_data;
 
 #endif

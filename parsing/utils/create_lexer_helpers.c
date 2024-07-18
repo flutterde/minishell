@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/15 09:45:51 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:19:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	lex_red_in(t_lex_helper *lex, char **line)
 {
 	if (*(*line + 1) == '<')
 	{
-		lex->lex = lex_new_node(ft_strdup("<<"), HEREDOC, 2, _status(*lex));
+		lex->lex = lex_create(ft_strdup("<<"), HEREDOC, 2, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);
@@ -34,7 +34,7 @@ void	lex_red_in(t_lex_helper *lex, char **line)
 	}
 	else
 	{
-		lex->lex = lex_new_node(char_to_str('<'), REDIR_IN, 1, _status(*lex));
+		lex->lex = lex_create(char_to_str('<'), REDIR_IN, 1, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);
@@ -45,7 +45,7 @@ void	lex_red_out(t_lex_helper *lex, char **line)
 {
 	if (*(*line + 1) == '>')
 	{
-		lex->lex = lex_new_node(ft_strdup(">>"), DREDIR_OUT, 2, _status(*lex));
+		lex->lex = lex_create(ft_strdup(">>"), DREDIR_OUT, 2, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);
@@ -53,7 +53,7 @@ void	lex_red_out(t_lex_helper *lex, char **line)
 	}
 	else
 	{
-		lex->lex = lex_new_node(char_to_str('>'), REDIR_OUT, 1, _status(*lex));
+		lex->lex = lex_create(char_to_str('>'), REDIR_OUT, 1, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);
@@ -90,9 +90,9 @@ void	lex_env(t_lex_helper *lex, char **line)
 		(*line)--;
 	}
 	if (lex->in_s_quote)
-		lex->lex = lex_new_node(str, WORD, ft_strlen(str), _status(*lex));
+		lex->lex = lex_create(str, WORD, ft_strlen(str), _status(*lex));
 	else
-		lex->lex = lex_new_node(str, ENV, ft_strlen(str), _status(*lex));
+		lex->lex = lex_create(str, ENV, ft_strlen(str), _status(*lex));
 	lex_add_back(&lex->lexer, lex->lex);
 }
 
@@ -118,6 +118,6 @@ void	lex_word(t_lex_helper *lex, char **line)
 		(*line)++;
 	}
 	(*line)--;
-	lex->lex = lex_new_node(str, WORD, ft_strlen(str), _status(*lex));
+	lex->lex = lex_create(str, WORD, ft_strlen(str), _status(*lex));
 	lex_add_back(&lex->lexer, lex->lex);
 }

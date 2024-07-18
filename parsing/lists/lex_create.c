@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   lex_create.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 16:46:11 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/15 15:23:07 by mboujama         ###   ########.fr       */
+/*   Created: 2024/07/04 15:33:12 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/04 19:02:43 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_init(int ac, char **av, char **env, t_env *envs)
+t_lex	*lex_create(char *str, t_token type, int len, t_status status)
 {
-	(void)av;
-	(void)envs;
-	if (ac != 1)
-		ft_exit("Don't run it with Args!", 1, 2);
-	if (!env)
-		ft_exit("Env Required!", 1, 2);
+	t_lex	*new;
+
+	new = ft_calloc(1, sizeof(t_lex));
+	if (!new)
+		return (NULL);
+	new->string = str;
+	new->type = type;
+	new->len = len;
+	new->status = status;
+	return (new);
 }

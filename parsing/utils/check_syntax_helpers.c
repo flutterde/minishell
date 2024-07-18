@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/15 09:55:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:19:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	consec_spaces(t_lex *lex, t_token token)
 	lex = lex->next;
 	while (lex && lex->type != token)
 	{
-		if (lex->type != WHITE_SPACE)
+		if (lex->type != W_SPACE)
 			return (0);
 		lex = lex->next;
 	}
@@ -46,7 +46,7 @@ int	rev_consec_spaces(t_lex *lex, t_token token)
 	lex = lex->prev;
 	while (lex && lex->type != token)
 	{
-		if (lex->type != WHITE_SPACE)
+		if (lex->type != W_SPACE)
 			return (0);
 		lex = lex->prev;
 	}

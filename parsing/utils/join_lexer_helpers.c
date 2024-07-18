@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_new_node.c                                  :+:      :+:    :+:   */
+/*   join_lexer_helpers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 15:33:12 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/04 19:02:43 by mboujama         ###   ########.fr       */
+/*   Created: 2024/07/18 12:44:40 by mboujama          #+#    #+#             */
+/*   Updated: 2024/07/18 12:49:14 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_lex	*lex_new_node(char *str, t_token type, int len, t_status status)
+int	is_redirection(t_lex *lex)
 {
-	t_lex	*new;
-
-	new = ft_calloc(1, sizeof(t_lex));
-	if (!new)
-		return (NULL);
-	new->string = str;
-	new->type = type;
-	new->len = len;
-	new->state = status;
-	return (new);
+	if (lex->status == REDIR_IN || lex->status == REDIR_OUT
+		|| lex->status == HEREDOC || lex->status == DREDIR_OUT)
+		return (1);
+	return (0);
 }

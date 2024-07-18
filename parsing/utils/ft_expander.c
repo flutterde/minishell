@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:32:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/15 14:59:36 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:57:45 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_expander(t_data *data, t_lex *lexer)
 	tmp_lex = lexer;
 	while (tmp_lex)
 	{
-		if (tmp_lex->type == ENV && tmp_lex->state != QUOTE)
+		if (tmp_lex->type == ENV && tmp_lex->status != QUOTE)
 		{
 			if (tmp_lex->len == 1)
 			{
@@ -32,10 +32,14 @@ int	ft_expander(t_data *data, t_lex *lexer)
 			if (!key)
 				return (0);
 			found = search_env(data->env, key);
-			if (!found)
-				return (0);
 			ft_free((void **) &tmp_lex->string);
-			tmp_lex->string = ft_strdup(found->value);
+			if (!found)
+			{
+				tmp_lex->string = ft_strdup("");
+				ft_printf("|%s|\n", tmp_lex->string);
+			}
+			else
+				tmp_lex->string = ft_strdup(found->value);
 			ft_free((void **) &key);
 		}
 		tmp_lex = tmp_lex->next;

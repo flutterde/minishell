@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:43:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/13 10:43:29 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:41:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_cmd	*cmd_create(char *path, char **args)
+t_cmd	*cmd_create(t_data *data, char **args)
 {
 	t_cmd	*new;
 
-	if (!path || !args || !*args)
+	if (!args || !*args)
 		return (NULL);
 	new = ft_calloc(1, sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	new->path = path;
+	new->path = get_absolute_path(args[0], data->env);
 	new->cmd = args[0];
 	new->args = args;
 	return (new);

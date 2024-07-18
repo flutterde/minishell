@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/15 15:18:58 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:19:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ int			rev_consec_spaces(t_lex *lex, t_token token);
 int			check_chars_env(t_lex *lex);
 int			quotes_check(t_data *data, t_lex *lex);
 int			ft_expander(t_data *data, t_lex *lexer);
+int			is_redirection(t_lex *lex);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
-t_lex		*lex_new_node(char *str, t_token type, int len, t_status status);
+t_lex		*lex_create(char *str, t_token type, int len, t_status status);
 void		lex_add_back(t_lex **list, t_lex *new);
 void		lex_delete_node(t_lex *node);
 void		lex_clear_list(t_lex **list);
@@ -98,7 +99,7 @@ void		cd_handler(t_env *env, char *path);
 // CMD LIST 
 void		cmd_delete1(t_cmd *node);
 void		cmd_clear(t_cmd **lst);
-t_cmd		*cmd_create(char *path, char **args);
+t_cmd		*cmd_create(t_data *data, char **args);
 t_cmd		*cmd_getlast(t_cmd *lst);
 void		cmd_addback(t_cmd **lst, t_cmd *new);
 

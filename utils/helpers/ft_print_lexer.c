@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 06:56:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/09 10:33:53 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:22:17 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ft_print_lexer(t_lex *lex)
 {
 	printf("-------------------------------------------------------------------------\n");
-	printf("|	content		|	state	|	len	|	type	|\n");
+	printf("|	content		|	status	|	len	|	type	|\n");
 	printf("-------------------------------------------------------------------------\n");
 	while (lex)
 	{
 		printf("|	'%s'		|	%d	|	%d	|	%d	|\n",
-			lex->string, lex->state, lex->len, lex->type);
+			lex->string, lex->status, lex->len, lex->type);
 		lex = (lex)->next;
 	}
 	printf("-------------------------------------------------------------------------\n");
