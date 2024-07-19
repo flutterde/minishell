@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:05:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/14 14:49:16 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/19 10:15:52 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	__handler(t_data *data, char **args, char *path)
 
 	env = env_lst_to_2dchar(data->env);
 	if (execve(path, args, env))
-		perror(strerror(errno));
+		perror("Error:");
 	printf("the Errno: %d.\n", errno);
 	ft_free_strs(env);
 	exit(errno);

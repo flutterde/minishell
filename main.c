@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/15 14:57:32 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:46:08 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 void	leaks(void)
 {
 	system("leaks minishell");
+}
+
+void	export___(t_data *data, char *str)
+{
+	char	**split;
+
+	split = ft_split(str, ' ');
+	if (!split || !split[0])
+		return ;
+	if (split[0] && !split[1])
+	{
+		ft_export_no_args(data->env);
+		ft_free_strs(split);
+		return ;
+	}
+	ft_export(&data->env, split[1]);
+	ft_free_strs(split);
 }
 
 static void	minishell(t_data *data)
@@ -46,10 +63,12 @@ static void	minishell(t_data *data)
 			_print_env(data->env);
 		else if (!ft_strncmp(trimmed_line, "pwd", ft_strlen(trimmed_line)))
 			pwd_cmd();
-		else if (!ft_strncmp(trimmed_line, "export", ft_strlen(trimmed_line)))
-			ft_export_no_args(data->env);
+		else if (!ft_strncmp(trimmed_line, "export", 6))
+			export___(data, trimmed_line);
 		else if (!ft_strncmp(trimmed_line, "$?", 2))
 			ft_printf("%d\n", data->last_exit);
+		// else
+		// 	execve_handler(data, trimmed_line);
 		if (!parsing(data, trimmed_line))
 			lex_clear_list(&data->lexer);
 		free(trimmed_line);

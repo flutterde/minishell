@@ -1,10 +1,21 @@
 #!/bin/bash
 
 make fclean
+
 rm -rf .vscode
+
 rm -rf ./labs/app
+
+rm -rf ./labs/a.out
+
+rm -rf ./srcs/a.out
+
+rm -rf ./src/piping
+
 rm -rf minishell.dSYM
-zip -r ../minishel-backup/$(date +"%Y-%m-%d_%H-%M-%S").zip *
+
+zip -r /Users/ochouati/Desktop/minishell-backup/$(date +"%Y-%m-%d_%H-%M-%S")_src.zip  *
+
 clear
 
 

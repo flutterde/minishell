@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:43:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/15 15:41:15 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:41:22 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_cmd	*cmd_create(t_data *data, char **args)
 {
 	t_cmd	*new;
 
-	if (!args || !*args)
+	if (!args || !*args || !data)
 		return (NULL);
 	new = ft_calloc(1, sizeof(t_cmd));
 	if (!new)

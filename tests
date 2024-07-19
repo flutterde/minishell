@@ -33,6 +33,7 @@ where is ??????????? "declare -x _=/usr/bin/make", :: when you run "export" this
 export ARG=(123 ABC 987)
 declare -p | grep ARG
 
+<< \
 
 
 

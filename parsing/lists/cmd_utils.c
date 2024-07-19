@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_clear.c                                        :+:      :+:    :+:   */
+/*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/13 10:51:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/19 11:44:46 by ochouati         ###   ########.fr       */
+/*   Created: 2024/07/19 11:00:20 by ochouati          #+#    #+#             */
+/*   Updated: 2024/07/19 11:05:13 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	cmd_delete1(t_cmd *node)
+int	cmd_lstsize(t_cmd *lst)
 {
-	if (!node)
-		return ;
-	ft_free((void **) &node->cmd);
-	ft_free((void **) &node->path);
-	ft_free_strs(node->args);
-	free(node);
-}
+	int	i;
 
-void	cmd_clear(t_cmd **lst)
-{
-	t_cmd	*tmp;
-
-	if (!lst)
-		return ;
-	while (*lst)
+	i = 0;
+	while (lst)
 	{
-		tmp = (*lst)->next;
-		cmd_delete1(*lst);
-		*lst = tmp;
+		lst = lst->next;
+		i++;
 	}
+	return (i);
 }

@@ -85,18 +85,18 @@ typedef struct s_quote
 
 /* -- REDIRECTION STRUCT -- */
 /// @brief herdoc <<, in < 
-typedef struct s_in_red {
+typedef struct s_inred {
 	t_token			type;
 	char			*file;
 	char			*delim; // "" | NULL
-	bool			to_expand;
-	struct s_in_red	*next;
+	int				to_expand; // 0 -> not expand | 1 -> expand
+	struct s_inred	*next;
 }	t_inred;
 
-typedef struct s_out_red {
+typedef struct s_outred {
 	t_token				type;
 	char				*file;
-	struct s_out_red	*next;
+	struct s_outred	*next;
 }	t_outred;
 
 /* -- COMMAND STRUCT -- */

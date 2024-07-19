@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 10:55:32 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/09 17:00:19 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/19 09:48:25 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <errno.h>
 # include <readline/history.h>
 # include <readline/readline.h>

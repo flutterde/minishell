@@ -6,6 +6,9 @@ test.c
 text.txt
 .DS_Store
 .vscode/
+./src/piping
+./src/herdoc/herdoc
+cat
 
 en.subject.pdf
 

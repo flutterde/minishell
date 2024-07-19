@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:10:15 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/08 16:38:20 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/19 10:10:31 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int is_builtin(t_cmd *cmd)
 {
-	if (!cmd)
+	if (!cmd || !cmd->cmd)
 		return (0);
 	if (!ft_strcmp("cd", cmd->cmd))
 		return (1);

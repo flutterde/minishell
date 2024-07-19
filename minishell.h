@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/18 13:19:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:40:59 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void		cmd_clear(t_cmd **lst);
 t_cmd		*cmd_create(t_data *data, char **args);
 t_cmd		*cmd_getlast(t_cmd *lst);
 void		cmd_addback(t_cmd **lst, t_cmd *new);
+int			cmd_lstsize(t_cmd *lst);
 
 // Rediretions LIST
 
