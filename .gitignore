@@ -64,3 +64,4 @@ Module.symvers
 Mkfile.old
 dkms.conf
 .info
+join_lexer_test.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/19 11:40:59 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/20 20:43:39 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int			check_chars_env(t_lex *lex);
 int			quotes_check(t_data *data, t_lex *lex);
 int			ft_expander(t_data *data, t_lex *lexer);
 int			is_redirection(t_lex *lex);
+int			fill_redirect(t_lex **lex, t_inred *in, t_outred *out);
+
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_create(char *str, t_token type, int len, t_status status);

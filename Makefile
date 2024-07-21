@@ -7,7 +7,7 @@ PARSING = ./utils/helpers/ft_print_lexer.c ./parsing/parsing.c ./parsing/utils/d
 ./parsing/initial_split_line.c ./parsing/parse_quote.c ./parsing/utils/parse_quote_helpers.c \
 ./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
 ./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/utils/ft_expander.c \
-./parsing/utils/join_lexer_helpers.c 
+./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c 
