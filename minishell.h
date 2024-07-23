@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/20 20:43:39 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 07:58:44 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int			parsing(t_data *data, char *line);
 t_lex		*create_lexer(char *line);
 int			join_lexer(t_data *data);
 // utils
-char		**initial_split_line(char *line);
-char		*parse_quote(t_data *data, char *str);
 char		*handle_spaces(t_parse *parse_dt);
 char		get_type(char ch);
 int			search_len(char *str);
@@ -54,8 +52,9 @@ int			check_chars_env(t_lex *lex);
 int			quotes_check(t_data *data, t_lex *lex);
 int			ft_expander(t_data *data, t_lex *lexer);
 int			is_redirection(t_lex *lex);
-int			fill_redirect(t_lex **lex, t_inred *in, t_outred *out);
-
+int			fill_redirect(t_lex **lex, t_cmd_utils *utils);
+char		*get_str(t_lex **lex);
+void		print_linked_list(t_cmd *cmd);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_create(char *str, t_token type, int len, t_status status);
@@ -101,7 +100,7 @@ void		cd_handler(t_env *env, char *path);
 // CMD LIST 
 void		cmd_delete1(t_cmd *node);
 void		cmd_clear(t_cmd **lst);
-t_cmd		*cmd_create(t_data *data, char **args);
+t_cmd		*cmd_create(t_data *data, t_cmd_utils *utils);
 t_cmd		*cmd_getlast(t_cmd *lst);
 void		cmd_addback(t_cmd **lst, t_cmd *new);
 int			cmd_lstsize(t_cmd *lst);
@@ -109,7 +108,7 @@ int			cmd_lstsize(t_cmd *lst);
 // Rediretions LIST
 
 t_inred		*inred_getlast(t_inred *lst);
-t_inred		*inred_create(char *delim, char *file, t_token type);
+t_inred		*inred_create(char *delim, char *file, t_token type, bool to_expand);
 void		inred_addback(t_inred **lst, t_inred *new);
 void		inred_delete1(t_inred *node);
 void		inred_clear(t_inred **lst);

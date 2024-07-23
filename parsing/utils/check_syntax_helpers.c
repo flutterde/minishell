@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/18 13:19:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:11:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ int	quotes_check(t_data *data, t_lex *lex)
 	quote.tmp = lex;
 	while (quote.tmp)
 	{
-		if (quote.tmp->type == S_QUOTE && !quote.in_d_quote)
+		if (quote.tmp->type == QUOTE && !quote.in_d_quote)
 		{
 			quote.in_s_quote = !quote.in_s_quote;
 			quote.nb_s_quote++;
 		}
-		else if (quote.tmp->type == D_QUOTE && !quote.in_s_quote)
+		else if (quote.tmp->type == DOUBLE_QUOTE && !quote.in_s_quote)
 		{
 			quote.in_d_quote = !quote.in_d_quote;
 			quote.nb_d_quote++;

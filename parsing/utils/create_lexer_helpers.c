@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/18 13:19:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:07:54 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_status	_status(t_lex_helper lex)
 {
 	if (lex.in_d_quote)
-		return (D_QUOTE);
+		return (IN_D_QUOTE);
 	else if (lex.in_s_quote)
-		return (S_QUOTE);
+		return (IN_S_QUOTE);
 	else
 		return (GENERAL);
 }
@@ -108,7 +108,7 @@ void	lex_word(t_lex_helper *lex, char **line)
 	{
 		if (**line == QUOTE && lex->in_s_quote)
 			break ;
-		else if (**line == D_QUOTE && lex->in_d_quote)
+		else if (**line == DOUBLE_QUOTE && lex->in_d_quote)
 			break ;
 		ch = char_to_str(**line);
 		str = ft_strjoin(str, ch);

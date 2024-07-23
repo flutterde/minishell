@@ -6,11 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:32:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/18 15:57:45 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:39:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
 int	ft_expander(t_data *data, t_lex *lexer)
 {
@@ -34,10 +34,7 @@ int	ft_expander(t_data *data, t_lex *lexer)
 			found = search_env(data->env, key);
 			ft_free((void **) &tmp_lex->string);
 			if (!found)
-			{
 				tmp_lex->string = ft_strdup("");
-				ft_printf("|%s|\n", tmp_lex->string);
-			}
 			else
 				tmp_lex->string = ft_strdup(found->value);
 			ft_free((void **) &key);

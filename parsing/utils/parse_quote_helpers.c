@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:28:33 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/04 19:04:21 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:51:28 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	get_type(char ch)
 {
-	if (ch == S_QUOTE)
-		return (S_QUOTE);
-	if (ch == D_QUOTE)
-		return (D_QUOTE);
+	if (ch == QUOTE)
+		return (QUOTE);
+	if (ch == DOUBLE_QUOTE)
+		return (DOUBLE_QUOTE);
 	return (0);
 }
 

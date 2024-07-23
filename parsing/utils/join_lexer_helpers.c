@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:44:40 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/18 12:49:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:20:20 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,28 @@
 
 int	is_redirection(t_lex *lex)
 {
-	if (lex->status == REDIR_IN || lex->status == REDIR_OUT
-		|| lex->status == HEREDOC || lex->status == DREDIR_OUT)
+	if (lex->type == REDIR_IN || lex->type == REDIR_OUT
+		|| lex->type == HEREDOC || lex->type == DREDIR_OUT)
 		return (1);
 	return (0);
+}
+
+char	*get_str(t_lex **lex)
+{
+	char	*str;
+
+	str = ft_strdup("");
+	if (!str)
+		return (NULL);
+	(*lex) = (*lex)->next;
+	while (*lex 
+		&& (((*lex)->status == IN_D_QUOTE && (*lex)->type != DOUBLE_QUOTE)
+			|| ((*lex)->status == IN_S_QUOTE && (*lex)->type != QUOTE)))
+	{
+		str = ft_strjoin(str, (*lex)->string);
+		if (!str)
+			return (NULL);
+		(*lex) = (*lex)->next;
+	}
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:58:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/09 10:28:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:37:42 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	pipe_checks(t_data *data, t_lex *lex)
 	last = lex_getlast(lex);
 	if (!last)
 		return (0);
-	if (last->type == PIPELINE)
+	if (last->prev->type == PIPELINE)
 		return (data->last_exit = 258, mini_printf(2,
 				"minishell: syntax error near unexpected token `|'\n"), 0);
 	else if (rev_consec_spaces(lex, REDIR_OUT)
@@ -34,9 +34,15 @@ static int	pipe_checks(t_data *data, t_lex *lex)
 
 static int	redirect_checks(t_data *data, t_lex *lex)
 {
-	if (rev_consec_spaces(lex, REDIR_OUT)
-		|| rev_consec_spaces(lex, REDIR_IN)
-		|| rev_consec_spaces(lex, DREDIR_OUT)
+	t_lex	*last;
+
+	last = lex_getlast(lex);
+	if (last->prev->type == REDIR_OUT || last->prev->type == REDIR_IN
+		|| last->prev->type == DREDIR_OUT || last->prev->type == HEREDOC)
+		return (data->last_exit = 258, mini_printf(2,
+				"minishell: syntax error\n"), 0);
+	if (rev_consec_spaces(lex, REDIR_OUT) || rev_consec_spaces(lex, REDIR_IN)
+		|| rev_consec_spaces(lex, DREDIR_OUT) 
 		|| rev_consec_spaces(lex, HEREDOC))
 	{
 		if (lex->type == REDIR_OUT)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/19 11:46:08 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:38:20 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ static void	minishell(t_data *data)
 			pwd_cmd();
 		else if (!ft_strncmp(trimmed_line, "export", 6))
 			export___(data, trimmed_line);
-		else if (!ft_strncmp(trimmed_line, "$?", 2))
-			ft_printf("%d\n", data->last_exit);
+		// else if (!ft_strncmp(trimmed_line, "$?", 2))
+		// 	ft_printf("%d\n", data->last_exit);
 		// else
 		// 	execve_handler(data, trimmed_line);
 		if (!parsing(data, trimmed_line))
 			lex_clear_list(&data->lexer);
+		print_linked_list(data->command);
 		free(trimmed_line);
 		lex_clear_list(&data->lexer);
 	}

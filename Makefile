@@ -3,10 +3,9 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c ./utils/set_data.c \
 ./utils/helpers/get_absolute_path.c 
 
-PARSING = ./utils/helpers/ft_print_lexer.c ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c \
-./parsing/initial_split_line.c ./parsing/parse_quote.c ./parsing/utils/parse_quote_helpers.c \
+PARSING = ./utils/helpers/ft_print_lexer.c ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c ./parsing/utils/parse_quote_helpers.c \
 ./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
-./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/utils/ft_expander.c \
+./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/ft_expander.c \
 ./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \

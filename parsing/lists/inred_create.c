@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inred_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:12:47 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/19 11:43:26 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:22:46 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_inred	*inred_getlast(t_inred *lst)
 	return (lst);
 }
 
-t_inred	*inred_create(char *delim, char *file, t_token type)
+t_inred	*inred_create(char *delim, char *file, t_token type, bool to_expand)
 {
 	t_inred	*new;
 
@@ -29,6 +29,7 @@ t_inred	*inred_create(char *delim, char *file, t_token type)
 	new->delim = delim;
 	new->file = file;
 	new->type = type;
+	new->to_expand = to_expand;
 	return (new);
 }
 
