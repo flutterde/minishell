@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/23 13:00:29 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:12:45 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@
 # include <dirent.h>
 # include <string.h>
 # include <sys/wait.h>
+# include <signal.h>
 
 void		ft_init(int ac, char **av, char **env, t_env *envs);
 void		ft_exit(char *msg, int status, int fd);
 void		clear_data(t_data **data);
+void		data_cleanup(t_data **data, bool all);
 
 /* -- PARSING PART -- */
 int			parsing(t_data *data, char *line);
@@ -118,6 +120,15 @@ t_outred	*outred_create(char *file, t_token type);
 void		outred_addback(t_outred **lst, t_outred *new);
 void		outred_delete1(t_outred *node);
 void		outred_clear(t_outred **lst);
+
+// REDIR List
+//! 5 args is a lot!!
+t_redir	*red_create(t_token tp, char *file, char *delim, bool expand, bool amb);
+t_redir	*red_getlast(t_redir *lst);
+void	red_lstadd_back(t_redir **lst, t_redir *new);
+t_redir	*red_last_withtype(t_redir *lst, t_token tp);
+void	red_delete1(t_redir *node);
+void	red_clear(t_redir **lst);
 
 void		ft_free(void **ptr);
 // testing

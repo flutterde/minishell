@@ -16,7 +16,7 @@ rm -rf ./src/piping
 
 rm -rf minishell.dSYM
 
-zip -r /Users/mboujama/Desktop/minishell-backup/$(date +"%Y-%m-%d_%H-%M-%S")_src.zip  *
+zip -r /Users/ochouati/Desktop/minishell-backup/$(date +"%Y-%m-%d_%H-%M-%S")_src.zip  *
 
 clear
 

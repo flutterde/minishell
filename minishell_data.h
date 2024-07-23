@@ -129,12 +129,23 @@ typedef struct s_cmd_utils
 	char		*delim;
 }	t_cmd_utils;
 
+typedef struct s_redir {
+	struct s_redir	*next;
+	struct s_redir	*prev;
+	t_token			type;
+	char			*file;
+	char			*delim;
+	bool			to_expand;
+	bool			is_ambiguous;
+}	t_redir;
+
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data {
 	t_env		*env;
 	t_lex		*lexer;
 	int			last_exit;
 	uint32_t	npipes;
+	int			*childs;
 	t_cmd		*command;
 }	t_data;
 

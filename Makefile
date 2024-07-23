@@ -19,11 +19,12 @@ ADD_ONS = ./utils/ft_free.c ./parsing/lists/inred_create.c ./parsing/lists/out_c
 
 CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/lists/cmd_clear.c \
 
+MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline # -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/ochouati/homebrew/opt/readline/lib -I/goinfre/ochouati/homebrew/opt/readline/include # -g -fsanitize=address
 HEADERS = minishell.h
-SRC = main.c $(PARSING) $(UTILS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \
+SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \
 
 NAME = minishell
 
