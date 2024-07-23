@@ -21,7 +21,6 @@
 
 /* -- ENUMS -- */
 typedef enum e_token {
-	ESCAPE = '\\',
 	W_SPACE = ' ',
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '"',
@@ -91,12 +90,14 @@ typedef struct s_inred {
 	char			*file;
 	char			*delim; // "" | NULL
 	bool			to_expand; // 0 -> not expand | 1 -> expand
+	bool			is_ambiguous;
 	struct s_inred	*next;
 }	t_inred;
 
 typedef struct s_outred {
 	t_token				type;
 	char				*file;
+	bool				is_ambiguous;
 	struct s_outred		*next;
 }	t_outred;
 
@@ -109,7 +110,6 @@ typedef struct s_cmd
 	char			*path;
 	char			*cmd;
 	char			**args;
-	bool			is_ambiguous;
 	bool			is_builtin;
 	struct s_cmd	*next;
 }	t_cmd;

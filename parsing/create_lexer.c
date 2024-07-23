@@ -6,13 +6,13 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/22 12:36:37 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:17:43 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	other_cases_2(t_lex_helper *lex, char **line)
+static void	other_cases_2(t_lex_helper *lex, char **line)
 {
 	if (**line == ' ')
 	{
@@ -32,12 +32,13 @@ void	other_cases_2(t_lex_helper *lex, char **line)
 		lex_word(lex, line);
 }
 
-void	other_cases(t_lex_helper *lex, char **line)
+static void	other_cases(t_lex_helper *lex, char **line)
 {
 	if (**line == '\"')
 	{
 		if (lex->in_s_quote)
-			lex->lex = lex_create(char_to_str('\"'), DOUBLE_QUOTE, 1, IN_D_QUOTE);
+			lex->lex = lex_create(char_to_str('\"'),
+					DOUBLE_QUOTE, 1, IN_D_QUOTE);
 		else
 		{
 			lex->lex = lex_create(char_to_str('\"'), DOUBLE_QUOTE, 1, GENERAL);

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 07:54:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:51:50 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 void	print_linked_list(t_cmd *cmd)
 {
-	printf("\n----> ARGUMENT <----\n");
-	ft_print_strs(cmd->args);
-	printf("\n----> REDIRECT IN <----\n");
-	while (cmd->in)
+	while (cmd)
 	{
-		printf("delim => %s\t| file => %s\t| type => %d\n",
-			cmd->in->delim, cmd->in->file, cmd->in->type);
-		cmd->in = cmd->in->next;
-	}
-	printf("\n----> REDIRECT OUT <----\n");
-	while (cmd->out)
-	{
-		printf("file => %s\t| type => %d\n",
-			cmd->out->file, cmd->out->type);
-		cmd->out = cmd->out->next;
+		printf("\n----> ARGUMENT <----\n");
+		ft_print_strs(cmd->args);
+		printf("\n----> REDIRECT IN <----\n");
+		while (cmd->in)
+		{
+			printf("delim => %s\t| file => %s\t| type => %d\n",
+				cmd->in->delim, cmd->in->file, cmd->in->type);
+			cmd->in = cmd->in->next;
+		}
+		printf("\n----> REDIRECT OUT <----\n");
+		while (cmd->out)
+		{
+			printf("file => %s\t| type => %d\n",
+				cmd->out->file, cmd->out->type);
+			cmd->out = cmd->out->next;
+		}
+		cmd = cmd->next;
 	}
 }
 
@@ -107,7 +111,7 @@ int	join_lexer(t_data *data)
 		cmd = get_cmd(&tmp, data);
 		if (!cmd)
 			return (0);
-		data->command = cmd;
+		cmd_addback(&data->command, cmd);
 		if (tmp)
 			tmp = tmp->next;
 	}

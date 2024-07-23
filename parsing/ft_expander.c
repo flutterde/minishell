@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:32:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 08:39:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:06 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ int	ft_expander(t_data *data, t_lex *lexer)
 	tmp_lex = lexer;
 	while (tmp_lex)
 	{
-		if (tmp_lex->type == ENV && tmp_lex->status != QUOTE)
+		if (tmp_lex->type == ENV && tmp_lex->status != IN_S_QUOTE)
 		{
+			if (ft_strcmp(tmp_lex->string, "$?") == 0)
+			{
+				tmp_lex->string = ft_itoa(data->last_exit);
+				tmp_lex = tmp_lex->next;
+				continue ;
+			}
 			if (tmp_lex->len == 1)
 			{
 				tmp_lex = tmp_lex->next;

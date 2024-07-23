@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:10:15 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/19 10:10:31 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:16:43 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int is_builtin(t_cmd *cmd)
+int	is_builtin(t_cmd *cmd)
 {
 	if (!cmd || !cmd->cmd)
 		return (0);

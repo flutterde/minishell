@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 15:11:52 by mboujama          #+#    #+#             */
-/*   Updated: 2024/06/30 15:15:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:18:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_strcmp(char *s1, char *s2)
 
 	i = 0;
 	if (!s1 || !s2)
-        return (404);
+		return (404);
 	while (s1[i] == s2[i] && (s1[i] || s2[i]))
 		i++;
 	return (s1[i] - s2[i]);
