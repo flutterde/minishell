@@ -6,18 +6,21 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:26:31 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/01 16:47:37 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:47:03 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_echo(t_cmd *cmd, char *str)
+int	ft_echo(t_cmd *cmd, t_data *data)
 {
-	if (!cmd || !str)
+	if (!cmd || !data)
 		return (0);
-	if (cmd->args && cmd->args[0] && cmd->args[1]
-		&& !ft_strncmp(cmd->args[1], "git -n", ft_strlen(cmd->args[1])))
-		return (printf("%s\n", str), 1);
-	return (printf("%s", str), 2);
+	if (cmd->args && cmd->args[0] && !cmd->args[1])
+		return (ft_putstr_fd("\n", 1), 1);
+	else if (cmd->args[1] && ft_is_newln(cmd->args[1]))
+		return (print_joined_strs(&cmd->args[2], " ", 0), 1);
+	else if (cmd->args[1] && !ft_is_newln(cmd->args[1]))
+		return (print_joined_strs(&cmd->args[1], " ", 1), 1);
+	return (0);
 }

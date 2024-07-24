@@ -26,6 +26,12 @@ read message
 echo -n "Do you want to push it ? (y/n): "
 read push
 
+echo "
+*Pushing to git... 
+*Message: $message 
+*Date: $(date) 
+" >> ./NOTES
+
 if [ "$push" == "y" ]; then
 	git add .
 	git commit -m "$message"

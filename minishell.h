@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 11:05:05 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:54:28 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int			is_redirection(t_lex *lex);
 int			fill_redirect(t_lex **lex, t_cmd_utils *utils);
 char		*get_str(t_lex **lex);
 void		print_linked_list(t_cmd *cmd);
+int			is_builtin(char *cmd);
+bool		ft_is_newln(char *op);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_create(char *str, t_token type, int len, t_status status);
@@ -94,7 +96,7 @@ void		ft_execve(t_cmd *cmd);
 void		_print_env(t_env *env);
 int			ft_export(t_env **lst, char *str);
 // int			ft_pwd(t_env *env);
-int			ft_echo(t_cmd *cmd, char *str);
+int			ft_echo(t_cmd *cmd, t_data *data);
 int			pwd_cmd(void);
 char		*ft_cd(char *arg);
 void		cd_handler(t_env *env, char *path);

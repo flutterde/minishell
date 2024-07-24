@@ -15,7 +15,7 @@ LEX_SRCS = ./parsing/lists/lex_create.c ./parsing/lists/lex_add_back.c \
 ./parsing/lists/lex_getlast.c ./parsing/lists/lex_clear_list.c ./parsing/lists/lex_delete_node.c \
 
 ADD_ONS = ./utils/ft_free.c ./parsing/lists/inred_create.c ./parsing/lists/out_create.c \
-./src/built_in/is_builtin.c 
+./src/built_in/is_builtin.c ./utils/helpers/ft_is_newln.c
 
 CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/lists/cmd_clear.c \
 
