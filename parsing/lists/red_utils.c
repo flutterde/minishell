@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:50:30 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 11:06:42 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:03:18 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	red_set_index(t_redir *lst)
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->type == HEREDOC)
+		if (tmp->type == HEREDOC || tmp->type == SUPER_HEREDOC)
 			tmp->index = i++;
 		tmp = tmp->next;
 	}
 	while (lst)
 	{
-		if (lst->type != HEREDOC)
+		if (lst->type != HEREDOC && lst->type != SUPER_HEREDOC)
 			lst->index = i++;
 		lst = lst->next;
 	}
@@ -67,15 +67,15 @@ void	red_sort(t_redir *lst)
 	t_redir	*tmp;
 
 	red_set_index(lst);
-	tmp = lst;
-	while (tmp)
+	while (lst)
 	{
-		if (tmp->next && tmp->index > tmp->next->index)
+		tmp = lst->next;
+		while (tmp)
 		{
-			_red_swap_data(tmp, tmp->next);
-			tmp = lst;
-		}
-		else
+			if (tmp->index < lst->index)
+				_red_swap_data(lst, tmp);
 			tmp = tmp->next;
+		}
+		lst = lst->next;
 	}
 }

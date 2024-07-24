@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:42:56 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 09:47:14 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:47:36 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_redir	*red_last_withtype(t_redir *lst, t_token tp)
 	if (!lst)
 		return (NULL);
 	last = red_getlast(lst);
-	if (tp == REDIR_OUT || tp == REDIR_OUT)
+	if (tp == DREDIR_OUT || tp == REDIR_OUT)
 		return (_get_with_type(lst));
 	while (last && last->type != tp)
 		last = last->prev;
