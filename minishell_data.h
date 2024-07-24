@@ -137,6 +137,7 @@ typedef struct s_redir {
 	char			*delim;
 	bool			to_expand;
 	bool			is_ambiguous;
+	int				index;
 }	t_redir;
 
 /* -- GLOBAL DATA STRUCT -- */

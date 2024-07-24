@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/23 19:12:45 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:05:05 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	red_lstadd_back(t_redir **lst, t_redir *new);
 t_redir	*red_last_withtype(t_redir *lst, t_token tp);
 void	red_delete1(t_redir *node);
 void	red_clear(t_redir **lst);
+void	red_sort(t_redir *lst);
 
 void		ft_free(void **ptr);
 // testing

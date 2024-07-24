@@ -19,7 +19,7 @@ ADD_ONS = ./utils/ft_free.c ./parsing/lists/inred_create.c ./parsing/lists/out_c
 
 CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/lists/cmd_clear.c \
 
-MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c
+MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/ochouati/homebrew/opt/readline/lib -I/goinfre/ochouati/homebrew/opt/readline/include # -g -fsanitize=address

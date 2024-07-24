@@ -1,0 +1,25 @@
+#! /bin/zsh
+
+42 -c
+
+42 -brew
+
+42 -c
+
+brew install readline
+
+
+brew link readline --force
+
+brew --prefix readline
+
+
+export LDFLAGS="-L/goinfre/ochouati/homebrew/opt/readline/lib"
+export CPPFLAGS="-I/goinfre/ochouati/homebrew/opt/readline/include"
+
+
+
+source ~/.zshrc
+
+#gcc -Wall -Wextra -Werror main.c -lreadline -L/goinfre/ochouati/homebrew/opt/readline/lib -I/goinfre/ochouati/homebrew/opt/readline/include
+
