@@ -23,6 +23,7 @@ MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/l
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/ochouati/homebrew/opt/readline/lib -I/goinfre/ochouati/homebrew/opt/readline/include # -g -fsanitize=address
+# LDFLAGS = -L/usr/include/readline -lreadline
 HEADERS = minishell.h
 SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \
 
@@ -36,6 +37,7 @@ all: $(NAME)
 $(NAME): $(SRC) $(HEADERS)
 	make -C libft
 	$(CC) $(CFLAGS) $(SRC) libft/libft.a -o $(NAME)
+# $(CC) $(CFLAGS) $(SRC) $(LDFLAGS) libft/libft.a -o $(NAME) # in linux
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@

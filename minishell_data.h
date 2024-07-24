@@ -19,6 +19,8 @@
 # define D_QUOTE 34
 # define S_QUOTE 39
 
+// typedef unsigned int uint32_t;
+
 /* -- ENUMS -- */
 typedef enum e_token {
 	W_SPACE = ' ',

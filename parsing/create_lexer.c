@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 11:17:43 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:53:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ static void	other_cases(t_lex_helper *lex, char **line)
 t_lex	*create_lexer(char *line)
 {
 	t_lex_helper	lex;
-	int				i;
 
-	i = 0;
 	ft_bzero(&lex, sizeof(t_lex_helper));
 	lex.lexer = NULL;
 	while (*line)

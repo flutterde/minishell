@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:34:25 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 13:22:02 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:00:07 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	redirect_in(t_lex **lex, t_cmd_utils *utils)
 	}
 	else
 		utils->file = (*lex)->string;
-	if (!in_quote)
+	if (!in_quote && (*lex)->type != ENV)
 	{
 		if (is_ambiguous(lex, utils))
 			utils->is_ambiguous = true;
@@ -98,7 +98,7 @@ static int	redirect_out(t_lex **lex, t_cmd_utils *utils, t_token token)
 	}
 	else
 		utils->file = (*lex)->string;
-	if (!in_quote)
+	if (!in_quote  && (*lex)->type == ENV)
 	{
 		if (is_ambiguous(lex, utils))
 			utils->is_ambiguous = true;

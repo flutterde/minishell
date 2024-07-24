@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 12:26:39 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:00:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static void	minishell(t_data *data)
 		}
 		else if (!ft_strncmp(trimmed_line, "tttt", 4))
 			test_sort();
-		else if (!ft_strncmp(line, "cd", 2))
+		else if (!ft_strncmp(trimmed_line, "cd", 2))
 			cd_handler(data->env, trimmed_line + 3);
 		else if (!ft_strncmp(trimmed_line, "env", ft_strlen(trimmed_line)))
 			_print_env(data->env);

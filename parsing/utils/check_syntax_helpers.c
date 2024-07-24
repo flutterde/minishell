@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/22 11:11:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:53:53 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 /// @return (0) if OK - (1) if there is only spaces
 int	consec_spaces(t_lex *lex, t_token token)
 {
-	int		found;
 	t_lex	*tmp;
 
-	found = 0;
 	tmp = lex;
 	lex = lex->next;
 	while (lex && lex->type != token)
@@ -36,10 +34,8 @@ int	consec_spaces(t_lex *lex, t_token token)
 
 int	rev_consec_spaces(t_lex *lex, t_token token)
 {
-	int		found;
 	t_lex	*tmp;
 
-	found = 0;
 	tmp = lex;
 	if (!lex->prev)
 		return (0);
