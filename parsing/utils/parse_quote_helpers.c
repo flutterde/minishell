@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:28:33 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/22 10:51:28 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:05:07 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char	*handle_spaces(t_parse *parse_dt)
 	parse_dt->in_s_quote = 0;
 	while (parse_dt->new_str[++i])
 	{
-		if (parse_dt->new_str[i] == S_QUOTE && !parse_dt->in_d_quote)
+		if (parse_dt->new_str[i] == QUOTE && !parse_dt->in_d_quote)
 			parse_dt->in_s_quote = !parse_dt->in_s_quote;
-		else if (parse_dt->new_str[i] == D_QUOTE && !parse_dt->in_s_quote)
+		else if (parse_dt->new_str[i] == DOUBLE_QUOTE && !parse_dt->in_s_quote)
 			parse_dt->in_d_quote = !parse_dt->in_d_quote;
 		if (parse_dt->new_str[i] == ' '
 			&& !parse_dt->in_d_quote && !parse_dt->in_s_quote)

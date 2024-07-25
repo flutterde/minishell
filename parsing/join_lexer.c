@@ -6,35 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 09:51:50 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:41:22 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	print_linked_list(t_cmd *cmd)
-{
-	while (cmd)
-	{
-		printf("\n----> ARGUMENT <----\n");
-		ft_print_strs(cmd->args);
-		printf("\n----> REDIRECT IN <----\n");
-		while (cmd->in)
-		{
-			printf("delim => %s\t| file => %s\t| type => %d\n",
-				cmd->in->delim, cmd->in->file, cmd->in->type);
-			cmd->in = cmd->in->next;
-		}
-		printf("\n----> REDIRECT OUT <----\n");
-		while (cmd->out)
-		{
-			printf("file => %s\t| type => %d\n",
-				cmd->out->file, cmd->out->type);
-			cmd->out = cmd->out->next;
-		}
-		cmd = cmd->next;
-	}
-}
 
 static int	get_inside_quote(t_cmd_utils *utils, t_lex **lex)
 {

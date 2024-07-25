@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 10:07:40 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:45:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	lex_red_out(t_lex_helper *lex, char **line)
 {
 	if (*(*line + 1) == '>')
 	{
-		lex->lex = lex_create(ft_strdup(">>"), DREDIR_OUT, 2, _status(*lex));
+		lex->lex = lex_create(ft_strdup(">>"), APPEND, 2, _status(*lex));
 		if (!lex->lex)
 			return ;
 		lex_add_back(&lex->lexer, lex->lex);

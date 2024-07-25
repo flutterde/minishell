@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:43:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/23 10:11:47 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:39:06 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ t_cmd	*cmd_create(t_data *data, t_cmd_utils *utils)
 		new->cmd = ft_strdup(utils->args[0]);
 		new->args = utils->args;
 	}
-	new->in = utils->in;
-	new->out = utils->out;
+	new->redire = utils->redir;
 	return (new);
 }
 

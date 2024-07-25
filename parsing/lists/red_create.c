@@ -3,29 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   red_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:42:56 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 12:47:36 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:30:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-//! 5 args is a lot!!
-t_redir	*red_create(t_token tp, char *file, char *delim, bool expand, bool amb)
+
+static void	_reset_utils(t_cmd_utils *utils)
+{
+	utils->type = 0;
+	utils->file = NULL;
+	utils->delim = NULL;
+	utils->heredoc_expand = false;
+	utils->is_ambiguous = false;
+}
+
+t_redir	*red_create(t_cmd_utils *utils)
 {
 	t_redir	*new;
 
-	if (!file && !delim)
+	if (!utils->file && !utils->delim)
 		return (NULL);
 	new = ft_calloc(1, sizeof(t_redir));
 	if (!new)
 		return (NULL);
-	new->type = tp;
-	new->file = file;
-	new->delim = delim;
-	new->to_expand = expand;
-	new->is_ambiguous = amb;
+	new->type = utils->type;
+	new->file = utils->file;
+	new->delim = utils->delim;
+	new->to_expand = utils->heredoc_expand;
+	new->is_ambiguous = utils->is_ambiguous;
+	_reset_utils(utils);
 	return (new);
 }
 
@@ -36,7 +46,7 @@ t_redir	*red_getlast(t_redir *lst)
 	return (lst);
 }
 
-void	red_lstadd_back(t_redir **lst, t_redir *new)
+void	red_addback(t_redir **lst, t_redir *new)
 {
 	t_redir	*last;
 
@@ -57,7 +67,7 @@ void	red_lstadd_back(t_redir **lst, t_redir *new)
 
 static t_redir	*_get_with_type(t_redir *lst)
 {
-	while (lst && (lst->type != DREDIR_OUT && lst->type != REDIR_OUT))
+	while (lst && (lst->type != APPEND && lst->type != REDIR_OUT))
 		lst = lst->prev;
 	return (lst);
 }
@@ -69,7 +79,7 @@ t_redir	*red_last_withtype(t_redir *lst, t_token tp)
 	if (!lst)
 		return (NULL);
 	last = red_getlast(lst);
-	if (tp == DREDIR_OUT || tp == REDIR_OUT)
+	if (tp == APPEND || tp == REDIR_OUT)
 		return (_get_with_type(lst));
 	while (last && last->type != tp)
 		last = last->prev;

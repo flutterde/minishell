@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 15:54:28 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:46:56 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,29 +109,14 @@ t_cmd		*cmd_getlast(t_cmd *lst);
 void		cmd_addback(t_cmd **lst, t_cmd *new);
 int			cmd_lstsize(t_cmd *lst);
 
-// Rediretions LIST
-
-t_inred		*inred_getlast(t_inred *lst);
-t_inred		*inred_create(char *delim, char *file, t_token type, bool to_expand);
-void		inred_addback(t_inred **lst, t_inred *new);
-void		inred_delete1(t_inred *node);
-void		inred_clear(t_inred **lst);
-
-t_outred	*outred_getlast(t_outred *lst);
-t_outred	*outred_create(char *file, t_token type);
-void		outred_addback(t_outred **lst, t_outred *new);
-void		outred_delete1(t_outred *node);
-void		outred_clear(t_outred **lst);
-
 // REDIR List
-//! 5 args is a lot!!
-t_redir	*red_create(t_token tp, char *file, char *delim, bool expand, bool amb);
-t_redir	*red_getlast(t_redir *lst);
-void	red_lstadd_back(t_redir **lst, t_redir *new);
-t_redir	*red_last_withtype(t_redir *lst, t_token tp);
-void	red_delete1(t_redir *node);
-void	red_clear(t_redir **lst);
-void	red_sort(t_redir *lst);
+t_redir		*red_create(t_cmd_utils *utils);
+t_redir		*red_getlast(t_redir *lst);
+void		red_addback(t_redir **lst, t_redir *new);
+t_redir		*red_last_withtype(t_redir *lst, t_token tp);
+void		red_delete1(t_redir *node);
+void		red_clear(t_redir **lst);
+void		red_sort(t_redir *lst);
 
 void		ft_free(void **ptr);
 // testing

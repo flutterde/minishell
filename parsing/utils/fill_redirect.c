@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:34:25 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/24 13:00:07 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:02:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static int	is_ambiguous(t_lex **lex, t_cmd_utils *utils)
 
 static int	heredoc(t_lex **lex, t_cmd_utils *utils)
 {
-	t_inred	*in;
+	t_redir	*redire;
 
+	redire = NULL;
 	(*lex) = (*lex)->next;
 	while ((*lex) && (*lex)->type == W_SPACE)
 		(*lex) = (*lex)->next;
+	utils->type = HEREDOC;
 	if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
 	{
 		utils->delim = get_str(lex);
@@ -50,20 +52,22 @@ static int	heredoc(t_lex **lex, t_cmd_utils *utils)
 		utils->delim = (*lex)->string;
 		utils->heredoc_expand = true;
 	}
-	in = inred_create(utils->delim, NULL, HEREDOC, utils->heredoc_expand);
-	inred_addback(&utils->in, in);
+	redire = red_create(utils);
+	red_addback(&utils->redir, redire);
 	return (1);
 }
 
-static int	redirect_in(t_lex **lex, t_cmd_utils *utils)
+static int	redirection(t_lex **lex, t_cmd_utils *utils, t_token token)
 {
-	t_inred		*in;
+	t_redir		*redire;
 	int			in_quote;
 
+	redire = NULL;
 	in_quote = 0;
 	(*lex) = (*lex)->next;
 	while ((*lex) && (*lex)->type == W_SPACE)
 		(*lex) = (*lex)->next;
+	utils->type = token;
 	if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
 	{
 		utils->file = get_str(lex);
@@ -71,43 +75,13 @@ static int	redirect_in(t_lex **lex, t_cmd_utils *utils)
 	}
 	else
 		utils->file = (*lex)->string;
-	if (!in_quote && (*lex)->type != ENV)
+	if ((*lex)->type == ENV && !in_quote)
 	{
 		if (is_ambiguous(lex, utils))
 			utils->is_ambiguous = true;
 	}
-	in = inred_create(NULL, utils->file, REDIR_IN, false);
-	inred_addback(&utils->in, in);
-	return (1);
-}
-
-static int	redirect_out(t_lex **lex, t_cmd_utils *utils, t_token token)
-{
-	t_outred	*out;
-	int			in_quote;
-
-	out = NULL;
-	in_quote = 0;
-	(*lex) = (*lex)->next;
-	while ((*lex) && (*lex)->type == W_SPACE)
-		(*lex) = (*lex)->next;
-	if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
-	{
-		utils->file = get_str(lex);
-		in_quote = 1;
-	}
-	else
-		utils->file = (*lex)->string;
-	if (!in_quote  && (*lex)->type == ENV)
-	{
-		if (is_ambiguous(lex, utils))
-			utils->is_ambiguous = true;
-	}
-	if (token == REDIR_OUT)
-		out = outred_create(utils->file, REDIR_OUT);
-	else if (token == DREDIR_OUT)
-		out = outred_create(utils->file, DREDIR_OUT);
-	outred_addback(&utils->out, out);
+	redire = red_create(utils);
+	red_addback(&utils->redir, redire);
 	return (1);
 }
 
@@ -120,17 +94,17 @@ int	fill_redirect(t_lex **lex, t_cmd_utils *utils)
 	}
 	else if ((*lex)->type == REDIR_IN)
 	{
-		if (!redirect_in(lex, utils))
+		if (!redirection(lex, utils, REDIR_IN))
 			return (0);
 	}
 	else if ((*lex)->type == REDIR_OUT)
 	{
-		if (!redirect_out(lex, utils, REDIR_OUT))
+		if (!redirection(lex, utils, REDIR_OUT))
 			return (0);
 	}
-	else if ((*lex)->type == DREDIR_OUT)
+	else if ((*lex)->type == APPEND)
 	{
-		if (!redirect_out(lex, utils, DREDIR_OUT))
+		if (!redirection(lex, utils, APPEND))
 			return (0);
 	}
 	return (1);

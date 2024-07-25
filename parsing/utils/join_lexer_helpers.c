@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:44:40 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/22 11:20:20 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:45:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_redirection(t_lex *lex)
 {
 	if (lex->type == REDIR_IN || lex->type == REDIR_OUT
-		|| lex->type == HEREDOC || lex->type == DREDIR_OUT)
+		|| lex->type == HEREDOC || lex->type == APPEND)
 		return (1);
 	return (0);
 }

@@ -16,9 +16,6 @@
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
 
-# define D_QUOTE 34
-# define S_QUOTE 39
-
 // typedef unsigned int uint32_t;
 
 /* -- ENUMS -- */
@@ -31,7 +28,7 @@ typedef enum e_token {
 	REDIR_OUT = '>',
 	HEREDOC, // <<
 	SUPER_HEREDOC, // << $ ex
-	DREDIR_OUT, // >>
+	APPEND, // >>
 	WORD = -1,
 	ENV = '$',
 }	t_token;
@@ -86,28 +83,23 @@ typedef struct s_quote
 }	t_quote;
 
 /* -- REDIRECTION STRUCT -- */
-/// @brief herdoc <<, in < 
-typedef struct s_inred {
+typedef struct s_redir {
 	t_token			type;
-	char			*file;
-	char			*delim; // "" | NULL
-	bool			to_expand; // 0 -> not expand | 1 -> expand
+	int				index;
+	bool			to_expand;
 	bool			is_ambiguous;
-	struct s_inred	*next;
-}	t_inred;
+	char			*file;
+	char			*delim;
+	struct s_redir	*next;
+	struct s_redir	*prev;
+}	t_redir;
 
-typedef struct s_outred {
-	t_token				type;
-	char				*file;
-	bool				is_ambiguous;
-	struct s_outred		*next;
-}	t_outred;
 
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd
 {
-	t_outred		*out;
-	t_inred			*in;
+
+	t_redir			*redire;
 	t_env			*env;
 	char			*path;
 	char			*cmd;
@@ -119,8 +111,7 @@ typedef struct s_cmd
 typedef struct s_cmd_utils
 {
 	t_cmd		*cmd;
-	t_inred		*in;
-	t_outred	*out;
+	t_redir		*redir;
 	char		**args;
 	char		**tmp_args;
 	char		*str;
@@ -129,18 +120,8 @@ typedef struct s_cmd_utils
 	bool		heredoc_expand;
 	char		*file;
 	char		*delim;
+	t_token		type;
 }	t_cmd_utils;
-
-typedef struct s_redir {
-	struct s_redir	*next;
-	struct s_redir	*prev;
-	t_token			type;
-	char			*file;
-	char			*delim;
-	bool			to_expand;
-	bool			is_ambiguous;
-	int				index;
-}	t_redir;
 
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data {

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:58:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 08:37:42 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:45:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	pipe_checks(t_data *data, t_lex *lex)
 				"minishell: syntax error near unexpected token `|'\n"), 0);
 	else if (rev_consec_spaces(lex, REDIR_OUT)
 		|| rev_consec_spaces(lex, REDIR_IN)
-		|| rev_consec_spaces(lex, DREDIR_OUT) 
+		|| rev_consec_spaces(lex, APPEND) 
 		|| rev_consec_spaces(lex, HEREDOC)
 		|| rev_consec_spaces(lex, PIPELINE))
 		return (data->last_exit = 258, mini_printf(2,
@@ -38,11 +38,11 @@ static int	redirect_checks(t_data *data, t_lex *lex)
 
 	last = lex_getlast(lex);
 	if (last->prev->type == REDIR_OUT || last->prev->type == REDIR_IN
-		|| last->prev->type == DREDIR_OUT || last->prev->type == HEREDOC)
+		|| last->prev->type == APPEND || last->prev->type == HEREDOC)
 		return (data->last_exit = 258, mini_printf(2,
 				"minishell: syntax error\n"), 0);
 	if (rev_consec_spaces(lex, REDIR_OUT) || rev_consec_spaces(lex, REDIR_IN)
-		|| rev_consec_spaces(lex, DREDIR_OUT) 
+		|| rev_consec_spaces(lex, APPEND) 
 		|| rev_consec_spaces(lex, HEREDOC))
 	{
 		if (lex->type == REDIR_OUT)
@@ -54,7 +54,7 @@ static int	redirect_checks(t_data *data, t_lex *lex)
 		else if (lex->type == HEREDOC)
 			return (data->last_exit = 258, mini_printf(2,
 					"minishell: syntax error near unexpected token `<<'\n"), 0);
-		else if (lex->type == DREDIR_OUT)
+		else if (lex->type == APPEND)
 			return (data->last_exit = 258, mini_printf(2,
 					"minishell: syntax error near unexpected token `>>'\n"), 0);
 	}
@@ -77,7 +77,7 @@ int	check_syntax(t_data *data, t_lex *lex)
 			return (0);
 	}
 	else if (lex->type == REDIR_IN || lex->type == REDIR_OUT
-		|| lex->type == HEREDOC || lex->type == DREDIR_OUT)
+		|| lex->type == HEREDOC || lex->type == APPEND)
 	{
 		if (!redirect_checks(data, lex))
 			return (0);
