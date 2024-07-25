@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/25 10:41:22 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:26:41 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,49 @@ static int	get_inside_quote(t_cmd_utils *utils, t_lex **lex)
 	return (1);
 }
 
+char	*get_arg(t_lex **lex)
+{
+	char	*str;
+	char	*str2;
+
+	str = ft_strdup("");
+	if (!str)
+		return (NULL);
+	str2 = NULL;
+	while ((*lex) && (*lex)->type != W_SPACE && (*lex)->type != PIPELINE
+		&& !is_redirection((*lex)))
+	{
+		if ((*lex)->type == QUOTE || (*lex)->type == DOUBLE_QUOTE)
+		{
+			str2 = get_str(lex);
+			if (!str2)
+				return (NULL);
+			str = ft_strjoin(str, str2);
+			ft_free((void **)&str2);
+		}
+		else
+			str = ft_strjoin(str, (*lex)->string);
+		if (!str)
+			return (NULL);
+		(*lex) = (*lex)->next;
+	}
+	return (str);
+}
+
 static int	add_arg(t_cmd_utils *utils, t_lex **lex)
 {
+	char	*str;
+
+	str = get_arg(lex);
+	if (!str)
+		return (0);
+
 	utils->tmp_args = utils->args;
-	utils->args = insert_to2d_array(utils->args, (*lex)->string);
+	utils->args = insert_to2d_array(utils->args, str);
 	if (!utils->args)
 		return (0);
 	ft_free_strs(utils->tmp_args);
+	ft_free((void **) &str);
 	utils->tmp_args = NULL;
 	return (1);
 }

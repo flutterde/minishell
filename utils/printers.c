@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:41:39 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/25 11:04:56 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:20:04 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_linked_list(t_cmd *cmd)
 	printf("COMMAND LINKED LIST:\n");
 	while (cmd)
 	{
-		printf("\n----> ARGUMENTS <----\n");
+		printf("----> ARGUMENTS <----\n");
 		ft_print_strs(cmd->args);
 		printf("\n----> REDIRECTS <----\n");
 		while (cmd->redire)
@@ -70,7 +70,7 @@ void	print_linked_list(t_cmd *cmd)
 }
 
 void	ft_print_lexer(t_lex *lex)
-{	
+{
 	printf("LEXER:\n");
 	printf("-----------------------------------------------------------------\n");
 	printf("| content	| status	| len	| type	|\n");
@@ -82,5 +82,5 @@ void	ft_print_lexer(t_lex *lex)
 			lex->len, print_token(lex->type));
 		lex = (lex)->next;
 	}
-	printf("-----------------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n\n");
 }
