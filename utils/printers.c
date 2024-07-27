@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:41:39 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 09:27:27 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:07:33 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ void	print_linked_list(t_cmd *cmd)
 	while (cmd)
 	{
 		printf("----> ARGUMENTS <----\n");
+		printf("---> is_builtin: %d\n", cmd->is_builtin);
 		ft_print_strs(cmd->args);
 		printf("\n----> REDIRECTS <----\n");
 		while (cmd->redire)
 		{
-			printf("delim => %s\t| file => %s\t| type => %s\t| to_expand %d\n",
+			printf("delim => %s\t| file => %s\t| type => %s\t| to_expand => %d\n",
 				cmd->redire->delim, cmd->redire->file,
 				print_token(cmd->redire->type), cmd->redire->to_expand);
 			cmd->redire = cmd->redire->next;

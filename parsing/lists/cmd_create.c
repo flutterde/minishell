@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:43:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/25 09:39:06 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:03:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_cmd	*cmd_create(t_data *data, t_cmd_utils *utils)
 	{
 		new->path = get_absolute_path(utils->args[0], data->env);
 		new->cmd = ft_strdup(utils->args[0]);
+		if (is_builtin(utils->args[0]))
+			new->is_builtin = 1;
 		new->args = utils->args;
 	}
 	new->redire = utils->redir;
