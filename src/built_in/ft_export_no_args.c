@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_args.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 14:25:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 12:18:29 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:28:07 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static void	___handler(t_env *sorted_env, bool a)
 		while (sorted_env)
 		{
 			if (sorted_env->value)
-				ft_printf("declare -x %s=\"%s\"\n", sorted_env->key, sorted_env->value);
+				ft_printf("declare -x %s=\"%s\"\n",
+					sorted_env->key, sorted_env->value);
 			sorted_env = sorted_env->next;
 		}
 	}

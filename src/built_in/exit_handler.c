@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 15:02:50 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/26 15:45:47 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:28:28 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int x__atoi(char *str, int *i)
+static int	x__atoi(char *str, int *i)
 {
 	int		nb;
 	int		j;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 14:03:08 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:56:52 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	join_lexer(t_data *data)
 		cmd = get_cmd(&tmp, data);
 		if (!cmd)
 			return (0);
+		red_sort(cmd->redire);
 		cmd_addback(&data->command, cmd);
 		if (tmp)
 			tmp = tmp->next;

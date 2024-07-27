@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:17:36 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:23:30 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int			parsing(t_data *data, char *line);
 t_lex		*create_lexer(char *line);
 int			join_lexer(t_data *data);
 // utils
-char		get_type(char ch);
-int			search_len(char *str);
 t_status	_status(t_lex_helper lex);
 void		lex_red_in(t_lex_helper *lex, char **line);
 void		lex_red_out(t_lex_helper *lex, char **line);
@@ -58,6 +56,7 @@ char		*get_str(t_lex **lex);
 void		print_linked_list(t_cmd *cmd);
 int			is_builtin(char *cmd);
 bool		ft_is_newln(char *op);
+char		*get_arg(t_lex **lex);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_create(char *str, t_token type, int len, t_status status);

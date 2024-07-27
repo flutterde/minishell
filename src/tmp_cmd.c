@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tmp_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/27 15:42:36 by mboujama          #+#    #+#             */
+/*   Updated: 2024/07/27 15:42:38 by mboujama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // ! this is for testing only
 
 
@@ -10,7 +22,8 @@ void	create_tmp_data(t_data *data)
 	data->command = cmd;
 	cmd_addback(&data->command, cmd_create(ft_split("ls -la", ' '), data));
 	cmd_addback(&data->command, cmd_create(ft_split("gerp main.c", ' '), data));
-	cmd_addback(&data->command, cmd_create(ft_split("awk '{print$1}'", ' '), data));
+	cmd_addback(&data->command,
+		cmd_create(ft_split("awk '{print$1}'", ' '), data));
 }
 
 

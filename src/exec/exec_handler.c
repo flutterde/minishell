@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/26 20:49:11 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:47:07 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,4 @@ void	exec_handler(t_data *data)
 	if (exec.fails)
 		return ;
 	// Handling the forking and executing
-	
 }

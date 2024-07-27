@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 14:54:27 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:25:29 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,51 +46,6 @@ void	handle_sigint(int sig)
 		rl_redisplay();
 	}
 }
-
-// static void	minishell(t_data *data)
-// {
-// 	char	*line;
-// 	char	*trimmed_line;
-
-// 	atexit(leaks);
-// 	while (1)
-// 	{
-// 		line = readline(M_NAME);
-// 		trimmed_line = ft_strtrim(line, " ");
-// 		free(line);
-// 		if (!ft_strlen(trimmed_line))
-// 		{
-// 			free(trimmed_line);
-// 			continue ;
-// 		}
-// 		add_history(trimmed_line);
-// 		if (ft_strlen(trimmed_line) > 0
-// 			&& ft_strncmp(trimmed_line, "exit", ft_strlen(trimmed_line)) == 0)
-// 		{
-// 			free(trimmed_line);
-// 			break ;
-// 		}
-// 		else if (!ft_strncmp(trimmed_line, "cd", 2))
-// 			cd_handler(data->env, trimmed_line + 3);
-// 		else if (!ft_strncmp(trimmed_line, "env", ft_strlen(trimmed_line)))
-// 			_print_env(data->env);
-// 		else if (!ft_strncmp(trimmed_line, "pwd", ft_strlen(trimmed_line)))
-// 			pwd_cmd();
-// 		else if (!ft_strncmp(trimmed_line, "export", 6))
-// 			export___(data, trimmed_line);
-// 		if (!parsing(data, trimmed_line))
-// 			lex_clear_list(&data->lexer);
-// 		print_linked_list(data->command);
-// 		free(trimmed_line);
-// 		printf("---- ABOUT TO EXECUTE ----\n");
-// 		exec_handler(data);
-// 		printf("---- EXECUTED ----\n");
-// 		lex_clear_list(&data->lexer);
-// 		data->lexer = NULL;
-// 		cmd_clear(&data->command);
-// 		data->command = NULL;
-// 	}
-// }
 
 static int	minishell(t_data *data)
 {

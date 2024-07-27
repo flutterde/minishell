@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   herdoc_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 18:38:36 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/18 15:47:54 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:27:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	herdoc_handler(/*t_data *data,*/ char *eof)
 	int		fd;
 	char	*fl0;
 	char	*str;
+	char	*fl;
 
 	fl0 = ft_random(30);
 	if (!fl0)
 		return ;
-	char	*fl = ft_strjoin(fl0, ".output");
+	fl = ft_strjoin(fl0, ".output");
 	fd = open(fl, O_RDWR | O_CREAT | O_APPEND, 0666);
 	free(fl);
 	if (fd < 0)

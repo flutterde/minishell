@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst_to_2dchar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:21:26 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 11:02:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:26:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char **env_lst_to_2dchar(t_env *lst)
+char	**env_lst_to_2dchar(t_env *lst)
 {
-	char **new;
-	int size;
-	int i;
+	char	**new;
+	int		size;
+	int		i;
 
 	size = size_env(lst);
 	if (!size)
@@ -49,11 +49,11 @@ static char	*_ft__helper(char *s1, char *s2)
 	return (ft_strjoin3(s1, "=", s2));
 }
 
-char **env__to_2dchar(t_env *lst)
+char	**env__to_2dchar(t_env *lst)
 {
-	char **new;
-	int size;
-	int i;
+	char	**new;
+	int		size;
+	int		i;
 
 	size = size_env(lst);
 	if (!size)

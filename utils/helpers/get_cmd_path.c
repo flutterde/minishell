@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:32:00 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/27 12:01:09 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:26:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_cmd_path(char *path, char *cmd)
 		new = ft_strjoin3(spl[i], "/", cmd);
 		if (!new)
 			return (ft_free_strs(spl), NULL);
-		if (!access(new, X_OK)) // make sure the permissions are right
+		if (!access(new, X_OK))
 			return (ft_free_strs(spl), new);
 		free(new);
 		i++;

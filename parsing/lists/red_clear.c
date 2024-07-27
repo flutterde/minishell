@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 19:06:47 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:18:38 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:24:51 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ void	red_clear(t_redir **lst)
 		return ;
 	while (*lst)
 	{
-		ft_printf("red_clear: %p \n", *lst);
 		tmp = *lst;
 		*lst = (*lst)->next;
 		red_delete1(tmp);
-		ft_printf("red_clear:CLEARED \n");
 	}
-	ft_printf("red_clear: END \n");
 	*lst = NULL;
 }

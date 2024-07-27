@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   piping.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:41:24 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/18 09:50:49 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:43:22 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	_child_handler(int i, int nbr, char **cmd, char **env, int *fd)
 		close(fd[1]);
 		//close(STDOUT_FILENO);
 	}
-	
-	
 	if (execve(cmd[0], cmd, env))
 	{
 		printf("Error: ");
@@ -112,5 +110,4 @@ int	main(int ac, char **av, char **env)
 	// system("leaks piping");
 	while (1)
 		;
-	
 }

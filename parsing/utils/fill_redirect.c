@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:34:25 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/25 11:02:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:01:56 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	redirection(t_lex **lex, t_cmd_utils *utils, t_token token)
 	utils->type = token;
 	if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
 	{
-		utils->file = get_str(lex);
+		utils->file = get_arg(lex);
 		in_quote = 1;
 	}
 	else

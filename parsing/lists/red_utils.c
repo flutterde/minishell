@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:50:30 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/24 12:03:18 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:55:10 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	red_set_index(t_redir *lst)
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->type == HEREDOC || tmp->type == SUPER_HEREDOC)
+		if (tmp->type == HEREDOC)
 			tmp->index = i++;
 		tmp = tmp->next;
 	}
 	while (lst)
 	{
-		if (lst->type != HEREDOC && lst->type != SUPER_HEREDOC)
+		if (lst->type != HEREDOC)
 			lst->index = i++;
 		lst = lst->next;
 	}
