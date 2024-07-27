@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lexer_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 09:34:32 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 17:10:55 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,28 @@ void	lex_env(t_lex_helper *lex, char **line)
 		return ;
 	ch = char_to_str(**line);
 	str = ft_strjoin(str, ch);
-	free(ch);
 	if (!str)
 		return ;
 	(*line)++;
+	ft_free((void **) &ch);
+	ft_free((void **) &str);
 	if (!ft_strncmp(*line, "?", 1))
+	{
 		str = ft_strdup("$?");
+		if (!str)
+			return ;
+	}
 	else
 	{
 		while (**line && (ft_isalnum(*(*line)) || **line == '_'))
 		{
 			ch = char_to_str(**line);
+			if (!ch)
+				return ;
 			str = ft_strjoin(str, ch);
 			if (!str)
-				return ;
-			free(ch);
+				return (ft_free((void **) &ch));
+			ft_free((void **) &ch);
 			(*line)++;
 		}
 		(*line)--;
@@ -94,6 +101,7 @@ void	lex_env(t_lex_helper *lex, char **line)
 	else
 		lex->lex = lex_create(str, ENV, ft_strlen(str), _status(*lex));
 	lex_add_back(&lex->lexer, lex->lex);
+	ft_free((void **) &ch);
 }
 
 void	lex_word(t_lex_helper *lex, char **line)
@@ -109,11 +117,12 @@ void	lex_word(t_lex_helper *lex, char **line)
 		&& **line != REDIR_OUT)
 	{
 		ch = char_to_str(**line);
+		if (!ch)
+			return ;
 		str = ft_strjoin(str, ch);
 		if (!str)
 			return ;
-		free(ch);
-		ch = NULL;
+		ft_free((void **) &ch);
 		(*line)++;
 	}
 	(*line)--;

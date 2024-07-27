@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:46:04 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 15:55:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 17:11:52 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	parsing(t_data *data, char *line)
 	tmp = data->lexer;
 	if (!quotes_check(data, tmp))
 		return (0);
-	ft_print_lexer(tmp);
+	// ft_print_lexer(tmp);
 	if (!join_lexer(data))
 		return (0);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expander.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:32:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 15:28:54 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:50:59 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_expander(t_data *data, t_lex *lexer)
 	t_lex	*tmp_lex;
 	t_env	*found;
 	char	*key;
+	char	*tmp;
 
 	tmp_lex = lexer;
 	while (tmp_lex)
@@ -37,7 +38,9 @@ int	ft_expander(t_data *data, t_lex *lexer)
 		{
 			if (ft_strcmp(tmp_lex->string, "$?") == 0)
 			{
-				tmp_lex->string = ft_itoa(data->last_exit);
+				tmp = tmp_lex->string;
+				tmp_lex->string = ft_itoa(g_status);
+				ft_free((void **) &tmp);
 				tmp_lex = tmp_lex->next;
 				continue ;
 			}

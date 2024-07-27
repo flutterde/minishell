@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/24 12:53:53 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:46:59 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	quotes_check(t_data *data, t_lex *lex)
 {
 	t_quote	quote;
 
+	(void) data;
 	ft_bzero(&quote, sizeof(t_quote));
 	quote.tmp = lex;
 	while (quote.tmp)
@@ -85,10 +86,10 @@ int	quotes_check(t_data *data, t_lex *lex)
 		quote.tmp = quote.tmp->next;
 	}
 	if (quote.nb_d_quote % 2 != 0)
-		return (data->last_exit = 258, mini_printf(2,
+		return (g_status = 258, mini_printf(2,
 				"minishell: syntax error near \"\n"), 0);
 	else if (quote.nb_s_quote % 2 != 0)
-		return (data->last_exit = 258, mini_printf(2,
+		return (g_status = 258, mini_printf(2,
 				"minishell: syntax error near \'\n"), 0);
 	return (1);
 }
