@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 19:06:47 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/23 19:09:22 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:18:38 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ void	red_clear(t_redir **lst)
 {
 	t_redir	*tmp;
 
+	if (!lst)
+		return ;
 	while (*lst)
 	{
+		ft_printf("red_clear: %p \n", *lst);
 		tmp = *lst;
 		*lst = (*lst)->next;
 		red_delete1(tmp);
+		ft_printf("red_clear:CLEARED \n");
 	}
+	ft_printf("red_clear: END \n");
 	*lst = NULL;
 }

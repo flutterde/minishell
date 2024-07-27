@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:58:17 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/26 09:19:21 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 12:13:55 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_env	*ls_create_env(char *key, char *val)
 	new = ft_calloc(1, sizeof(t_env));
 	if (!new)
 		return (NULL);
-	ft_bzero(new, sizeof(t_env));
 	new->key = key;
 	new->value = val;
 	return (new);
@@ -74,4 +73,5 @@ void	ls_clear_env(t_env **lst)
 		ls_delete1_env(*lst);
 		*lst = tmp;
 	}
+	*lst = NULL;
 }

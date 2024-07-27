@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:53:19 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/09 18:32:49 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:04:03 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_cd(char *arg)
 		return (mini_printf(2, "Error: cd: %s: %s\n", arg,
 				strerror(errno)), free(dir), NULL);
 	getcwd(dir, 1999);
-	return (new = ft_strdup(dir), free(dir), new);
+	return (new = ft_strdup(dir), free(dir), g_status = 1, new);
 }
 
 static void	_set2null(char **s1, char **s2, char **s3)

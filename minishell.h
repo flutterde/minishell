@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 11:37:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:17:36 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <signal.h>
-
 
 void		ft_init(int ac, char **av, char **env, t_env *envs);
 void		ft_exit(char *msg, int status, int fd);
@@ -84,6 +83,7 @@ void		ft_errno(int nbr);
 char		*get_cmd_path(char *path, char *cmd);
 char		*get_absolute_path(char *path, t_env *env);
 char		**env_lst_to_2dchar(t_env *lst);
+char 		**env__to_2dchar(t_env *lst);
 void		_print_env(t_env *env);
 int			ft_export_no_args(t_env *env);
 t_cmd		*set_data(t_env *env, char *path, char **args, char *cmd);
@@ -125,8 +125,8 @@ void		red_sort(t_redir *lst);
 void		ft_free(void **ptr);
 
 // EXECUTION
-void	exec_handler(t_data *data);
-int		s_builtin_handler(t_data *data);
+void		exec_handler(t_data *data);
+int			s_builtin_handler(t_data *data);
 // testing
 int			execve_handler(t_data *data, char *prompt);
 

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:44:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/25 19:17:44 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:02:46 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_export(t_env **lst, char *str)
 	tmp = ft_strchr(str, '=');
 	if (!tmp)
 	{
-		ls_add2end_env(lst, ls_create_env(str, NULL));
+		ls_add2end_env(lst, ls_create_env(ft_strdup(str), NULL));
 		return (0);
 	}
 	key = ft_substr(str, 0, (ft_strlen(str) - ft_strlen(tmp)));
@@ -62,14 +62,14 @@ static int	_is_valid(char *str)
 	tmp2 = ft_strchr(str, '=');
 	if (!tmp2)
 	{
-		if (str && ((str[0] != '_' || !ft_isalpha(str[0])) || !___iva(&str[1])))
+		if (str && ((str[0] != '_' && !ft_isalpha(str[0])) || !___iva(&str[1])))
 			return (-1);
 		return (0);
 	}
 	tmp = ft_substr(str, 0, (ft_strlen(str) - ft_strlen(tmp2)));
 	if (!tmp)
 		return (-1);
-	if (tmp[0] != '_' || !ft_isalpha(tmp[0]))
+	if (tmp[0] != '_' && !ft_isalpha(tmp[0]))
 		return (free(tmp), -1);
 	i = 1;
 	while (tmp[i])
@@ -85,11 +85,13 @@ int	export_handler(t_cmd *cmd, t_data *data)
 {
 	char	**args;
 	int		i;
+	t_env	*tmp;
 
 	i = 1;
-	if (!cmd || !data || !cmd->args)
+	if (!cmd || !data || !cmd->args || !data->env)
 		return (0);
 	args = cmd->args;
+	tmp = data->env;
 	if (args[0] && !args[1])
 		return (ft_export_no_args(data->env), 1);
 	while (args[i])
@@ -100,7 +102,10 @@ int	export_handler(t_cmd *cmd, t_data *data)
 			mini_printf(2, "export: `%s': not a valid identifier\n", args[i]);
 		}
 		else
+		{
+			g_status = 0;
 			ft_export(&data->env, args[i]);
+		}
 		i++;
 	}
 	return (1);

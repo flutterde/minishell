@@ -16,9 +16,6 @@
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
 
-# define D_QUOTE 34
-# define S_QUOTE 39
-
 int	g_status;
 
 // typedef unsigned int uint32_t;
