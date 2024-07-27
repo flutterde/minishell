@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:41:39 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/25 15:20:04 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:27:27 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	print_linked_list(t_cmd *cmd)
 		printf("\n----> REDIRECTS <----\n");
 		while (cmd->redire)
 		{
-			printf("delim => %s\t| file => %s\t| type => %s\n",
+			printf("delim => %s\t| file => %s\t| type => %s\t| to_expand %d\n",
 				cmd->redire->delim, cmd->redire->file,
-				print_token(cmd->redire->type));
+				print_token(cmd->redire->type), cmd->redire->to_expand);
 			cmd->redire = cmd->redire->next;
 		}
 		cmd = cmd->next;

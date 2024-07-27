@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/25 16:26:41 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:20:12 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static int	add_arg(t_cmd_utils *utils, t_lex **lex)
 	str = get_arg(lex);
 	if (!str)
 		return (0);
-
 	utils->tmp_args = utils->args;
 	utils->args = insert_to2d_array(utils->args, str);
 	if (!utils->args)
@@ -101,7 +100,8 @@ static t_cmd	*get_cmd(t_lex **lex, t_data *data)
 		}
 		ft_free_strs(utils.tmp_args);
 		utils.tmp_args = NULL;
-		*lex = (*lex)->next;
+		if ((*lex)->type != PIPELINE && !is_redirection(*lex))
+			*lex = (*lex)->next;
 	}
 	utils.cmd = cmd_create(data, &utils);
 	return (utils.cmd);

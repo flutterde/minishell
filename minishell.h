@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/25 10:46:56 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:35:02 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int			parsing(t_data *data, char *line);
 t_lex		*create_lexer(char *line);
 int			join_lexer(t_data *data);
 // utils
-char		*handle_spaces(t_parse *parse_dt);
 char		get_type(char ch);
 int			search_len(char *str);
 t_status	_status(t_lex_helper lex);

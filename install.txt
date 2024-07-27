@@ -14,8 +14,8 @@ brew link readline --force
 brew --prefix readline
 
 
-export LDFLAGS="-L/goinfre/ochouati/homebrew/opt/readline/lib"
-export CPPFLAGS="-I/goinfre/ochouati/homebrew/opt/readline/include"
+export LDFLAGS="-L/goinfre/$USER/homebrew/opt/readline/lib"
+export CPPFLAGS="-I/goinfre/$USER/homebrew/opt/readline/include"
 
 
 

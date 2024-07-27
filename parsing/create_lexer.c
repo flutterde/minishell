@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:33:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/24 12:53:40 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:34:00 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	other_cases_2(t_lex_helper *lex, char **line)
 {
-	if (**line == ' ')
+	if (ft_isspace(**line))
 	{
-		lex->lex = lex_create(char_to_str(' '),
+		lex->lex = lex_create(char_to_str(**line),
 				W_SPACE, 1, _status(*lex));
 		if (!lex->lex)
 			return ;

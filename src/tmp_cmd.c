@@ -40,5 +40,4 @@ void	__handler_exc(t_data *data)
 		}
 
 	}
-	
 }

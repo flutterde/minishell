@@ -3,7 +3,7 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c ./utils/set_data.c \
 ./utils/helpers/get_absolute_path.c ./utils/printers.c
 
-PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c ./parsing/utils/parse_quote_helpers.c \
+PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c\
 ./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
 ./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/ft_expander.c \
 ./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c
