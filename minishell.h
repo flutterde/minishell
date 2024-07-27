@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 09:44:27 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:37:30 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		_print_env(t_env *env);
 int			ft_export_no_args(t_env *env);
 t_cmd		*set_data(t_env *env, char *path, char **args, char *cmd);
 void		ft_print_lexer(t_lex *lex);
+char		*print_token(t_token token);
 
 /* -- SRCS -- */
 void		ft_execve(t_cmd *cmd);

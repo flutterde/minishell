@@ -6,11 +6,23 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:32:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/23 08:54:06 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:38:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static int	is_heredoc_before(t_lex *lexer)
+{
+	t_lex	*tmp;
+
+	tmp = lexer->prev;
+	while (tmp && (tmp->type == W_SPACE || tmp->type == DOUBLE_QUOTE))
+		tmp = tmp->prev;
+	if (tmp && tmp->type == HEREDOC)
+		return (1);
+	return (0);
+}
 
 int	ft_expander(t_data *data, t_lex *lexer)
 {
@@ -29,7 +41,7 @@ int	ft_expander(t_data *data, t_lex *lexer)
 				tmp_lex = tmp_lex->next;
 				continue ;
 			}
-			if (tmp_lex->len == 1)
+			if (tmp_lex->len == 1 || is_heredoc_before(tmp_lex))
 			{
 				tmp_lex = tmp_lex->next;
 				continue ;

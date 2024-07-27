@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:44:40 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/25 09:45:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:20:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ char	*get_str(t_lex **lex)
 		return (NULL);
 	(*lex) = (*lex)->next;
 	while (*lex 
-		&& (((*lex)->status == IN_D_QUOTE && (*lex)->type != DOUBLE_QUOTE)
-			|| ((*lex)->status == IN_S_QUOTE && (*lex)->type != QUOTE)))
+		&& ((*lex)->status == IN_D_QUOTE || (*lex)->status == IN_S_QUOTE))
 	{
 		str = ft_strjoin(str, (*lex)->string);
 		if (!str)

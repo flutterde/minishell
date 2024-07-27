@@ -6,24 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 09:20:12 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:17:18 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-static int	get_inside_quote(t_cmd_utils *utils, t_lex **lex)
-{
-	utils->str = get_str(lex);
-	if (!utils->str)
-		return (0);
-	utils->tmp_args = utils->args;
-	utils->args = insert_to2d_array(utils->args, utils->str);
-	if (!utils->args)
-		return (0);
-	ft_free((void **)&utils->str);
-	return (1);
-}
 
 char	*get_arg(t_lex **lex)
 {
@@ -88,11 +75,6 @@ static t_cmd	*get_cmd(t_lex **lex, t_data *data)
 			if (!fill_redirect(lex, &utils))
 				return (NULL);
 		}
-		else if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
-		{
-			if (!get_inside_quote(&utils, lex))
-				return (NULL);
-		}
 		else
 		{
 			if (!add_arg(&utils, lex))
@@ -103,8 +85,7 @@ static t_cmd	*get_cmd(t_lex **lex, t_data *data)
 		if ((*lex)->type != PIPELINE && !is_redirection(*lex))
 			*lex = (*lex)->next;
 	}
-	utils.cmd = cmd_create(data, &utils);
-	return (utils.cmd);
+	return (utils.cmd = cmd_create(data, &utils), utils.cmd);
 }
 
 int	join_lexer(t_data *data)
