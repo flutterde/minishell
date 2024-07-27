@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 09:35:02 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:44:27 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <signal.h>
+
 
 void		ft_init(int ac, char **av, char **env, t_env *envs);
 void		ft_exit(char *msg, int status, int fd);
@@ -99,6 +100,9 @@ int			ft_echo(t_cmd *cmd, t_data *data);
 int			pwd_cmd(void);
 char		*ft_cd(char *arg);
 void		cd_handler(t_env *env, char *path);
+int			unset_handler(t_cmd *cmd, t_data *data);
+void		exit_handler(t_data *data, t_cmd *cmd);
+int			export_handler(t_cmd *cmd, t_data *data);
 
 // CMD LIST 
 void		cmd_delete1(t_cmd *node);
@@ -118,6 +122,10 @@ void		red_clear(t_redir **lst);
 void		red_sort(t_redir *lst);
 
 void		ft_free(void **ptr);
+
+// EXECUTION
+void	exec_handler(t_data *data);
+int		s_builtin_handler(t_data *data);
 // testing
 int			execve_handler(t_data *data, char *prompt);
 

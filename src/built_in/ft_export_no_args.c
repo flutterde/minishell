@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 14:25:09 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/05 18:13:21 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/26 10:35:30 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,28 @@ static t_env	*sort_env(t_env *env)
 	return (top);
 }
 
+static void	___handler(t_env *sorted_env, bool a)
+{
+	if (a)
+	{
+		while (sorted_env)
+		{
+			if (sorted_env->value)
+				ft_printf("declare -x %s=%s\n", sorted_env->key, sorted_env->value);
+			sorted_env = sorted_env->next;
+		}
+	}
+	else
+	{
+		while (sorted_env)
+		{
+			if (!sorted_env->value)
+				ft_printf("declare -x %s\n", sorted_env->key);
+			sorted_env = sorted_env->next;
+		}
+	}
+}
+
 int	ft_export_no_args(t_env *env)
 {
 	t_env	*sorted_env;
@@ -65,11 +87,8 @@ int	ft_export_no_args(t_env *env)
 	sorted_env = sort_env(new_env);
 	if (!sorted_env)
 		return (0);
-	while (sorted_env)
-	{
-		ft_printf("declare -x %s=%s\n", sorted_env->key, sorted_env->value);
-		sorted_env = sorted_env->next;
-	}
+	___handler(sorted_env, 1);
+	___handler(sorted_env, 0);
 	ls_clear_env(&new_env);
 	return (1);
 }

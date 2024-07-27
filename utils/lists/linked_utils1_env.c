@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_init.c                                      :+:      :+:    :+:   */
+/*   linked_utils1_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:58:17 by ochouati          #+#    #+#             */
-/*   Updated: 2024/06/11 21:28:02 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/26 09:19:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_env	*ls_create_env(char *key, char *val)
 {
 	t_env	*new;
 
-	if (!key || !val)
+	if (!key)
 		return (NULL);
-	new = malloc(sizeof(t_env));
+	new = ft_calloc(1, sizeof(t_env));
 	if (!new)
 		return (NULL);
 	ft_bzero(new, sizeof(t_env));
@@ -55,8 +55,10 @@ void	ls_delete1_env(t_env *node)
 {
 	if (!node)
 		return ;
-	free((node)->key);
-	free((node)->value);
+	if (node->key)
+		free((node)->key);
+	if (node->value)
+		free((node)->value);
 	free(node);
 }
 

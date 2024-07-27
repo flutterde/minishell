@@ -16,6 +16,11 @@
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
 
+# define D_QUOTE 34
+# define S_QUOTE 39
+
+int	g_status;
+
 // typedef unsigned int uint32_t;
 
 /* -- ENUMS -- */
@@ -122,6 +127,15 @@ typedef struct s_cmd_utils
 	char		*delim;
 	t_token		type;
 }	t_cmd_utils;
+
+typedef struct s_exec
+{
+	int	fd[2];
+	int	count;
+	int	stdin;
+	int	i;
+	int	fails;
+}	t_exec;
 
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data {

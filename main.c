@@ -3,71 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/25 09:45:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:52:08 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static void	test_sort(void)
-// {
-// 	t_redir	*lst;
-// 	t_redir	*tmp;
-// 	char	*str;
-
-// 	lst = NULL;
-// 	red_addback(&lst, red_create(REDIR_IN, "file1", NULL, false, false));
-// 	red_addback(&lst, red_create(HEREDOC, NULL, "delim2", false, false));
-// 	red_addback(&lst, red_create(REDIR_OUT, "file3", NULL, false, false));
-// 	red_addback(&lst, red_create(HEREDOC, NULL, "delim4", false, false));
-// 	red_addback(&lst, red_create(APPEND, "file5", NULL, false, false));
-// 	red_addback(&lst, red_create(REDIR_IN, "file6", NULL, false, false));
-// 	red_addback(&lst, red_create(HEREDOC, NULL, "delim7", false, false));
-// 	red_addback(&lst, red_create(SUPER_HEREDOC, NULL, "delim8", false, false));
-// 	tmp = lst;
-// 	while (tmp)
-// 	{
-// 		if (tmp->type == HEREDOC)
-// 			str = "HEREDOC";
-// 		else if (tmp->type == SUPER_HEREDOC)
-// 			str = "SUPER_HEREDOC";
-// 		else if (tmp->type == REDIR_IN)
-// 			str = "REDIR_IN";
-// 		else if (tmp->type == REDIR_OUT)
-// 			str = "REDIR_OUT";
-// 		else
-// 			str = "APPEND";
-// 		printf("type: %s, file: %s, delim: %s, expand: %d, amb: %d, index: %d\n",
-// 			str, tmp->file, tmp->delim, tmp->to_expand, tmp->is_ambiguous, tmp->index);
-// 		tmp = tmp->next;
-// 	}
-// 	tmp = lst;
-// 	red_sort(lst);
-// 	ft_printf("\nAFTER______SORTING\n");
-// 	while (tmp)
-// 	{
-// 		if (tmp->type == HEREDOC)
-// 			str = "HEREDOC";
-// 		else if (tmp->type == SUPER_HEREDOC)
-// 			str = "SUPER_HEREDOC";
-// 		else if (tmp->type == REDIR_IN)
-// 			str = "REDIR_IN";
-// 		else if (tmp->type == REDIR_OUT)
-// 			str = "REDIR_OUT";
-// 		else
-// 			str = "APPEND";
-// 		printf("type: %s, file: %s, delim: %s, expand: %d, amb: %d, index: %d\n",
-// 			str, tmp->file, tmp->delim, tmp->to_expand, tmp->is_ambiguous, tmp->index);
-// 		tmp = tmp->next;
-// 	}
-// }
-
 void	leaks(void)
 {
-	system("leaks minishell");
+	// system("leaks minishell");
 }
 
 void	export___(t_data *data, char *str)
@@ -92,6 +39,7 @@ void	handle_sigint(int sig)
 	(void)sig;
 	if (sig == SIGINT)
 	{
+		g_status = 1;
 		ft_printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -122,8 +70,6 @@ static void	minishell(t_data *data)
 			free(trimmed_line);
 			break ;
 		}
-		// else if (!ft_strncmp(trimmed_line, "tttt", 4))
-		// 	test_sort();
 		else if (!ft_strncmp(trimmed_line, "cd", 2))
 			cd_handler(data->env, trimmed_line + 3);
 		else if (!ft_strncmp(trimmed_line, "env", ft_strlen(trimmed_line)))
@@ -136,6 +82,9 @@ static void	minishell(t_data *data)
 			lex_clear_list(&data->lexer);
 		print_linked_list(data->command);
 		free(trimmed_line);
+		printf("---- ABOUT TO EXECUTE ----\n");
+		exec_handler(data);
+		printf("---- EXECUTED ----\n");
 		lex_clear_list(&data->lexer);
 		data->lexer = NULL;
 		cmd_clear(&data->command);

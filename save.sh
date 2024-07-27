@@ -16,7 +16,7 @@ rm -rf ./src/piping
 
 rm -rf minishell.dSYM
 
-zip -r /Users/ochouati/Desktop/minishell-backup/$(date +"%Y-%m-%d_%H-%M-%S")_src.zip  *
+zip -r /Users/$USER/Desktop/minishell-backup/$(date +"%Y-%m-%d_%H-%M-%S")_src.zip  *
 
 clear
 
@@ -28,6 +28,7 @@ read push
 
 echo "
 *Pushing to git... 
+*User: $USER
 *Message: $message 
 *Date: $(date) 
 " >> ./NOTES

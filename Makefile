@@ -14,14 +14,18 @@ FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_
 LEX_SRCS = ./parsing/lists/lex_create.c ./parsing/lists/lex_add_back.c \
 ./parsing/lists/lex_getlast.c ./parsing/lists/lex_clear_list.c ./parsing/lists/lex_delete_node.c \
 
-ADD_ONS = ./utils/ft_free.c ./src/built_in/is_builtin.c ./utils/helpers/ft_is_newln.c \
+ADD_ONS = ./utils/ft_free.c \
+./src/built_in/is_builtin.c ./utils/helpers/ft_is_newln.c ./src/exec/exec_handler.c \
+./src/built_in/unset_handler.c ./src/built_in/exit_handler.c ./src/exec/exec_handler_utils.c \
+
 
 CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/lists/cmd_clear.c \
 
 MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
 
+USER = $(shell whoami) 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/mboujama/homebrew/opt/readline/lib -I/goinfre/mboujama/homebrew/opt/readline/include # -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/ochouati/homebrew/opt/readline/lib -I/goinfre/ochouati/homebrew/opt/readline/include  -g -fsanitize=address
 # LDFLAGS = -L/usr/include/readline -lreadline
 HEADERS = minishell.h
 SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \

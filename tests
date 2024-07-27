@@ -58,3 +58,9 @@ bash-3.2$
 
 
 echo *".c" => echo *.c
+
+
+
+bash-3.2$ export 'a;'= ajfd
+bash: export: `a;=': not a valid identifier
+
