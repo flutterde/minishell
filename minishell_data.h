@@ -127,11 +127,12 @@ typedef struct s_cmd_utils
 
 typedef struct s_exec
 {
-	int	fd[2];
-	int	count;
-	int	stdin;
-	int	i;
-	int	fails;
+	t_cmd	*cmd;
+	int		fd[2];
+	int		count;
+	int		stdin;
+	int		i;
+	int		fails;
 }	t_exec;
 
 /* -- GLOBAL DATA STRUCT -- */

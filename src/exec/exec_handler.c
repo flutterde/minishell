@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 17:18:11 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:44:47 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,32 @@ static void	__alloc(t_data *data, int size, int *fails)
 	}
 }
 
-static void	_child_prs(t_data *data, t_cmd *cmd)
+static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
 {
 	char	**env;
 
+	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
+	signal(SIGQUIT, SIG_DFL);
+	// ft_printf("child CMD: %s\n", cmd->args[0]);
+	// ft_print_strs(cmd->args);
 	if (!data || !cmd)
-		return ;
+		exit(1);
+	if (exec.i != (exec.count - 1))
+	{
+		if (dup2(exec.fd[1], STDOUT_FILENO) < -1)
+		{
+			mini_printf(2, "minishell: %s\n", strerror(errno));
+			g_status = 1;
+			exit(1);
+		}
+		close(exec.fd[1]);
+		close(exec.fd[0]);
+	}
 	if (!cmd->path)
 	{
 		mini_printf(2, "minishell: %s: command not found\n", cmd->args[0]);
 		g_status = 127;
 		exit(127);
-		return ;
 	}
 	env = env_lst_to_2dchar(data->env);
 	if (execve(cmd->path, cmd->args, env))
@@ -51,7 +65,6 @@ static void	_child_prs(t_data *data, t_cmd *cmd)
 void	exec_handler(t_data *data)
 {
 	t_exec	exec;
-	int		i;
 
 	ft_bzero(&exec, sizeof(t_exec));
 	if (!data || !data->command)
@@ -66,18 +79,62 @@ void	exec_handler(t_data *data)
 	__alloc(data, exec.count, &exec.fails);
 	if (exec.fails)
 		return ;
+	exec.i = 0;
 	// Handling the forking and executing
-	i = 0;
-	data->childs[i] = fork();
-	if (data->childs[i] == -1)
+	exec.__stdinp = dup(STDIN_FILENO);
+	if (exec.__stdinp == -1)
 	{
 		mini_printf(2, "minishell: %s\n", strerror(errno));
 		g_status = 1;
 		return ;
 	}
-	if (data->childs[i] == 0)
-		_child_prs(data, data->command);
-	waitpid(data->childs[i], &g_status, 0);
-	g_status = WEXITSTATUS(g_status);
+	exec.cmd = data->command;
+	while (exec.cmd)
+	{
+		if (pipe(exec.fd) == -1)
+		{
+			mini_printf(2, "minishell: %s\n", strerror(errno));
+			g_status = 1;
+			return ;
+		}
+		data->childs[exec.i] = fork();
+		if (data->childs[exec.i] == -1)
+		{
+			mini_printf(2, "minishell: %s\n", strerror(errno));
+			g_status = 1;
+			return ;
+		}
+		else if (!data->childs[exec.i])
+			_child_prs(data, exec.cmd, exec);
+		if (dup2(exec.fd[0], STDIN_FILENO) < -1)
+		{
+			mini_printf(2, "minishell: %s\n", strerror(errno));
+			g_status = 1;
+			return ;
+		}
+		exec.i++;
+		exec.cmd = exec.cmd->next;
+		close(exec.fd[0]);
+		close(exec.fd[1]);
+	}
+	// Waiting for the child processes to finish
+	exec.i = 0;
+	while (exec.i < exec.count)
+	{
+		if (waitpid(data->childs[exec.i++], &g_status, 0) == -1)
+		{
+			mini_printf(2, "minishell: %s\n", strerror(errno));
+			g_status = 1;
+			return ;
+		}
+		g_status = WEXITSTATUS(g_status);
+	}	
+	if (dup2(exec.__stdinp, STDIN_FILENO) < -1)
+	{
+		mini_printf(2, "minishell: %s\n", strerror(errno));
+		g_status = 1;
+		return ;
+	}
+	close(exec.__stdinp);
 	ft_printf("the status: %d\n", g_status);
 }

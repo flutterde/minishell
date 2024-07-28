@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:51:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:04:37 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/28 11:38:15 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	cmd_delete1(t_cmd *node)
 	ft_free_strs(node->args);
 	red_clear(&node->redire);
 	free(node);
+	node = NULL;
 }
 
 void	cmd_clear(t_cmd **lst)

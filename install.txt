@@ -21,5 +21,5 @@ export CPPFLAGS="-I/goinfre/$USER/homebrew/opt/readline/include"
 
 source ~/.zshrc
 
-#gcc -Wall -Wextra -Werror main.c -lreadline -L/goinfre/ochouati/homebrew/opt/readline/lib -I/goinfre/ochouati/homebrew/opt/readline/include
+#gcc -Wall -Wextra -Werror main.c -lreadline -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include
 

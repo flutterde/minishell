@@ -6,12 +6,13 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 17:10:55 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:41:18 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+// TODO: MAKE IT SHORTER | DO NOT F*** TOUCH THE LEAKS HERE!!!
 t_status	_status(t_lex_helper lex)
 {
 	if (lex.in_d_quote)
@@ -65,18 +66,16 @@ void	lex_env(t_lex_helper *lex, char **line)
 	char	*str;
 	char	*ch;
 
-	str = ft_strdup("");
-	if (!str)
-		return ;
+	str = NULL;
 	ch = char_to_str(**line);
 	str = ft_strjoin(str, ch);
 	if (!str)
 		return ;
 	(*line)++;
 	ft_free((void **) &ch);
-	ft_free((void **) &str);
 	if (!ft_strncmp(*line, "?", 1))
-	{
+	{	
+		ft_free((void **) &str);
 		str = ft_strdup("$?");
 		if (!str)
 			return ;
