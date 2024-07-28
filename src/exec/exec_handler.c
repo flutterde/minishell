@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/28 12:44:47 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:28:53 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ static void	__alloc(t_data *data, int size, int *fails)
 	}
 }
 
-static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
+void	exists_and_permissions(t_cmd *cmd)
+{
+	if (!cmd)
+		return ;
+}
+
+static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: << l | grep fjbdjksbf
 {
 	char	**env;
 
@@ -35,6 +41,9 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
 	// ft_print_strs(cmd->args);
 	if (!data || !cmd)
 		exit(1);
+	ft_printf("-------------------PATH: %s ---CMD: ---->> \n", cmd->path);
+	ft_print_strs(cmd->args);
+	ft_printf("-------------------PATH: %s ---CMD: ---->> \n", cmd->path);
 	if (exec.i != (exec.count - 1))
 	{
 		if (dup2(exec.fd[1], STDOUT_FILENO) < -1)
@@ -46,12 +55,15 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
 		close(exec.fd[1]);
 		close(exec.fd[0]);
 	}
-	if (!cmd->path)
+	ft_printf("------------------ -  2  ------->> \n", cmd->path);
+	if (!cmd->path || !cmd->args)
 	{
-		mini_printf(2, "minishell: %s: command not found\n", cmd->args[0]);
+		if (cmd->args && cmd->args[0])
+			mini_printf(2, "minishell: %s: command not found\n", cmd->args[0]); // ! what the else message ?
 		g_status = 127;
 		exit(127);
 	}
+	ft_printf("-------------------PATH: %s ------->> \n", cmd->path);
 	env = env_lst_to_2dchar(data->env);
 	if (execve(cmd->path, cmd->args, env))
 	{
