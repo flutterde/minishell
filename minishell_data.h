@@ -130,7 +130,7 @@ typedef struct s_exec
 	t_cmd	*cmd;
 	int		fd[2];
 	int		count;
-	int		stdin;
+	int		fd_stdin;
 	int		i;
 	int		fails;
 }	t_exec;

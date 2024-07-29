@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 18:15:45 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/25 19:23:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:28:51 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	_print_env(t_env *env)
 			printf("%s=%s\n", env->key, env->value);
 		env = env->next;
 	}
+	g_status = 0;
 }

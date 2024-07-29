@@ -6,24 +6,47 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 19:37:26 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/12 10:32:33 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:40:04 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*get_absolute_path(char *command, t_env *env)
+static char	*__absp(char *path)
+{
+	if (!access(path, F_OK))
+		return (ft_strdup(path));
+	return (NULL);
+}
+
+static char	*__relativepath(char *path)
 {
 	char	*pwd;
+	char	*new;
 
+	pwd = getenv("PWD");
+	if (!path || !pwd)
+		return (NULL);
+	new = ft_strjoin(ft_strdup(pwd), path);
+	if (!new)
+		return (NULL);
+	if (!access(new, F_OK))
+		return (new);
+	return (free(new), NULL);
+}
+
+char	*get_absolute_path(char *command, t_env *env)
+{
+	t_env	*node;
+
+	node = search_env(env, "PATH");
 	if (!command || !env)
 		return (NULL);
-	pwd = getenv("PWD");
 	if (command[0] == '/')
-		return (ft_strdup(command));
-	if (!pwd)
-		return (NULL);
+		return (__absp(command));
 	if (command[0] == '.' && command[1] == '/')
-		return (ft_strjoin(ft_strdup(pwd), command + 1));
-	return (get_cmd_path(getenv("PATH"), command));
+		return (__relativepath(command + 1));
+	if (!node)
+		return (NULL);
+	return (get_cmd_path(node->value, command));
 }

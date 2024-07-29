@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:27:06 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/28 12:59:36 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:14:55 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2);
 	nstr = malloc(sizeof(char) * (len + 1));
 	if (!nstr)
-		return (NULL);
+		return (free(s1), NULL);
 	i = 0;
 	j = 0;
 	while (s1 && s1[i])

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:44:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 13:02:46 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:00:06 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	_is_valid(char *str)
 	}
 	return (free(tmp), 1);
 }
-
+//! check this test exit status:   export a=bjb b=jfbb c=hjfhjfhj -d hgfhgfhg=fhbfjbfnbn
 int	export_handler(t_cmd *cmd, t_data *data)
 {
 	char	**args;

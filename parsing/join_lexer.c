@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 15:56:52 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:38:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,38 @@ char	*get_arg(t_lex **lex)
 	return (str);
 }
 
+static int	handle_env(t_cmd_utils *utils, t_lex **lex)
+{
+	char	**strs;
+	int		i;
+
+	i = 0;
+	strs = ft_split((*lex)->string, ' ');
+	if (!strs)
+		return (0);
+	while (strs[i])
+	{
+		utils->tmp_args = utils->args;
+		utils->args = insert_to2d_array(utils->args, strs[i]);
+		if (!utils->args)
+			return (0);
+		ft_free_strs(utils->tmp_args);
+		utils->tmp_args = NULL;
+		i++;
+	}
+	return (1);
+}
+
 static int	add_arg(t_cmd_utils *utils, t_lex **lex)
 {
 	char	*str;
 
+	if ((*lex)->type == ENV && ft_strchr((*lex)->string, ' '))
+	{
+		if (!handle_env(utils, lex))
+			return (0);
+		return (1);
+	}
 	str = get_arg(lex);
 	if (!str)
 		return (0);
