@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/30 13:11:39 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:39:02 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ static int	add_arg(t_cmd_utils *utils, t_lex **lex)
 {
 	char	*str;
 
+	if ((*lex)->type == ENV && (*lex)->string == NULL)
+	{
+		(*lex) = (*lex)->next;
+		return (1);
+	}
 	if ((*lex)->type == ENV && ft_strchr((*lex)->string, ' '))
 	{
 		if (!handle_env(utils, lex))
@@ -122,6 +127,8 @@ int	join_lexer(t_data *data)
 	tmp = data->lexer;
 	while (tmp)
 	{
+		if (tmp->type == ENV && tmp->string == NULL)
+			tmp = tmp->next;
 		if (tmp->type == W_SPACE && tmp->status == GENERAL)
 		{
 			tmp = tmp->next;

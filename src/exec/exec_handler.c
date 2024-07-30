@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/30 15:24:30 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:44:48 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: <<
 {
 	char	**env;
 
+	// ft_printf("I'm in the child process\n");
 	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
 	signal(SIGQUIT, SIG_DFL);
 	if (!data || !cmd)
@@ -88,6 +89,10 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: <<
 		close(exec.fd[1]);
 		close(exec.fd[0]);
 	}
+	// redirecting
+	// if no args
+	if (!cmd->args)
+		exit(0);
 	if (!cmd->is_builtin)
 		exists_and_permissions(cmd); // TODO: if the command does not exist or the permissions are not granted
 	else

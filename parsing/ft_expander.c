@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:32:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/30 15:33:52 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:35:52 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_expander_helper(t_data *data, t_expand *exp_dt)
 	exp_dt->found = search_env(data->env, exp_dt->key);
 	ft_free((void **) &exp_dt->tmp_lex->string);
 	if (!exp_dt->found)
-		exp_dt->tmp_lex->string = ft_strdup("");
+		exp_dt->tmp_lex->string = NULL;
 	else
 		exp_dt->tmp_lex->string = ft_strdup(exp_dt->found->value);
 	ft_free((void **) &exp_dt->key);
