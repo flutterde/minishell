@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/28 15:17:36 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:14:57 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	minishell(t_data *data)
 		line = readline(M_NAME);
 		if (!line)
 			return (data_cleanup(&data, true), exit(g_status), 0);
-		trimmed_line = ft_strtrim(line, " ");
+		trimmed_line = ft_strtrim(line, " \t\n\v\f\r");
 		free(line);
 		if (!ft_strlen(trimmed_line))
 		{
@@ -68,6 +68,7 @@ static int	minishell(t_data *data)
 		add_history(trimmed_line);
 		if (parsing(data, trimmed_line))
 			exec_handler(data);
+		// print_linked_list(data->command);
 		free(trimmed_line);
 		data_cleanup(&data, false);
 	}

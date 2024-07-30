@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:41:39 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 10:07:33 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:21:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	print_linked_list(t_cmd *cmd)
 		printf("\n----> REDIRECTS <----\n");
 		while (cmd->redire)
 		{
-			printf("delim => %s\t| file => %s\t| type => %s\t| to_expand => %d\n",
+			printf("delim => %s\t| file => %s\t| type => %s\t| to_expand =>\
+				 %d\n",
 				cmd->redire->delim, cmd->redire->file,
 				print_token(cmd->redire->type), cmd->redire->to_expand);
 			cmd->redire = cmd->redire->next;
@@ -73,9 +74,11 @@ void	print_linked_list(t_cmd *cmd)
 void	ft_print_lexer(t_lex *lex)
 {
 	printf("LEXER:\n");
-	printf("-----------------------------------------------------------------\n");
+	printf("-----------------------------------------------------\
+		------------\n");
 	printf("| content	| status	| len	| type	|\n");
-	printf("-----------------------------------------------------------------\n");
+	printf("--------------------------------------------------------\
+		---------\n");
 	while (lex)
 	{
 		printf("| '%s'		| %s		| %d	| %s	|\n",
@@ -83,5 +86,6 @@ void	ft_print_lexer(t_lex *lex)
 			lex->len, print_token(lex->type));
 		lex = (lex)->next;
 	}
-	printf("-----------------------------------------------------------------\n\n");
+	printf("----------------------------------------------------------\
+		-------\n\n");
 }

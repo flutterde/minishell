@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/29 11:19:29 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:42:45 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exists_and_permissions(t_cmd *cmd)
 	}
 	if (access(cmd->path, X_OK) == -1)
 	{
-		mini_printf(2, "minishell: %s: %s\n", cmd->args[0], "Permission denied");
+		mini_printf(2, "minishell>: %s: %s\n", cmd->args[0], "Permission denied");
 		exit(126);
 	}
 }

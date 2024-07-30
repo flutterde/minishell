@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 19:37:26 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/29 12:40:04 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:50:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,27 @@ static char	*__relativepath(char *path)
 	return (free(new), NULL);
 }
 
-char	*get_absolute_path(char *command, t_env *env)
+static char	*___else(t_env *env, char *cmd)
 {
 	t_env	*node;
 
 	node = search_env(env, "PATH");
-	if (!command || !env)
+	if (!node)
+	{
+		if (!access(cmd, F_OK))
+			return (ft_strdup(cmd));
+		return (NULL);
+	}
+	return (get_cmd_path(node->value, cmd));
+}
+
+char	*get_absolute_path(char *command, t_env *env)
+{
+	if (!ft_strlen(command))
 		return (NULL);
 	if (command[0] == '/')
 		return (__absp(command));
 	if (command[0] == '.' && command[1] == '/')
 		return (__relativepath(command + 1));
-	if (!node)
-		return (NULL);
-	return (get_cmd_path(node->value, command));
+	return (___else(env, command));
 }

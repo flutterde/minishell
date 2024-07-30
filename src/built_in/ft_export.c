@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:44:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/28 19:00:06 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:21:20 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_export(t_env **lst, char *str)
 	char	*value;
 	char	*tmp;
 
-	if (!lst || !*lst || !str)
+	if (!lst || !str)
 		return (0);
 	tmp = ft_strchr(str, '=');
 	if (!tmp)
@@ -85,13 +85,11 @@ int	export_handler(t_cmd *cmd, t_data *data)
 {
 	char	**args;
 	int		i;
-	t_env	*tmp;
 
 	i = 1;
-	if (!cmd || !data || !cmd->args || !data->env)
+	if (!cmd || !data || !cmd->args)
 		return (0);
 	args = cmd->args;
-	tmp = data->env;
 	if (args[0] && !args[1])
 		return (ft_export_no_args(data->env), 1);
 	while (args[i])
