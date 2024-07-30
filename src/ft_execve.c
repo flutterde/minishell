@@ -6,11 +6,13 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:36:43 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/05 17:52:55 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:19:05 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+//! DELETE THIS FILE
 
 void	ft_execve(t_cmd *cmd)
 {

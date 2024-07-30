@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/28 12:41:18 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:10:52 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	lex_env(t_lex_helper *lex, char **line)
 	(*line)++;
 	ft_free((void **) &ch);
 	if (!ft_strncmp(*line, "?", 1))
-	{	
+	{
 		ft_free((void **) &str);
 		str = ft_strdup("$?");
 		if (!str)

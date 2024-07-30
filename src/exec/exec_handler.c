@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/29 15:42:45 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:24:30 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	exists_and_permissions(t_cmd *cmd)
 	if (access(cmd->path, X_OK) == -1)
 	{
 		mini_printf(2, "minishell>: %s: %s\n", cmd->args[0], "Permission denied");
+		g_status = 126;
 		exit(126);
 	}
+	// ft_printf("\033[0;91mthe path: %s, the Command: %s.\033[0m\n", cmd->path, cmd->args[0]);
 }
 
 // ! merge this with the builtin handler
@@ -93,10 +95,10 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: <<
 	env = env_lst_to_2dchar(data->env);
 	if (execve(cmd->path, cmd->args, env))
 	{
-		mini_printf(2, "minishell: %s: %s\n", cmd->args[0], strerror(errno));
-		g_status = errno;
+		mini_printf(2, "minishell$: %s: %s\n", cmd->args[0], strerror(errno));
+		// g_status = errno;
 		ft_free_strs(env);
-		exit(errno);
+		exit(126);
 	}
 }
 
@@ -151,10 +153,13 @@ void	exec_handler(t_data *data)
 	{
 		if (waitpid(data->childs[exec.i++], &g_status, 0) == -1)
 			return __err_msg(strerror(errno), 1);
-		g_status = WEXITSTATUS(g_status);
+		if (WIFSIGNALED(g_status))
+			g_status = WTERMSIG(g_status) + 128;
+		else if (WIFEXITED(g_status))
+			g_status = WEXITSTATUS(g_status);
 	}	
 	if (dup2(exec.fd_stdin, STDIN_FILENO) < -1)
 		return __err_msg(strerror(errno), 1);
 	close(exec.fd_stdin);
-	ft_printf("\033[0;91mthe status: %d\033[0m\n", g_status);
+	// ft_printf("\033[0;91mthe status: %d\033[0m\n", g_status);
 }

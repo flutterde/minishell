@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/29 15:38:38 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:11:39 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,8 @@ static t_cmd	*get_cmd(t_lex **lex, t_data *data)
 				return (NULL);
 		}
 		else
-		{
 			if (!add_arg(&utils, lex))
 				return (NULL);
-		}
 		ft_free_strs(utils.tmp_args);
 		utils.tmp_args = NULL;
 		if ((*lex)->type != PIPELINE && !is_redirection(*lex))

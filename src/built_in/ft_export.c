@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:44:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/29 15:21:20 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:17:56 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static int	_is_valid(char *str)
 	tmp2 = ft_strchr(str, '=');
 	if (!tmp2)
 	{
-		if (str && ((str[0] != '_' && !ft_isalpha(str[0])) || !___iva(&str[1])))
+		if (str && ((str[0] != '_' && !ft_isalpha(str[0]))
+				|| !___iva(&str[1])))
 			return (-1);
 		return (0);
 	}
@@ -80,7 +81,9 @@ static int	_is_valid(char *str)
 	}
 	return (free(tmp), 1);
 }
-//! check this test exit status:   export a=bjb b=jfbb c=hjfhjfhj -d hgfhgfhg=fhbfjbfnbn
+
+//! check this test exit status:   export a=bjb b=jfbb c=hjfhjfhj -d
+//! ==> hgfhgfhg=fhbfjbfnbn
 int	export_handler(t_cmd *cmd, t_data *data)
 {
 	char	**args;

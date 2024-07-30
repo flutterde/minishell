@@ -10,6 +10,7 @@ text.txt
 ./src/herdoc/herdoc
 cat
 
+./minishell_tester/
 en.subject.pdf
 
 # Object files
