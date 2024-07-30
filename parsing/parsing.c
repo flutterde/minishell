@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:46:04 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 17:11:52 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:37:35 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parsing(t_data *data, char *line)
 				"minishell: syntax error near unexpected token `|'\n"), 258);
 	while (tmp)
 	{
-		if (!check_syntax(data, tmp))
+		if (!check_syntax(tmp))
 			return (0);
 		tmp = tmp->next;
 	}
@@ -31,9 +31,8 @@ int	parsing(t_data *data, char *line)
 	if (!ft_expander(data, tmp))
 		return (0);
 	tmp = data->lexer;
-	if (!quotes_check(data, tmp))
+	if (!quotes_check(tmp))
 		return (0);
-	// ft_print_lexer(tmp);
 	if (!join_lexer(data))
 		return (0);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:45:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 16:46:59 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:36:52 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ int	check_chars_env(t_lex *lex)
 	return (1);
 }
 
-int	quotes_check(t_data *data, t_lex *lex)
+int	quotes_check(t_lex *lex)
 {
 	t_quote	quote;
 
-	(void) data;
 	ft_bzero(&quote, sizeof(t_quote));
 	quote.tmp = lex;
 	while (quote.tmp)

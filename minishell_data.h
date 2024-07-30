@@ -18,8 +18,6 @@
 
 int	g_status;
 
-// typedef unsigned int uint32_t;
-
 /* -- ENUMS -- */
 typedef enum e_token {
 	W_SPACE = ' ',
@@ -28,9 +26,9 @@ typedef enum e_token {
 	PIPELINE = '|',
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
-	HEREDOC, // <<
-	SUPER_HEREDOC, // << $ ex
-	APPEND, // >>
+	HEREDOC,
+	SUPER_HEREDOC,
+	APPEND,
 	WORD = -1,
 	ENV = '$',
 }	t_token;
@@ -67,14 +65,6 @@ typedef struct s_lex_helper {
 }	t_lex_helper;
 
 /* -- PARSING STRUCT -- */
-typedef struct s_parse {
-	char	*new_str;
-	int		in_d_quote;
-	int		in_s_quote;
-	char	*str_char;
-	char	type_q;
-}	t_parse;
-
 typedef struct s_quote
 {
 	int		nb_s_quote;
@@ -83,6 +73,13 @@ typedef struct s_quote
 	int		in_d_quote;
 	t_lex	*tmp;
 }	t_quote;
+
+typedef struct s_expand {
+	t_lex	*tmp_lex;
+	t_env	*found;
+	char	*key;
+	char	*tmp;
+}	t_expand;
 
 /* -- REDIRECTION STRUCT -- */
 typedef struct s_redir {
@@ -96,11 +93,18 @@ typedef struct s_redir {
 	struct s_redir	*prev;
 }	t_redir;
 
+typedef struct s_red_help {
+	t_token	tp;
+	char	*file;
+	char	*delim;
+	bool	expand;
+	bool	ambiguous;
+	int		index;
+}	t_red_help;
 
 /* -- COMMAND STRUCT -- */
 typedef struct s_cmd
 {
-
 	t_redir			*redire;
 	t_env			*env;
 	char			*path;

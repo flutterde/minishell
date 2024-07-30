@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:50:30 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:55:10 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:38:18 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,27 @@ void	red_set_index(t_redir *lst)
 
 static void	_red_swap_data(t_redir *a, t_redir *b)
 {
-	t_token	tp;
-	char	*file;
-	char	*delim;
-	bool	expand;
-	bool	ambiguous;
-	int		index;
+	t_red_help	red;
 
-	tp = a->type;
-	file = a->file;
-	delim = a->delim;
-	expand = a->to_expand;
-	ambiguous = a->is_ambiguous;
-	index = a->index;
+	bzero((void *) &red, sizeof(t_red_help));
+	red.tp = a->type;
+	red.file = a->file;
+	red.delim = a->delim;
+	red.expand = a->to_expand;
+	red.ambiguous = a->is_ambiguous;
+	red.index = a->index;
 	a->type = b->type;
 	a->file = b->file;
 	a->delim = b->delim;
 	a->to_expand = b->to_expand;
 	a->is_ambiguous = b->is_ambiguous;
 	a->index = b->index;
-	b->type = tp;
-	b->file = file;
-	b->delim = delim;
-	b->to_expand = expand;
-	b->is_ambiguous = ambiguous;
-	b->index = index;
+	b->type = red.tp;
+	b->file = red.file;
+	b->delim = red.delim;
+	b->to_expand = red.expand;
+	b->is_ambiguous = red.ambiguous;
+	b->index = red.index;
 }
 
 void	red_sort(t_redir *lst)
@@ -78,4 +74,13 @@ void	red_sort(t_redir *lst)
 		}
 		lst = lst->next;
 	}
+}
+
+void	_reset_utils(t_cmd_utils *utils)
+{
+	utils->type = 0;
+	utils->file = NULL;
+	utils->delim = NULL;
+	utils->heredoc_expand = false;
+	utils->is_ambiguous = false;
 }

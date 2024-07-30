@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   red_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:42:56 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:16:28 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:30:14 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static void	_reset_utils(t_cmd_utils *utils)
-{
-	utils->type = 0;
-	utils->file = NULL;
-	utils->delim = NULL;
-	utils->heredoc_expand = false;
-	utils->is_ambiguous = false;
-}
 
 t_redir	*red_create(t_cmd_utils *utils)
 {

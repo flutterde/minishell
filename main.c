@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/29 16:14:57 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:34:34 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static int	minishell(t_data *data)
 		add_history(trimmed_line);
 		if (parsing(data, trimmed_line))
 			exec_handler(data);
-		// print_linked_list(data->command);
 		free(trimmed_line);
 		data_cleanup(&data, false);
 	}

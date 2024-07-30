@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:23:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:43:01 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void		lex_red_in(t_lex_helper *lex, char **line);
 void		lex_red_out(t_lex_helper *lex, char **line);
 void		lex_env(t_lex_helper *lex, char **line);
 void		lex_word(t_lex_helper *lex, char **line);
-int			check_syntax(t_data *data, t_lex *lex);
+int			check_syntax(t_lex *lex);
 int			consec_spaces(t_lex *str, t_token token);
 int			rev_consec_spaces(t_lex *lex, t_token token);
 int			check_chars_env(t_lex *lex);
-int			quotes_check(t_data *data, t_lex *lex);
+int			quotes_check(t_lex *lex);
 int			ft_expander(t_data *data, t_lex *lexer);
 int			is_redirection(t_lex *lex);
 int			fill_redirect(t_lex **lex, t_cmd_utils *utils);
@@ -82,7 +82,7 @@ void		ft_errno(int nbr);
 char		*get_cmd_path(char *path, char *cmd);
 char		*get_absolute_path(char *path, t_env *env);
 char		**env_lst_to_2dchar(t_env *lst);
-char 		**env__to_2dchar(t_env *lst);
+char		**env__to_2dchar(t_env *lst);
 void		_print_env(t_env *env);
 int			ft_export_no_args(t_env *env);
 t_cmd		*set_data(t_env *env, char *path, char **args, char *cmd);
@@ -120,6 +120,7 @@ t_redir		*red_last_withtype(t_redir *lst, t_token tp);
 void		red_delete1(t_redir *node);
 void		red_clear(t_redir **lst);
 void		red_sort(t_redir *lst);
+void		_reset_utils(t_cmd_utils *utils);
 
 void		ft_free(void **ptr);
 
