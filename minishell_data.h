@@ -89,6 +89,7 @@ typedef struct s_redir {
 	bool			is_ambiguous;
 	char			*file;
 	char			*delim;
+	int				is_last;
 	struct s_redir	*next;
 	struct s_redir	*prev;
 }	t_redir;

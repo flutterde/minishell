@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/29 15:38:38 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:17:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,8 @@ static t_cmd	*get_cmd(t_lex **lex, t_data *data)
 				return (NULL);
 		}
 		else
-		{
 			if (!add_arg(&utils, lex))
 				return (NULL);
-		}
 		ft_free_strs(utils.tmp_args);
 		utils.tmp_args = NULL;
 		if ((*lex)->type != PIPELINE && !is_redirection(*lex))
@@ -137,5 +135,6 @@ int	join_lexer(t_data *data)
 		if (tmp)
 			tmp = tmp->next;
 	}
+	mark_last(&data->command);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:41:39 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/29 16:21:21 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:52:39 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ void	print_linked_list(t_cmd *cmd)
 		printf("\n----> REDIRECTS <----\n");
 		while (cmd->redire)
 		{
-			printf("delim => %s\t| file => %s\t| type => %s\t| to_expand =>\
-				 %d\n",
+			printf("delim: %s\t| file: %s\t| type: %s\t| to_expand: \
+				%d\t| is_last: %d\n",
 				cmd->redire->delim, cmd->redire->file,
-				print_token(cmd->redire->type), cmd->redire->to_expand);
+				print_token(cmd->redire->type), cmd->redire->to_expand,
+				cmd->redire->is_last);
 			cmd->redire = cmd->redire->next;
 		}
 		cmd = cmd->next;

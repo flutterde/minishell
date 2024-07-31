@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lexer_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/28 12:41:18 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:18:27 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	lex_env(t_lex_helper *lex, char **line)
 	(*line)++;
 	ft_free((void **) &ch);
 	if (!ft_strncmp(*line, "?", 1))
-	{	
+	{
 		ft_free((void **) &str);
 		str = ft_strdup("$?");
 		if (!str)
