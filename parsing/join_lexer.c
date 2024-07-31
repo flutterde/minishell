@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/31 12:26:29 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:24:13 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ static int	add_arg(t_cmd_utils *utils, t_lex **lex)
 		(*lex) = (*lex)->next;
 		return (1);
 	}
+	if ((*lex)->type == ENV && (*lex)->string == NULL)
+	{
+		(*lex) = (*lex)->next;
+		return (1);
+	}
 	if ((*lex)->type == ENV && ft_strchr((*lex)->string, ' '))
 	{
 		if (!handle_env(utils, lex))
@@ -129,6 +134,8 @@ int	join_lexer(t_data *data)
 	{
 		if (tmp->type == ENV && tmp->string == NULL)
 			tmp = tmp->next;
+		if (tmp->type == ENV && tmp->string == NULL)
+			tmp = tmp->next;
 		if (tmp->type == W_SPACE && tmp->status == GENERAL)
 		{
 			tmp = tmp->next;
@@ -137,11 +144,11 @@ int	join_lexer(t_data *data)
 		cmd = get_cmd(&tmp, data);
 		if (!cmd)
 			return (0);
+		mark_last(cmd->redire);
 		red_sort(cmd->redire);
 		cmd_addback(&data->command, cmd);
 		if (tmp)
 			tmp = tmp->next;
 	}
-	mark_last(&data->command);
 	return (1);
 }

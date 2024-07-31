@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 11:26:37 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:34:55 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	exists_and_permissions(t_cmd *cmd)
 }
 
 // ! merge this with the builtin handler
-
 void	child_builtin_cmd(t_data *data, t_cmd *cmd)
 {
 	char	**args;
@@ -69,10 +68,33 @@ void	child_builtin_cmd(t_data *data, t_cmd *cmd)
 		return (exit_handler(data, cmd), exit(g_status));
 }
 
-static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: << l | grep fjbdjksbf
+void	print__lst(t_redir *lst)
+{
+	char	*type;
+
+	while (lst)
+	{
+		if (lst->type == HEREDOC)
+			type = ft_strdup("HEREDOC");
+		else if (lst->type == REDIR_IN)
+			type = ft_strdup("REDIR");
+		else if (lst->type == APPEND)
+			type = ft_strdup("APPEND");
+		else if (lst->type == REDIR_OUT)
+			type = ft_strdup("REDIR_OUT");
+		ft_printf("type: %s, file: %s, delim: %s, index: %d, isLast?: %d.\
+			\n", type, lst->file, lst->delim, lst->index, lst->is_last);
+		lst = lst->next;
+	}
+}
+
+// TODO: tets this: << l | grep fjbdjksbf
+static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) 
 {
 	char	**env;
+	t_redir	*tmp;
 
+	// exit(0);
 	// ft_printf("I'm in the child process\n");
 	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
 	signal(SIGQUIT, SIG_DFL);
@@ -90,7 +112,17 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: <<
 		close(exec.fd[0]);
 	}
 	// redirecting
-	// todo:: red
+	tmp = cmd->redire;
+	while (tmp)
+	{
+		printf("*** BEFORE ***\n");
+		if (tmp->type == REDIR_OUT || tmp->type == APPEND)
+			out_handler(tmp);
+		else
+			printf("REDIRECT_IN\n");
+		printf("*** AFTER ***\n");
+		tmp = tmp->next;
+	}
 	// if no args
 	if (!cmd->args)
 		exit(0);

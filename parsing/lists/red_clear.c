@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 19:06:47 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 11:11:26 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:15:50 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,52 +38,34 @@ void	red_clear(t_redir **lst)
 	*lst = NULL;
 }
 
-static void	mark_last_in(t_cmd **cmd)
+static void	mark(t_redir *redir, int type)
 {
-	t_redir	*node;
-	t_cmd	*tmp;
-
-	tmp = *cmd;
-	while (tmp)
+	if (!redir)
+		return ;
+	while (redir)
 	{
-		node = red_getlast((tmp)->redire);
-		while (node)
+		if (((redir->type == REDIR_OUT || redir->type == APPEND) && type == 1)
+			|| ((redir->type == REDIR_IN || redir->type == HEREDOC) && type == 0))
 		{
-			if (node->type == REDIR_IN || node->type == HEREDOC)
-			{
-				node->is_last = 1;
-				break ;
-			}
-			node = node->prev;
+			redir->is_last = 1;
+			break ;
 		}
-		tmp = (tmp)->next;
+		redir = redir->prev;
 	}
 }
 
-static void	mark_last_out(t_cmd **cmd)
+void	mark_last(t_redir *lst)
 {
-	t_redir	*node;
-	t_cmd	*tmp;
+	t_redir		*node;
+	t_status	type;
 
-	tmp = *cmd;
-	while (tmp)
-	{
-		node = red_getlast((tmp)->redire);
-		while (node)
-		{
-			if (node->type == REDIR_OUT || node->type == APPEND)
-			{
-				node->is_last = 1;
-				break ;
-			}
-			node = node->prev;
-		}
-		tmp = (tmp)->next;
-	}
-}
-
-void	mark_last(t_cmd **cmd)
-{
-	mark_last_in(cmd);
-	mark_last_out(cmd);
+	node = red_getlast(lst);
+	if (!node)
+		return ;
+	type = node->type;
+	node->is_last = 1;
+	if (type == REDIR_OUT || type == APPEND)
+		mark(node->prev, 0);
+	else
+		mark(node->prev, 1);
 }

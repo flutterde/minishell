@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 11:11:46 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:00:27 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char		*print_token(t_token token);
 
 /* -- SRCS -- */
 void		ft_execve(t_cmd *cmd);
+int			out_handler(t_redir *red);
 
 /* -- BUILT-IN PART -- */
 void		_print_env(t_env *env);
@@ -120,7 +121,7 @@ t_redir		*red_last_withtype(t_redir *lst, t_token tp);
 void		red_delete1(t_redir *node);
 void		red_clear(t_redir **lst);
 void		red_sort(t_redir *lst);
-void		mark_last(t_cmd **cmd);
+void		mark_last(t_redir *lst);
 void		_reset_utils(t_cmd_utils *utils);
 
 void		ft_free(void **ptr);

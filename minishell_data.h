@@ -17,6 +17,9 @@
 # define END_COL "\033[0m"
 # define EXIT_ERR ": numeric argument required\n"
 
+# define M_IGNORE -2 
+# define M_FAIL  -1
+
 int	g_status;
 
 /* -- ENUMS -- */
@@ -86,12 +89,11 @@ typedef struct s_expand {
 typedef struct s_redir {
 	t_token			type;
 	int				index;
-	int				last;
+	int				is_last;
 	bool			to_expand;
 	bool			is_ambiguous;
 	char			*file;
 	char			*delim;
-	int				is_last;
 	struct s_redir	*next;
 	struct s_redir	*prev;
 }	t_redir;
@@ -103,6 +105,7 @@ typedef struct s_red_help {
 	bool	expand;
 	bool	ambiguous;
 	int		index;
+	int		is_last;
 }	t_red_help;
 
 /* -- COMMAND STRUCT -- */
