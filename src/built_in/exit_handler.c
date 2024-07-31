@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 15:02:50 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/29 10:30:11 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:05:38 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	exit_handler(t_data *data, t_cmd *cmd)
 	st = x__atoi(cmd->args[1], &i);
 	if (i)
 	{
-		mini_printf(2, "minishell: exit: %s: numeric argument required\n",
-			cmd->args[1]);
+		mini_printf(2, "minishell: exit: %s%s", cmd->args[1], EXIT_ERR);
 		exit(255);
 	}
 	else if (cmd->args[2])
 	{
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+		g_status = 1;
 		return ;
 	}
 	data_cleanup(&data, true);

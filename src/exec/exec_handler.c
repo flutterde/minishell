@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/30 15:44:48 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:26:37 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: <<
 		close(exec.fd[0]);
 	}
 	// redirecting
+	// todo:: red
 	// if no args
 	if (!cmd->args)
 		exit(0);
