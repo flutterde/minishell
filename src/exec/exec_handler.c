@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 15:34:55 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:49:37 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ void	print__lst(t_redir *lst)
 static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) 
 {
 	char	**env;
-	t_redir	*tmp;
 
-	// exit(0);
-	// ft_printf("I'm in the child process\n");
 	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
 	signal(SIGQUIT, SIG_DFL);
 	if (!data || !cmd)
@@ -112,17 +109,7 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
 		close(exec.fd[0]);
 	}
 	// redirecting
-	tmp = cmd->redire;
-	while (tmp)
-	{
-		printf("*** BEFORE ***\n");
-		if (tmp->type == REDIR_OUT || tmp->type == APPEND)
-			out_handler(tmp);
-		else
-			printf("REDIRECT_IN\n");
-		printf("*** AFTER ***\n");
-		tmp = tmp->next;
-	}
+	redire_handler(cmd->redire, cmd->red_fd);
 	// if no args
 	if (!cmd->args)
 		exit(0);

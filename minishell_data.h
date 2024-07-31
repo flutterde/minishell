@@ -117,6 +117,7 @@ typedef struct s_cmd
 	char			*cmd;
 	char			**args;
 	bool			is_builtin;
+	int				red_fd[2];
 	struct s_cmd	*next;
 }	t_cmd;
 

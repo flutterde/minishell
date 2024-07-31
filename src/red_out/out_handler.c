@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:29:11 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/31 15:14:43 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:42:31 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	open_close_file(t_redir *red)
 {
 	int	fd;
 
-	fd = open(red->file, O_CREAT);
+	fd = open(red->file, O_CREAT | O_RDWR, 0644);
 	if (fd < 0)
 		return (0);
 	close(fd);

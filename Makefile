@@ -9,7 +9,7 @@ PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.
 ./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
-./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c src/red_out/out_handler.c
+./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c src/red_out/out_handler.c src/utils/redire_handler.c
 
 LEX_SRCS = ./parsing/lists/lex_create.c ./parsing/lists/lex_add_back.c \
 ./parsing/lists/lex_getlast.c ./parsing/lists/lex_clear_list.c ./parsing/lists/lex_delete_node.c \

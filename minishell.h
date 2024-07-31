@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 15:00:27 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:04:42 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ char		*print_token(t_token token);
 /* -- SRCS -- */
 void		ft_execve(t_cmd *cmd);
 int			out_handler(t_redir *red);
+int			redire_handler(t_redir *redire, int	*fd);
 
 /* -- BUILT-IN PART -- */
 void		_print_env(t_env *env);
