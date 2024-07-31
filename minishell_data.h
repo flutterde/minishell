@@ -86,7 +86,7 @@ typedef struct s_expand {
 typedef struct s_redir {
 	t_token			type;
 	int				index;
-	int				last;
+	int				is_last;
 	bool			to_expand;
 	bool			is_ambiguous;
 	char			*file;
@@ -102,6 +102,7 @@ typedef struct s_red_help {
 	bool	expand;
 	bool	ambiguous;
 	int		index;
+	int		is_last;
 }	t_red_help;
 
 /* -- COMMAND STRUCT -- */

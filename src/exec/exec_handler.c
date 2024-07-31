@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 11:26:37 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:36:33 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,33 @@ void	child_builtin_cmd(t_data *data, t_cmd *cmd)
 		return (exit_handler(data, cmd), exit(g_status));
 }
 
+void	print__lst(t_redir *lst)
+{
+	char	*type;
+
+	while (lst)
+	{
+		if (lst->type == HEREDOC)
+			type = ft_strdup("HEREDOC");
+		else if (lst->type == REDIR_IN)
+			type = ft_strdup("REDIR");
+		else if (lst->type == APPEND)
+			type = ft_strdup("APPEND");
+		else if (lst->type == REDIR_OUT)
+			type = ft_strdup("REDIR_OUT");
+		ft_printf("type: %s, file: %s, delim: %s, index: %d, isLast?: %d.\n", type, lst->file, lst->delim, lst->index, lst->is_last);
+		lst = lst->next;
+	}
+}
+
 static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec) // ! tets this: << l | grep fjbdjksbf
 {
 	char	**env;
 
+	ft_printf(" >>>>>> REDIR <<<<<\n");
+	print__lst(cmd->redire);
+	ft_printf(" >>>>>> END REDIR <<<<<\n");
+	exit(0);
 	// ft_printf("I'm in the child process\n");
 	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
 	signal(SIGQUIT, SIG_DFL);
