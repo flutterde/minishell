@@ -15,6 +15,7 @@
 
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
+# define EXIT_ERR ": numeric argument required\n"
 
 int	g_status;
 
@@ -85,6 +86,7 @@ typedef struct s_expand {
 typedef struct s_redir {
 	t_token			type;
 	int				index;
+	int				last;
 	bool			to_expand;
 	bool			is_ambiguous;
 	char			*file;

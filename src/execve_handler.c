@@ -6,11 +6,13 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:05:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/19 10:15:52 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:18:56 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+//! DELETE THIS FILE
 
 static void	__handler(t_data *data, char **args, char *path)
 {

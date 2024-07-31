@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   piping.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:41:24 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:43:22 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:19:16 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+//! DELETE THIS FILE
 
 void	free_int_arrs(int **arr, int i)
 {
