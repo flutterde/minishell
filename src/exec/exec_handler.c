@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/02 10:41:45 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:51:48 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	exec_handler(t_data *data)
 		exec.cmd = exec.cmd->next;
 	}
 	if (dup2(exec.fd_stdin, STDIN_FILENO) < -1)
-		return __err_msg(strerror(errno), 1);
+		return (close(exec.fd_stdin), __err_msg(strerror(errno), 1));
 	// Waiting for the child processes to finish
 	exec.i = 0;
 	while (exec.i < exec.count)

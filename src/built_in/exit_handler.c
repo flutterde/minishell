@@ -6,15 +6,28 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 15:02:50 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 11:05:38 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:57:15 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+static int	_limit_check(char *str, int *i, size_t nbr, int sign)
+{
+	if (sign == -1)
+		str++;
+	if (ft_strlen(str) > 19)
+		return (*i = 1, nbr = 255);
+	if (nbr > 9223372036854775807 && sign == 1)
+		return (*i = 1, nbr = 255);
+	if (nbr > 9223372036854775808U && sign == -1)
+		return (*i = 1, nbr = 255);
+	return (nbr * sign);
+}
+
 static int	x__atoi(char *str, int *i)
 {
-	int		nb;
+	size_t	nb;
 	int		j;
 	int		sign;
 
@@ -33,7 +46,7 @@ static int	x__atoi(char *str, int *i)
 		nb = (nb * 10) + str[j++] - '0';
 	if (str[j])
 		return (*i = 1, nb = 255);
-	return (nb * sign);
+	return (_limit_check(str, i, nb, sign));
 }
 
 void	exit_handler(t_data *data, t_cmd *cmd)

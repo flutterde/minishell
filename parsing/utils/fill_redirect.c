@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_redirect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:34:25 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 15:01:56 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:16:47 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_ambiguous(t_lex **lex, t_cmd_utils *utils)
 
 	i = 0;
 	if ((*lex)->type == ENV && ft_strlen((*lex)->string) == 0)
-		return (printf("minishell: $: ambiguous redirect"), 1);
+		return (1);
 	else if ((*lex)->type == ENV)
 	{
 		strs = ft_split(utils->file, ' ');
@@ -30,7 +30,7 @@ static int	is_ambiguous(t_lex **lex, t_cmd_utils *utils)
 		if (i == 1)
 			return (ft_free_strs(strs), 0);
 	}
-	return (printf("minishell: $: ambiguous redirect"), 1);
+	return (1);
 }
 
 static int	heredoc(t_lex **lex, t_cmd_utils *utils)

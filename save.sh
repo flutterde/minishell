@@ -4,6 +4,8 @@ make fclean
 
 rm -rf .vscode
 
+rm 0
+
 rm -rf .DS_Store
 
 rm -rf ./labs/app

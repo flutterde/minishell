@@ -18,6 +18,7 @@ en.subject.pdf
 *.ko
 *.obj
 *.elf
+*.js
 
 
 # Linker output

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:00:02 by mboujama          #+#    #+#             */
-/*   Updated: 2024/08/01 16:56:37 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:14:55 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	__out_handler(t_redir *redire, int *redfd)
 	int	fd;
 
 	if (redire->is_ambiguous)
-		return (mini_printf(2, "minishell: %s: ambiguous redirect\n",
+		return (mini_printf(2, "minishell:: %s: ambiguous redirect\n",
 				redire->file), g_status = 1, *redfd = -1, -1);
 	if (redire->type == REDIR_OUT)
 	{

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:17:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/08 18:49:17 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/02 18:40:42 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "head.h"
 
 // tests: "*_*_*.c", "*.js", "something.*", "something.*.c", "something.*.c*"
-static int	is_matching(char *wcard, char *file)
+static int is_matching(char *wcard, char *file)
 {
 	if (*wcard == '\0' && *file == '\0')
 		return (0);
@@ -75,25 +75,29 @@ static int	is_matching(char *wcard, char *file)
 // 	return (!ft_strcmp(wcard, file));
 // }
 
-char	**ft_wildcard(char *str, char *dir_path)
+char **ft_wildcard(char *str, char *dir_path)
 {
-	DIR				*dir;
-	struct dirent	*entry;
-	char			**files;
-	char			**tmp;
+	DIR *dir;
+	struct dirent *entry;
+	char **files;
+	char **tmp;
 
+	ft_printf("str: %s\n", str);
+	ft_printf("dir_path: %s\n", dir_path);
 	if (!str || !dir_path)
 		return (NULL);
 	dir = opendir(dir_path);
 	if (!dir)
-		return (NULL);
+		return (ft_printf("------Can't open it---\n"), NULL);
 	entry = readdir(dir);
 	files = NULL;
+	ft_printf("----------ENTERY------\n");
 	while (entry)
 	{
+		ft_printf("the__file:: %s\n", entry->d_name);
 		if (!is_matching(str, entry->d_name))
 		{
-			// ft_printf("file:: %s added\n", entry->d_name);
+			ft_printf("file:: %s added\n", entry->d_name);
 			tmp = files;
 			files = insert_to2d_array(files, entry->d_name);
 			if (tmp)
@@ -105,20 +109,22 @@ char	**ft_wildcard(char *str, char *dir_path)
 	return (files);
 }
 
-int	main(int ac, char **av, char **envp)
+int main(int ac, char **av, char **envp)
 {
-	(void) envp;
-	char	**files;
+	(void)envp;
+	char **files;
 	// char	**tmp;
 	// char	**tmp2;
 	// int		i = 0;
 
+	printf("av[1]: %s\n", av[1]);
+	printf("av[2]: %s\n", av[2]);
 	if (ac != 3)
 		return (ft_printf("ERROR\n"), 1);
 	// tmp = ft_split("ls", ' ');
 	files = ft_wildcard(av[1], av[2]);
 	if (!files)
-		return (ft_printf("NO_Files\n"), 1);
+		return (ft_printf("NO_Files..\n"), 1);
 	// while (files && files[i])
 	// {
 	// 	tmp2 = tmp;
