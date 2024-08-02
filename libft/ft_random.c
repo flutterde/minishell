@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:52:37 by ochouati          #+#    #+#             */
-/*   Updated: 2023/12/26 20:39:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:14:21 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ static void	fill_buffer(char *buf)
 		buf[i++] = c++;
 }
 
+static size_t	_getrand_ptr(void)
+{
+	char	*ptr;
+	
+	ptr = malloc(1);
+	if (!ptr)
+		return (0);
+	return (free(ptr), (size_t)ptr);
+}
+
 char	*ft_random(int size)
 {
 	char	buffer[62];
@@ -38,17 +48,17 @@ char	*ft_random(int size)
 	int		i;
 
 	fill_buffer(buffer);
-	ad = (size_t *)&buffer;
-	num = (size_t) ad;
+	ad = (size_t *)&buffer + _getrand_ptr();
 	nstr = malloc(size + 1);
 	if (!nstr)
 		return (NULL);
+	num = (size_t) nstr;
 	i = 0;
 	nstr[size] = '\0';
 	while (i < size)
 	{
 		nstr[i++] = buffer[num % 61];
-		num += ((size_t) & ad / 5676);
+		num += ((size_t) & num / (5676 + i));
 	}
 	return (nstr);
 }

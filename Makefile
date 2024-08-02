@@ -18,16 +18,17 @@ ADD_ONS = ./utils/ft_free.c \
 ./src/built_in/is_builtin.c ./utils/helpers/ft_is_newln.c ./src/exec/exec_handler.c \
 ./src/built_in/unset_handler.c ./src/built_in/exit_handler.c ./src/exec/exec_handler_utils.c \
 
+REDIR_SECS = src/utils/exec_redirections.c src/herdoc/herdoc_handler.c \
 
 CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/lists/cmd_clear.c \
 
 MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include # -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include #  -g -fsanitize=address
 # LDFLAGS = -L/usr/include/readline -lreadline
 HEADERS = minishell.h
-SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \
+SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(REDIR_SECS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \
 
 NAME = minishell
 

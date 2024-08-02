@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 16:49:37 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:41:45 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exists_and_permissions(t_cmd *cmd)
 	}
 	if (access(cmd->path, X_OK) == -1)
 	{
-		mini_printf(2, "minishell>: %s: %s\n", cmd->args[0], "Permission denied");
+		mini_printf(2, "minishell: %s: %s\n", cmd->args[0], "Permission denied");
 		g_status = 126;
 		exit(126);
 	}
@@ -94,22 +94,12 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
 	char	**env;
 
 	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
+	g_status = 0;
 	signal(SIGQUIT, SIG_DFL);
 	if (!data || !cmd)
 		exit(1);
-	if (exec.i != (exec.count - 1))
-	{
-		if (dup2(exec.fd[1], STDOUT_FILENO) < -1)
-		{
-			mini_printf(2, "minishell: %s\n", strerror(errno));
-			g_status = 1;
-			exit(1);
-		}
-		close(exec.fd[1]);
-		close(exec.fd[0]);
-	}
 	// redirecting
-	redire_handler(cmd->redire, cmd->red_fd);
+	exec_redirections(data, cmd, exec);
 	// if no args
 	if (!cmd->args)
 		exit(0);
@@ -168,10 +158,12 @@ void	exec_handler(t_data *data)
 		if (dup2(exec.fd[0], STDIN_FILENO) < 0)
 			return __err_msg(strerror(errno), 1);
 		exec.i++;
-		exec.cmd = exec.cmd->next;
 		close(exec.fd[0]);
-		close(exec.fd[1]);
+		close(exec.fd[1]);	
+		exec.cmd = exec.cmd->next;
 	}
+	if (dup2(exec.fd_stdin, STDIN_FILENO) < -1)
+		return __err_msg(strerror(errno), 1);
 	// Waiting for the child processes to finish
 	exec.i = 0;
 	while (exec.i < exec.count)
@@ -183,8 +175,6 @@ void	exec_handler(t_data *data)
 		else if (WIFEXITED(g_status))
 			g_status = WEXITSTATUS(g_status);
 	}	
-	if (dup2(exec.fd_stdin, STDIN_FILENO) < -1)
-		return __err_msg(strerror(errno), 1);
 	close(exec.fd_stdin);
 	// ft_printf("\033[0;91mthe status: %d\033[0m\n", g_status);
 }
