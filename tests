@@ -35,6 +35,8 @@ declare -p | grep ARG
 
 << \
 
+cat << "moad"bj
+
 
 
 # cd -

@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:19:40 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/01 19:18:15 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:59:43 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ static void	__read_fn(t_data *data, t_redir *node, int fd)
 	char	*str;
 	char	*trimmed;
 
-	ft_putstr_fd("> ", 1);
-	str = get_next_line(0);
+	str = readline("HereDoc> ");
 	trimmed = ft_strtrim(str, "\n");
 	ft_free((void **)&str);
 	while (trimmed && ft_strcmp(trimmed, node->delim))
@@ -89,8 +88,7 @@ static void	__read_fn(t_data *data, t_redir *node, int fd)
 			write(fd, trimmed, ft_strlen(trimmed));
 		write(fd, "\n", 1);
 		ft_free((void **)&trimmed);
-		ft_putstr_fd("> ", 1);
-		str = get_next_line(0);
+		str = readline("HereDoc> ");
 		trimmed = ft_strtrim(str, "\n");
 		ft_free((void **)&str);
 	}
