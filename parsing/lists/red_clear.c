@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 19:06:47 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 13:15:50 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 09:44:14 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	mark(t_redir *redir, int type)
 	while (redir)
 	{
 		if (((redir->type == REDIR_OUT || redir->type == APPEND) && type == 1)
-			|| ((redir->type == REDIR_IN || redir->type == HEREDOC) && type == 0))
+			|| ((redir->type == REDIR_IN || redir->type == HEREDOC) 
+				&& type == 0))
 		{
 			redir->is_last = 1;
 			break ;

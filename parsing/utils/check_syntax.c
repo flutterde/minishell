@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:58:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/30 14:58:51 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 10:42:37 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int	pipe_checks(t_lex *lex)
 		return (g_status = 258, mini_printf(2,
 				"minishell: syntax error near unexpected token `|'\n"), 0);
 	else if ((rev_consec_spaces(lex, REDIR_OUT)
-		|| rev_consec_spaces(lex, REDIR_IN)
-		|| rev_consec_spaces(lex, APPEND) 
-		|| rev_consec_spaces(lex, HEREDOC)
-		|| rev_consec_spaces(lex, PIPELINE)) && lex->status == GENERAL)
+			|| rev_consec_spaces(lex, REDIR_IN)
+			|| rev_consec_spaces(lex, APPEND) 
+			|| rev_consec_spaces(lex, HEREDOC)
+			|| rev_consec_spaces(lex, PIPELINE)) && lex->status == GENERAL)
 		return (g_status = 258, mini_printf(2,
 				"minishell: syntax error near unexpected token `|'\n"), 0);
 	return (1);
@@ -40,10 +40,10 @@ static int	redirect_checks(t_lex *lex)
 	if (last->prev->type == REDIR_OUT || last->prev->type == REDIR_IN
 		|| last->prev->type == APPEND || last->prev->type == HEREDOC)
 		return (g_status = 258, mini_printf(2,
-				"minishell: syntax error\n"), 0);
+				"minishell: syntax error near unexpected token `newline'\n"), 0);
 	if ((rev_consec_spaces(lex, REDIR_OUT) || rev_consec_spaces(lex, REDIR_IN)
-		|| rev_consec_spaces(lex, APPEND) 
-		|| rev_consec_spaces(lex, HEREDOC)) && lex->status == GENERAL)
+			|| rev_consec_spaces(lex, APPEND) 
+			|| rev_consec_spaces(lex, HEREDOC)) && lex->status == GENERAL)
 	{
 		if (lex->type == REDIR_OUT)
 			return (g_status = 258, mini_printf(2,

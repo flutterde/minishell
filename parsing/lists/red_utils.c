@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:50:30 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/31 15:28:05 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:03:29 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,9 @@ static void	_red_swap_data(t_redir *a, t_redir *b)
 	a->is_last = b->is_last;
 	a->index = b->index;
 	a->is_last = b->is_last;
-	b->type = red.tp;
-	b->file = red.file;
-	b->delim = red.delim;
-	b->to_expand = red.expand;
-	b->is_ambiguous = red.ambiguous;
-	b->is_last = red.is_last;
-	b->index = red.index;
-	b->is_last = red.is_last;
+	swap_data(red, b);
 }
 
-// << d1 > o1 > o2 < in2 << h2 < in3 >> ap1 << h3 >> ap2
 static void	_set_lasts(t_redir *lst)
 {
 	t_redir	*last;
@@ -79,29 +71,9 @@ static void	_set_lasts(t_redir *lst)
 		is_out = 1;
 	last = last->prev;
 	if (is_out)
-	{
-		while (last)
-		{
-			if (last->type == HEREDOC || last->type == REDIR_IN)
-			{
-				last->is_last = true;
-				break ;
-			}
-			last = last->prev;
-		}
-	}
+		get_last_in(last);
 	else
-	{
-		while (last)
-		{
-			if (last->type == APPEND || last->type == REDIR_OUT)
-			{
-				last->is_last = true;
-				break ;
-			}
-			last = last->prev;
-		}
-	}
+		get_last_out(last);
 }
 
 void	red_sort(t_redir *lst)
@@ -126,7 +98,9 @@ void	red_sort(t_redir *lst)
 void	_reset_utils(t_cmd_utils *utils)
 {
 	utils->type = 0;
+	ft_free((void **) &utils->file);
 	utils->file = NULL;
+	ft_free((void **) &utils->delim);
 	utils->delim = NULL;
 	utils->heredoc_expand = false;
 	utils->is_ambiguous = false;

@@ -85,6 +85,11 @@ typedef struct s_expand {
 	char	*tmp;
 }	t_expand;
 
+typedef struct s_lex_env {
+	char	*str;
+	char	*ch;
+}	t_lex_env;
+
 /* -- REDIRECTION STRUCT -- */
 typedef struct s_redir {
 	t_token			type;

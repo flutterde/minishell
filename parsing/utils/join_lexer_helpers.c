@@ -6,11 +6,23 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:44:40 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/27 13:20:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 09:42:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	add_arg_helper(t_cmd_utils *utils, char **str)
+{
+	utils->tmp_args = utils->args;
+	utils->args = insert_to2d_array(utils->args, *str);
+	if (!utils->args)
+		return (0);
+	ft_free_strs(utils->tmp_args);
+	ft_free((void **) str);
+	utils->tmp_args = NULL;
+	return (1);
+}
 
 int	is_redirection(t_lex *lex)
 {

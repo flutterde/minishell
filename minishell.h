@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/02 10:41:56 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:03:14 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include <sys/wait.h>
 # include <signal.h>
 
-void		ft_init(int ac, char **av, char **env, t_env *envs);
 void		ft_exit(char *msg, int status, int fd);
 void		clear_data(t_data **data);
 void		data_cleanup(t_data **data, bool all);
@@ -57,6 +56,11 @@ void		print_linked_list(t_cmd *cmd);
 int			is_builtin(char *cmd);
 bool		ft_is_newln(char *op);
 char		*get_arg(t_lex **lex);
+int			add_arg_helper(t_cmd_utils *utils, char **str);
+void		get_last_in(t_redir *last);
+void		get_last_out(t_redir *last);
+void		lex_env_helper(t_lex_env *e_h, char **line);
+void		swap_data(t_red_help red, t_redir *b);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_create(char *str, t_token type, int len, t_status status);

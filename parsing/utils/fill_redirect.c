@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_redirect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:34:25 by mboujama          #+#    #+#             */
-/*   Updated: 2024/08/02 16:16:47 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:58:54 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,12 @@ static int	heredoc(t_lex **lex, t_cmd_utils *utils)
 	while ((*lex) && (*lex)->type == W_SPACE)
 		(*lex) = (*lex)->next;
 	utils->type = HEREDOC;
-	if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
-	{
-		utils->delim = get_str(lex);
-		utils->heredoc_expand = false;
-	}
-	else
-	{
-		utils->delim = (*lex)->string;
-		utils->heredoc_expand = true;
-	}
+	utils->delim = get_arg(lex);
+	if (!utils->delim)
+		return (0);
 	redire = red_create(utils);
+	if (!redire)
+		return (0);
 	red_addback(&utils->redir, redire);
 	return (1);
 }
@@ -68,13 +63,9 @@ static int	redirection(t_lex **lex, t_cmd_utils *utils, t_token token)
 	while ((*lex) && (*lex)->type == W_SPACE)
 		(*lex) = (*lex)->next;
 	utils->type = token;
-	if ((*lex)->type == DOUBLE_QUOTE || (*lex)->type == QUOTE)
-	{
-		utils->file = get_arg(lex);
-		in_quote = 1;
-	}
-	else
-		utils->file = (*lex)->string;
+	utils->file = get_arg(lex);
+	if (!utils->file)
+		return (0);
 	if ((*lex)->type == ENV && !in_quote)
 	{
 		if (is_ambiguous(lex, utils))

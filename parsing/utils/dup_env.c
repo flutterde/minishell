@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:48:34 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/06 10:56:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 10:49:42 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,20 @@ t_env	*dup_env(char **env)
 	}
 	__shell_level(head);
 	return (head);
+}
+
+void	lex_env_helper(t_lex_env *e_h, char **line)
+{
+	while (**line && (ft_isalnum(*(*line)) || **line == '_'))
+	{
+		e_h->ch = char_to_str(**line);
+		if (!e_h->ch)
+			return ;
+		e_h->str = ft_strjoin(e_h->str, e_h->ch);
+		if (!e_h->str)
+			return (ft_free((void **) &e_h->ch));
+		ft_free((void **) &e_h->ch);
+		(*line)++;
+	}
+	(*line)--;
 }

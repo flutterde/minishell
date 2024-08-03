@@ -3,10 +3,10 @@ UTILS = ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/remove
 ./utils/helpers/env_lst_to_2dchar.c ./utils/helpers/print_env.c ./utils/set_data.c \
 ./utils/helpers/get_absolute_path.c ./utils/printers.c
 
-PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c ./parsing/utils/ft_init.c\
+PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c \
 ./parsing/create_lexer.c ./parsing/utils/create_lexer_helpers.c ./parsing/utils/check_syntax.c \
 ./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/ft_expander.c \
-./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c
+./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c ./parsing/lists/red_utils_2.c \
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c src/red_out/out_handler.c src/utils/redire_handler.c

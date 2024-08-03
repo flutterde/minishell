@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/31 15:24:13 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:20:55 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,8 @@ static int	add_arg(t_cmd_utils *utils, t_lex **lex)
 	str = get_arg(lex);
 	if (!str)
 		return (0);
-	utils->tmp_args = utils->args;
-	utils->args = insert_to2d_array(utils->args, str);
-	if (!utils->args)
+	if (!add_arg_helper(utils, &str))
 		return (0);
-	ft_free_strs(utils->tmp_args);
-	ft_free((void **) &str);
-	utils->tmp_args = NULL;
 	return (1);
 }
 
@@ -121,7 +116,8 @@ static t_cmd	*get_cmd(t_lex **lex, t_data *data)
 		if ((*lex)->type != PIPELINE && !is_redirection(*lex))
 			*lex = (*lex)->next;
 	}
-	return (utils.cmd = cmd_create(data, &utils), utils.cmd);
+	utils.cmd = cmd_create(data, &utils);
+	return (utils.cmd);
 }
 
 int	join_lexer(t_data *data)
@@ -132,8 +128,6 @@ int	join_lexer(t_data *data)
 	tmp = data->lexer;
 	while (tmp)
 	{
-		if (tmp->type == ENV && tmp->string == NULL)
-			tmp = tmp->next;
 		if (tmp->type == ENV && tmp->string == NULL)
 			tmp = tmp->next;
 		if (tmp->type == W_SPACE && tmp->status == GENERAL)

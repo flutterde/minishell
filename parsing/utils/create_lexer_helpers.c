@@ -6,13 +6,12 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:58 by mboujama          #+#    #+#             */
-/*   Updated: 2024/07/31 15:23:18 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 10:50:21 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// TODO: MAKE IT SHORTER | DO NOT F*** TOUCH THE LEAKS HERE!!!
 t_status	_status(t_lex_helper lex)
 {
 	if (lex.in_d_quote)
@@ -61,46 +60,33 @@ void	lex_red_out(t_lex_helper *lex, char **line)
 	}
 }
 
+// e_h ==> env_helper
 void	lex_env(t_lex_helper *lex, char **line)
 {
-	char	*str;
-	char	*ch;
+	t_lex_env	e_h;
 
-	str = NULL;
-	ch = char_to_str(**line);
-	str = ft_strjoin(str, ch);
-	if (!str)
+	ft_bzero((void *) &e_h, sizeof(t_lex_env));
+	e_h.ch = char_to_str(**line);
+	e_h.str = ft_strjoin(e_h.str, e_h.ch);
+	if (!e_h.str)
 		return ;
 	(*line)++;
-	ft_free((void **) &ch);
+	ft_free((void **) &e_h.ch);
 	if (!ft_strncmp(*line, "?", 1))
 	{
-		ft_free((void **) &str);
-		str = ft_strdup("$?");
-		if (!str)
+		ft_free((void **) &e_h.str);
+		e_h.str = ft_strdup("$?");
+		if (!e_h.str)
 			return ;
 	}
 	else
-	{
-		while (**line && (ft_isalnum(*(*line)) || **line == '_'))
-		{
-			ch = char_to_str(**line);
-			if (!ch)
-				return ;
-			str = ft_strjoin(str, ch);
-			if (!str)
-				return (ft_free((void **) &ch));
-			ft_free((void **) &ch);
-			(*line)++;
-		}
-		(*line)--;
-	}
+		lex_env_helper(&e_h, line);
 	if (lex->in_s_quote)
-		lex->lex = lex_create(str, WORD, ft_strlen(str), _status(*lex));
+		lex->lex = lex_create(e_h.str, WORD, ft_strlen(e_h.str), _status(*lex));
 	else
-		lex->lex = lex_create(str, ENV, ft_strlen(str), _status(*lex));
+		lex->lex = lex_create(e_h.str, ENV, ft_strlen(e_h.str), _status(*lex));
 	lex_add_back(&lex->lexer, lex->lex);
-	ft_free((void **) &ch);
+	ft_free((void **) &e_h.ch);
 }
 
 void	lex_word(t_lex_helper *lex, char **line)
