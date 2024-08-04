@@ -9,7 +9,7 @@ PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c \
 ./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c ./parsing/lists/red_utils_2.c \
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
-./src/ft_execve.c ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c src/red_out/out_handler.c src/utils/redire_handler.c
+ ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c src/utils/redire_handler.c
 
 LEX_SRCS = ./parsing/lists/lex_create.c ./parsing/lists/lex_add_back.c \
 ./parsing/lists/lex_getlast.c ./parsing/lists/lex_clear_list.c ./parsing/lists/lex_delete_node.c \
@@ -28,7 +28,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline   -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include # -g -fsanitize=address
 # LDFLAGS = -L/usr/include/readline -lreadline
 HEADERS = minishell.h
-SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(REDIR_SECS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) src/execve_handler.c \
+SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(REDIR_SECS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) \
 
 NAME = minishell
 
