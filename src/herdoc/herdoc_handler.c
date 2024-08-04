@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:19:40 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 11:59:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:32:43 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,21 +99,19 @@ static void	__read_fn(t_data *data, t_redir *node, int fd)
 int	ft_heredoc(t_data *data, t_redir *node, int *redfd)
 {
 	int	fd;
-	char	*gpath;
 
-	gpath = __generate_path();
-	if (!gpath)
+	if (!node->path)
 		return (*redfd = -1,  -1);
-	fd = open(gpath, O_CREAT | O_TRUNC | O_RDWR, 0666);
+	fd = open(node->path, O_CREAT | O_TRUNC | O_RDWR, 0666);
 	if (fd < 0)
-		return (free(gpath), perror("Error: "), *redfd = -1, -1);
+		return (perror("Error: "), *redfd = -1, -1);
 	__read_fn(data, node, fd);
-	if (node->is_last)
-	{
-		fd = open(gpath, O_RDONLY);
-		if (fd < 0)
-			return (free(gpath), perror("Error: "), *redfd = -1, -1);
-		return (free(gpath), *redfd = fd, fd);
-	}
-	return (free(gpath), -2);
+	// if (node->is_last)
+	// {
+	// 	fd = open(node->path, O_RDONLY);
+	// 	if (fd < 0)
+	// 		return (perror("Error: "), *redfd = -1, -1);
+	// 	return (*redfd = fd, fd);
+	// }
+	return (-2);
 }

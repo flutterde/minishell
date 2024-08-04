@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 12:03:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 16:55:25 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void		_reset_utils(t_cmd_utils *utils);
 char		*__generate_path(void);
 int			ft_heredoc(t_data *data, t_redir *node, int *redfd);
 void		exec_redirections(t_data *data, t_cmd *cmd, t_exec exec);
-
+void		_close_fds(int fd1, int fd2);
 
 void		ft_free(void **ptr);
 
@@ -141,5 +141,6 @@ void		exec_handler(t_data *data);
 int			s_builtin_handler(t_data *data);
 // testing
 int			ve_handler(t_data *data, char *prompt);
+void		handle_sigint(int sig);
 
 #endif

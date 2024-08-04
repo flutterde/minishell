@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/02 17:51:48 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:20:32 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	_child_prs(t_data *data, t_cmd *cmd, t_exec exec)
 {
 	char	**env;
 
-	// signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
+	signal(SIGINT, SIG_DFL); // ! is going to work in the herdoc
 	g_status = 0;
 	signal(SIGQUIT, SIG_DFL);
 	if (!data || !cmd)
@@ -123,6 +123,20 @@ void	__err_msg(char *msg, int nbr)
 	g_status = nbr;
 }
 
+void	__redirections_wrapper(t_data *data)
+{
+	t_cmd	*tmp;
+
+	if (!data)
+		return ;
+	tmp = data->command;
+	while (tmp)
+	{
+		redire_handler(data, tmp->redire, tmp->red_fd);
+		tmp = tmp->next;
+	}
+}
+
 void	exec_handler(t_data *data)
 {
 	t_exec	exec;
@@ -136,16 +150,20 @@ void	exec_handler(t_data *data)
 		s_builtin_handler(data);
 		return ;
 	}
+	// Handling the forking and executing
+	__redirections_wrapper(data);
+	if (data->sigint == -1)
+		return ;
 	// Forking and executing the commands
 	__alloc(data, exec.count, &exec.fails);
 	if (exec.fails)
 		return ;
 	exec.i = 0;
-	// Handling the forking and executing
 	exec.fd_stdin = dup(STDIN_FILENO);
 	if (exec.fd_stdin == -1)
 		return __err_msg(strerror(errno), 1);
 	exec.cmd = data->command;
+	signal(SIGINT, SIG_IGN);
 	while (exec.cmd)
 	{
 		if (pipe(exec.fd) == -1)
@@ -158,6 +176,7 @@ void	exec_handler(t_data *data)
 		if (dup2(exec.fd[0], STDIN_FILENO) < 0)
 			return __err_msg(strerror(errno), 1);
 		exec.i++;
+		_close_fds(exec.cmd->red_fd[0], exec.cmd->red_fd[1]);
 		close(exec.fd[0]);
 		close(exec.fd[1]);	
 		exec.cmd = exec.cmd->next;
@@ -174,7 +193,8 @@ void	exec_handler(t_data *data)
 			g_status = WTERMSIG(g_status) + 128;
 		else if (WIFEXITED(g_status))
 			g_status = WEXITSTATUS(g_status);
-	}	
+	}
+	signal(SIGINT, handle_sigint);
 	close(exec.fd_stdin);
 	// ft_printf("\033[0;91mthe status: %d\033[0m\n", g_status);
 }

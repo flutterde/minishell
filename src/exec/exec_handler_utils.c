@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 16:53:28 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/02 18:22:05 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:20:26 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	built_in_wrapper(t_data *data)
 	return (0);
 }
 
-static void	_close_fds(int fd1, int fd2)
+void	_close_fds(int fd1, int fd2)
 {
 	if (fd1 >= 0)
 		close(fd1);
@@ -62,6 +62,8 @@ int	s_builtin_handler(t_data *data)
 		return (0);
 	cmd = data->command;
 	redire_handler(data, cmd->redire, cmd->red_fd);
+	if (data->sigint == -1)
+		return (0);
 	if (cmd->red_fd[0] == -1 || cmd->red_fd[1] == -1)
 		return (_close_fds(cmd->red_fd[0], cmd->red_fd[1]),
 			g_status = 1, 0);

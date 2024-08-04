@@ -25,6 +25,7 @@ text.txt
 *.a
 *.la
 *.lo
+*.a.*
 
 # Shared objects (inc. Windows DLLs)
 *.dll

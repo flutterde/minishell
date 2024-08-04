@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 19:06:47 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 09:44:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:14:48 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	red_delete1(t_redir *node)
 		free(node->file);
 	if (node->delim)
 		free(node->delim);
+	if (node->path)
+		free(node->path);
 	free(node);
 }
 

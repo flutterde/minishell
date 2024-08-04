@@ -99,6 +99,7 @@ typedef struct s_redir {
 	bool			is_ambiguous;
 	char			*file;
 	char			*delim;
+	char			*path;
 	struct s_redir	*next;
 	struct s_redir	*prev;
 }	t_redir;
@@ -159,6 +160,7 @@ typedef struct s_data {
 	uint32_t	npipes;
 	int			*childs;
 	t_cmd		*command;
+	int			sigint;
 }	t_data;
 
 #endif

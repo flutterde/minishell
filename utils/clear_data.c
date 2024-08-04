@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:58:32 by ochouati          #+#    #+#             */
-/*   Updated: 2024/07/27 15:18:21 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:26:29 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	data_cleanup(t_data **data, bool all)
 {
 	if (!data || !*data)
 		return ;
+	(*data)->sigint = 0;
 	if (all)
 		clear_data(data);
 	else

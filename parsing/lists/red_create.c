@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:42:56 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 11:43:01 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:10:01 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_redir	*red_create(t_cmd_utils *utils)
 	new->delim = ft_strdup(utils->delim);
 	new->to_expand = utils->heredoc_expand;
 	new->is_ambiguous = utils->is_ambiguous;
+	new->path = __generate_path();
 	_reset_utils(utils);
 	return (new);
 }

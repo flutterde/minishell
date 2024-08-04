@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:14:48 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/02 12:24:37 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/03 15:42:55 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	__out(t_cmd *cmd, t_exec exec)
 
 void	exec_redirections(t_data *data, t_cmd *cmd, t_exec exec)
 {
-	redire_handler(data, cmd->redire, cmd->red_fd);
+	(void) data;
+	// redire_handler(data, cmd->redire, cmd->red_fd);
 	if ((cmd->red_fd[0] == -1) || (cmd->red_fd[1] == -1))
 		exit(1);
 	__in(cmd, exec);
