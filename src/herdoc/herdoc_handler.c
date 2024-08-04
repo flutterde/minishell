@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:19:40 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 18:32:43 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/04 15:18:14 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,10 @@ int	ft_heredoc(t_data *data, t_redir *node, int *redfd)
 	int	fd;
 
 	if (!node->path)
-		return (*redfd = -1,  -1);
+		return (*redfd = -1, -1);
 	fd = open(node->path, O_CREAT | O_TRUNC | O_RDWR, 0666);
 	if (fd < 0)
 		return (perror("Error: "), *redfd = -1, -1);
 	__read_fn(data, node, fd);
-	// if (node->is_last)
-	// {
-	// 	fd = open(node->path, O_RDONLY);
-	// 	if (fd < 0)
-	// 		return (perror("Error: "), *redfd = -1, -1);
-	// 	return (*redfd = fd, fd);
-	// }
 	return (-2);
 }

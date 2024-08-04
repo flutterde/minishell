@@ -16,14 +16,13 @@
 # define COL_RED "\033[0;91m"
 # define END_COL "\033[0m"
 # define EXIT_ERR ": numeric argument required\n"
-
-# define M_IGNORE -2 
-# define M_FAIL  -1
+# define M_IGNORE -2
+# define M_FAIL -1
 
 int	g_status;
-
 /* -- ENUMS -- */
-typedef enum e_token {
+typedef enum e_token
+{
 	W_SPACE = ' ',
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '"',
@@ -36,7 +35,8 @@ typedef enum e_token {
 	ENV = '$',
 }	t_token;
 
-typedef enum s_status {
+typedef enum s_status
+{
 	GENERAL = 'G',
 	IN_D_QUOTE = 'D',
 	IN_S_QUOTE = 'S',
@@ -44,14 +44,16 @@ typedef enum s_status {
 }	t_status;
 
 /* -- ENVIRONEMNT STRUCT -- */
-typedef struct s_env {
+typedef struct s_env
+{
 	char			*key;
 	char			*value;
 	struct s_env	*next;
 }	t_env;
 
 /* -- LEXER -- */
-typedef struct s_lex {
+typedef struct s_lex
+{
 	char			*string;
 	int				len;
 	t_status		status;
@@ -60,7 +62,8 @@ typedef struct s_lex {
 	struct s_lex	*prev;
 }	t_lex;
 
-typedef struct s_lex_helper {
+typedef struct s_lex_helper
+{
 	int		in_s_quote;
 	int		in_d_quote;
 	t_lex	*lexer;
@@ -77,20 +80,23 @@ typedef struct s_quote
 	t_lex	*tmp;
 }	t_quote;
 
-typedef struct s_expand {
+typedef struct s_expand
+{
 	t_lex	*tmp_lex;
 	t_env	*found;
 	char	*key;
 	char	*tmp;
 }	t_expand;
 
-typedef struct s_lex_env {
+typedef struct s_lex_env
+{
 	char	*str;
 	char	*ch;
 }	t_lex_env;
 
 /* -- REDIRECTION STRUCT -- */
-typedef struct s_redir {
+typedef struct s_redir
+{
 	t_token			type;
 	int				index;
 	int				is_last;
@@ -103,7 +109,8 @@ typedef struct s_redir {
 	struct s_redir	*prev;
 }	t_redir;
 
-typedef struct s_red_help {
+typedef struct s_red_help
+{
 	t_token	tp;
 	char	*file;
 	char	*delim;
@@ -128,17 +135,17 @@ typedef struct s_cmd
 
 typedef struct s_cmd_utils
 {
-	t_cmd		*cmd;
-	t_redir		*redir;
-	char		**args;
-	char		**tmp_args;
-	char		*str;
-	bool		is_ambiguous;
-	bool		is_builtin;
-	bool		heredoc_expand;
-	char		*file;
-	char		*delim;
-	t_token		type;
+	t_cmd	*cmd;
+	t_redir	*redir;
+	char	**args;
+	char	**tmp_args;
+	char	*str;
+	bool	is_ambiguous;
+	bool	is_builtin;
+	bool	heredoc_expand;
+	char	*file;
+	char	*delim;
+	t_token	type;
 }	t_cmd_utils;
 
 typedef struct s_exec
@@ -152,7 +159,8 @@ typedef struct s_exec
 }	t_exec;
 
 /* -- GLOBAL DATA STRUCT -- */
-typedef struct s_data {
+typedef struct s_data
+{
 	t_env		*env;
 	t_lex		*lexer;
 	int			last_exit;
@@ -160,6 +168,6 @@ typedef struct s_data {
 	int			*childs;
 	t_cmd		*command;
 	int			sigint;
-}	t_data;
+}		t_data;
 
 #endif

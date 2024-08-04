@@ -1,0 +1,72 @@
+# Prerequisites
+*.d
+*.output
+minishell
+test.c
+text.txt
+.DS_Store
+.vscode/
+src/piping
+src/herdoc/herdoc
+cat
+
+minishell_tester
+tester2
+testing
+en.subject.pdf
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+*.js
+
+
+# Linker output
+*.ilk
+*.map
+*.exp
+*.zip
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+.info
+join_lexer_test.c
+testing.c

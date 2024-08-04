@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 16:53:28 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 19:20:26 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:15:14 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	built_in_wrapper(t_data *data)
 {
 	char	**args;
-	
+
 	args = data->command->args;
 	if (args && !ft_strcmp(args[0], "echo"))
 		return (ft_echo(data->command, data));
@@ -53,6 +53,12 @@ static int	_helper_fn(t_cmd *cmd, int *outfd)
 	return (0);
 }
 
+static void	___fn(t_data *data, t_cmd *cmd)
+{
+	built_in_wrapper(data);
+	_close_fds(cmd->red_fd[0], cmd->red_fd[1]);
+}
+
 int	s_builtin_handler(t_data *data)
 {
 	int		outfd;
@@ -79,7 +85,5 @@ int	s_builtin_handler(t_data *data)
 			return (_close_fds(cmd->red_fd[0], cmd->red_fd[1]),
 				perror("Error: "), close(outfd), g_status = 1, 0);
 	}
-	built_in_wrapper(data);
-	_close_fds(cmd->red_fd[0], cmd->red_fd[1]);
-	return (_helper_fn(cmd, &outfd));
+	return (___fn(data, cmd), _helper_fn(cmd, &outfd));
 }

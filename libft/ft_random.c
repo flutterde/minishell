@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:52:37 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/01 13:14:21 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:06:37 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	fill_buffer(char *buf)
 static size_t	_getrand_ptr(void)
 {
 	char	*ptr;
-	
+
 	ptr = malloc(1);
 	if (!ptr)
 		return (0);

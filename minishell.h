@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/04 12:03:26 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:43:23 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,25 @@ char		*__generate_path(void);
 int			ft_heredoc(t_data *data, t_redir *node, int *redfd);
 void		exec_redirections(t_data *data, t_cmd *cmd, t_exec exec);
 void		_close_fds(int fd1, int fd2);
-
+int			__out_handler_copy(t_redir *redire, int *redfd);
+int			_open_in_copy(t_redir *node, int *redfd);
+void		_reopen_fds(t_redir *node, int *fds);
+void		_child_redirloop(t_redir	*tmp, int *ints, t_data *data,
+				int *red_fd);
 void		ft_free(void **ptr);
 
 // EXECUTION
 void		exec_handler(t_data *data);
 int			s_builtin_handler(t_data *data);
+void		exists_and_permissions(t_cmd *cmd);
+void		child_builtin_cmd(t_data *data, t_cmd *cmd);
+void		_child_prs(t_data *data, t_cmd *cmd, t_exec exec);
+void		__err_msg(char *msg, int nbr);
+void		__redirections_wrapper(t_data *data);
+
 // testing
 int			ve_handler(t_data *data, char *prompt);
 void		handle_sigint(int sig);
+void		sig_hear(int s);
 
 #endif
