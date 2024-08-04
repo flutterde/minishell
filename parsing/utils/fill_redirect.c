@@ -6,32 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:34:25 by mboujama          #+#    #+#             */
-/*   Updated: 2024/08/03 11:58:54 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/04 12:03:01 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static int	is_ambiguous(t_lex **lex, t_cmd_utils *utils)
-{
-	char	**strs;
-	int		i;
-
-	i = 0;
-	if ((*lex)->type == ENV && ft_strlen((*lex)->string) == 0)
-		return (1);
-	else if ((*lex)->type == ENV)
-	{
-		strs = ft_split(utils->file, ' ');
-		if (!strs)
-			return (0);
-		while (strs[i])
-			i++;
-		if (i == 1)
-			return (ft_free_strs(strs), 0);
-	}
-	return (1);
-}
 
 static int	heredoc(t_lex **lex, t_cmd_utils *utils)
 {
@@ -41,6 +20,11 @@ static int	heredoc(t_lex **lex, t_cmd_utils *utils)
 	(*lex) = (*lex)->next;
 	while ((*lex) && (*lex)->type == W_SPACE)
 		(*lex) = (*lex)->next;
+	if ((((*lex)->type == WORD || (*lex)->type == ENV)
+			&& (*lex)->status == GENERAL)
+		&& ((*lex)->next->type == W_SPACE 
+			|| (*lex)->next->type == PIPELINE || !is_redirection((*lex))))
+		utils->heredoc_expand = true;
 	utils->type = HEREDOC;
 	utils->delim = get_arg(lex);
 	if (!utils->delim)
@@ -56,22 +40,21 @@ static int	redirection(t_lex **lex, t_cmd_utils *utils, t_token token)
 {
 	t_redir		*redire;
 	int			in_quote;
+	char		*str;
 
+	str = NULL;
 	redire = NULL;
 	in_quote = 0;
 	(*lex) = (*lex)->next;
 	while ((*lex) && (*lex)->type == W_SPACE)
 		(*lex) = (*lex)->next;
 	utils->type = token;
-	utils->file = get_arg(lex);
+	utils->file = get_file_amb(lex, utils);
 	if (!utils->file)
 		return (0);
-	if ((*lex)->type == ENV && !in_quote)
-	{
-		if (is_ambiguous(lex, utils))
-			utils->is_ambiguous = true;
-	}
 	redire = red_create(utils);
+	if (!redire)
+		return (0);
 	red_addback(&utils->redir, redire);
 	return (1);
 }

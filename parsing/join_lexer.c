@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:04:55 by mboujama          #+#    #+#             */
-/*   Updated: 2024/08/03 11:20:55 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/04 10:47:59 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	handle_env(t_cmd_utils *utils, t_lex **lex)
 		utils->tmp_args = NULL;
 		i++;
 	}
+	ft_free_strs(strs);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/03 16:55:25 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/04 12:03:26 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ void		get_last_in(t_redir *last);
 void		get_last_out(t_redir *last);
 void		lex_env_helper(t_lex_env *e_h, char **line);
 void		swap_data(t_red_help red, t_redir *b);
+char		*get_file_amb(t_lex **lex, t_cmd_utils *utils);
+int			consec_quote_rev(t_lex *lex, t_token token);
+int			consec_quote(t_lex *lex, t_token token);
+void		left_space(t_lex **lex, t_cmd_utils *utils);
+void		right_space(t_lex **lex, t_cmd_utils *utils);
+// void		only_space(t_lex **lex, t_cmd_utils *utils);
 // lists
 t_lex		*lex_getlast(t_lex *lst);
 t_lex		*lex_create(char *str, t_token type, int len, t_status status);

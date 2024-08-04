@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/04 11:03:52 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/04 12:24:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	leaks(void)
-{
-	// system("leaks -q minishell");
-}
 
 void	export___(t_data *data, char *str)
 {
@@ -52,7 +47,6 @@ static int	minishell(t_data *data)
 	char	*line;
 	char	*trimmed_line;
 
-	atexit(leaks);
 	while (1)
 	{
 		line = readline(M_NAME);

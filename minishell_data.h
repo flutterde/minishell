@@ -31,7 +31,6 @@ typedef enum e_token {
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
 	HEREDOC,
-	SUPER_HEREDOC,
 	APPEND,
 	WORD = -1,
 	ENV = '$',
