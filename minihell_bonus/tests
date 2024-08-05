@@ -1,0 +1,73 @@
+# EXPORT TESTS
+export v="'"Hello"'"   => v='Hello'
+export v=""Hello""     => v=Hello
+❯ export SHLVL=ko
+❯ env | grep SHLVL
+SHLVL=0
+
+# BUILTIN that will run in main process:
+	-env
+	-export
+	-cd
+	-exit
+	-unset
+
+# PARSING trees lexer
+ls > file1.txt -al
+''''l''''s''   => ls
+
+echo "hello'World'" ==> hello'World'
+
+echo " .. ""'$ $USER' $"  =>  .. '$ ochouati' $
+echo MOAD"$USER"'$USER'
+
+|ls |||||||||||| grep |--- vdvdgh""''  "|"d
+
+# (echo hi1 && (echo hi2 && echo hi3 || echo hiX && echo HiY)) && echo hi4 || echo hi5 || echo hi6 => hi1 \nhi2 \nhi3 \nHiY \nhi4
+
+ls '' -la ===> SHould not be "ls  -la" because the first argument is empty
+
+# Testat Lmla7
+where is ??????????? "declare -x _=/usr/bin/make", :: when you run "export" this one should not be in the output
+
+export ARG=(123 ABC 987)
+declare -p | grep ARG
+
+<< \
+
+cat << "moad"bj
+
+
+
+# cd -
+
+bash-3.2$ echo **************.dl
+**************.dl
+bash-3.2$ echo "**************.dl"
+**************.dl
+bash-3.2$ ec
+bash-3.2$ echo **************.c
+main.c
+bash-3.2$ echo "**************.c"
+**************.c
+bash-3.2$ echo '**************.c'
+**************.c
+bash-3.2$ echo **************.c
+main.c
+bash-3.2$ echo **************.ck
+**************.ck
+bash-3.2$ 
+
+
+echo *".c" => echo *.c
+
+
+
+bash-3.2$ export 'a;'= ajfd
+bash: export: `a;=': not a valid identifier
+
+
+ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |  ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls 
+
+
+ls $skjdhkds -la
