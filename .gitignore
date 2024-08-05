@@ -6,10 +6,11 @@ test.c
 text.txt
 .DS_Store
 .vscode/
+
 src/piping
 src/herdoc/herdoc
 cat
-
+minishell_bonus
 minishell_tester
 tester2
 testing
