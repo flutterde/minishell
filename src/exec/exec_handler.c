@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 21:16:57 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/04 17:20:21 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/04 19:07:33 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	__executor(t_data *data, t_exec *exec)
 
 void	__waitchilds(t_data *data, t_exec *exec)
 {
+	close(exec->fd_stdin);
 	exec->i = 0;
 	while (exec->i < exec->count)
 	{
@@ -74,7 +75,6 @@ void	__waitchilds(t_data *data, t_exec *exec)
 			g_status = WEXITSTATUS(g_status);
 	}
 	signal(SIGINT, handle_sigint);
-	close(exec->fd_stdin);
 }
 
 void	exec_handler(t_data *data)

@@ -124,5 +124,6 @@ int		ft_strcmp(char *s1, char *s2);
 char	**dup_2d_array(char **arr);
 char	**insert_to2d_array(char **arr, char *str);
 void	print_joined_strs(char **strs, char *sep, bool ln);
+char	*ft_join_args(char **args, char sep);
 
 #endif

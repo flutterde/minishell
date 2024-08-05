@@ -6,7 +6,7 @@
 /*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/04 17:19:38 by ochouati         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:11:30 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	export___(t_data *data, char *str)
 
 void	handle_sigint(int sig)
 {
-	(void)sig;
 	if (sig == SIGINT)
 	{
 		g_status = 1;
