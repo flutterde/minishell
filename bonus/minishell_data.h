@@ -126,6 +126,12 @@ typedef struct s_cmd_utils
 	t_token	type;
 }	t_cmd_utils;
 
+typedef struct s_str_lst
+{
+	char				*str;
+	struct s_str_lst	*next;
+}	t_str_lst;
+
 typedef struct s_exec
 {
 	t_cmd	*cmd;

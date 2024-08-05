@@ -25,7 +25,8 @@ REDIR_SECS = src/utils/exec_redirections.c src/herdoc/herdoc_handler.c ./src/uti
 CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/lists/cmd_clear.c \
 ./src/exec/exec_utils.c 
 
-MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
+MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c \
+./parsing/lists/str_lst.c ./parsing/lists/str_lst2arr.c 
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline  -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include # -g -fsanitize=address

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ochouati <ochouati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 12:07:15 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:21:00 by ochouati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define M_NAME "\033[0;92mminishell$\033[0m "
+# define M_NAME "\033[0;92mMinishell-Bonus$\033[0m "
 # include "../libft/libft.h"
 # include "minishell_data.h"
 # include <readline/history.h>
@@ -93,6 +93,14 @@ int			removeif_env(t_env **head, char *key);
 t_env		*search_env(t_env *head, char *key);
 t_env		*get_prev_env(t_env *head, t_env *node);
 
+// STR LIST
+t_str_lst	*str_lst_new(char *str);
+t_str_lst	*str_lst_last(t_str_lst *lst);
+void		str_lst_addback(t_str_lst **lst, t_str_lst *new);
+void		str_lst_delete1(t_str_lst *node);
+void		str_lst_clear(t_str_lst **lst);
+char		**str_lst2arr(t_str_lst *lst);
+
 /* -- HELPERS FUNCTIONS -- */
 void		ft_errno(int nbr);
 char		*get_cmd_path(char *path, char *cmd);
@@ -106,8 +114,6 @@ void		ft_print_lexer(t_lex *lex);
 char		*print_token(t_token token);
 
 /* -- SRCS -- */
-void		ft_execve(t_cmd *cmd);
-int			out_handler(t_redir *red);
 int			redire_handler(t_data *data, t_redir *redire, int	*fd);
 
 /* -- BUILT-IN PART -- */
@@ -162,7 +168,6 @@ void		__err_msg(char *msg, int nbr);
 void		__redirections_wrapper(t_data *data);
 
 // testing
-int			ve_handler(t_data *data, char *prompt);
 void		handle_sigint(int sig);
 void		sig_hear(int s);
 
