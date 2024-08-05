@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 19:12:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/08/05 13:23:00 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:52:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,9 @@ char	*get_pattern(char *str)
 	{
 		if (str[i] == WILD_C)
 		{
-			while (str[i] == WILD_C)
-				i++;
-			cha = char_to_str(WILD_C);
-			ret_str = ft_strjoin(ret_str, cha);
+			get_pattern_helper(&str, &cha, &ret_str, &i);
 			if (!ret_str)
 				return (NULL);
-			ft_free((void **) &cha);
 			continue ;
 		}
 		cha = char_to_str(str[i]);

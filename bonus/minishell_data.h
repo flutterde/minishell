@@ -18,6 +18,7 @@
 # define EXIT_ERR ": numeric argument required\n"
 # define M_IGNORE -2
 # define M_FAIL -1
+# include <dirent.h>
 
 int	g_status;
 /* -- ENUMS -- */
@@ -33,7 +34,7 @@ typedef enum e_token
 	APPEND,
 	WORD = -1,
 	ENV = '$',
-	WILD_C = '+',
+	WILD_C = 1,
 	SEP = 2
 }	t_token;
 
@@ -169,6 +170,19 @@ typedef struct s_wildcard {
 	char	*s_tmp;
 	char	*tmp;
 }	t_wildcard;
+
+typedef struct s_wild_help {
+	DIR				*dir;
+	struct dirent	*entry;
+	char			**files;
+	char			**tmp;
+}	t_wild_help;
+
+typedef struct s_str_lst
+{
+	char				*str;
+	struct s_str_lst	*next;
+}	t_str_lst;
 
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 12:07:15 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:43:22 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <errno.h>
-# include <dirent.h>
 # include <string.h>
 # include <sys/wait.h>
 # include <signal.h>
@@ -79,6 +78,14 @@ char		**ft_wildcard(char *str, char *dir_path);
 int			wildcard_pattern(t_data *data);
 int			expand_wildcard(t_wildcard *wild);
 int			get_new_args(t_wildcard *wild);
+void		get_pattern_helper(char **str, char **cha, char **ret_str, int *i);
+// bonus - STR LIST
+t_str_lst	*str_lst_new(char *str);
+t_str_lst	*str_lst_last(t_str_lst *lst);
+void		str_lst_addback(t_str_lst **lst, t_str_lst *new);
+void		str_lst_delete1(t_str_lst *node);
+void		str_lst_clear(t_str_lst **lst);
+char		**str_lst2arr(t_str_lst *lst);
 
 /* -- ENV_LINKED_LISTS -- */
 // ENV

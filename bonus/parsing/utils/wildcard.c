@@ -6,13 +6,12 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:17:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 13:22:40 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:46:43 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// tests: "*_*_*.c", "*.js", "something.*", "something.*.c", "something.*.c*"
 static int	is_matching(char *wcard, char *file)
 {
 	if (*wcard == '\0' && *file == '\0')
@@ -30,38 +29,42 @@ static int	is_matching(char *wcard, char *file)
 	return (1);
 }
 
+static void	_ft_help(t_wild_help *wild_h, char *str)
+{
+	while (wild_h->entry)
+	{
+		if (ft_strlen(str) == 1 && str[0] == WILD_C
+			&& wild_h->entry->d_name[0] == '.')
+		{
+			wild_h->entry = readdir(wild_h->dir);
+			continue ;
+		}
+		else if (!is_matching(str, wild_h->entry->d_name))
+		{
+			wild_h->tmp = wild_h->files;
+			wild_h->files
+				= insert_to2d_array(wild_h->files, wild_h->entry->d_name);
+			if (wild_h->tmp)
+				ft_free_strs(wild_h->tmp);
+		}
+		wild_h->entry = readdir(wild_h->dir);
+	}
+}
+
 char	**ft_wildcard(char *str, char *dir_path)
 {
-	DIR				*dir;
-	struct dirent	*entry;
-	char			**files;
-	char			**tmp;
+	t_wild_help		wild_h;
 
 	if (!str || !dir_path)
 		return (ft_free((void **) &str), NULL);
-	dir = opendir(dir_path);
-	if (!dir)
+	wild_h.dir = opendir(dir_path);
+	if (!wild_h.dir)
 		return (ft_printf("Can't open it\n"), ft_free((void **) &str), NULL);
-	entry = readdir(dir);
-	files = NULL;
-	while (entry)
-	{
-		if (ft_strlen(str) == 1 && str[0] == WILD_C && entry->d_name[0] == '.')
-		{
-			entry = readdir(dir);
-			continue ;
-		}
-		else if (!is_matching(str, entry->d_name))
-		{
-			tmp = files;
-			files = insert_to2d_array(files, entry->d_name);
-			if (tmp)
-				ft_free_strs(tmp);
-		}
-		entry = readdir(dir);
-	}
-	closedir(dir);
-	return (ft_free((void **) &str), files);
+	wild_h.entry = readdir(wild_h.dir);
+	wild_h.files = NULL;
+	_ft_help(&wild_h, str);
+	closedir(wild_h.dir);
+	return (ft_free((void **) &str), wild_h.files);
 }
 
 void	old_value_many(char **args)

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:58:15 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 13:26:05 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:39:11 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,18 @@ static int	minishell(t_data *data)
 	}
 }
 
+void	ll()
+{
+	system("leaks minishell");
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_data	*data;
 
 	(void)ac;
 	(void)av;
+	atexit(ll);
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 	data = ft_calloc(1, sizeof(t_data));

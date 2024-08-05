@@ -8,7 +8,8 @@ PARSING = ./parsing/parsing.c ./parsing/utils/dup_env.c \
 ./parsing/utils/check_syntax_helpers.c ./parsing/join_lexer.c ./parsing/ft_expander.c \
 ./parsing/utils/join_lexer_helpers.c ./parsing/utils/fill_redirect.c ./parsing/lists/red_utils_2.c \
 ./parsing/utils/fill_redirect_helper.c ./parsing/utils/ambiguous.c \
-./parsing/utils/wildcards_utils.c ./parsing/utils/wildcard.c
+./parsing/utils/wildcards_utils.c ./parsing/utils/wildcard.c ./parsing/utils/wildcards_utils2.c\
+./parsing/lists/str_lst.c ./parsing/lists/str_lst2arr.c
 
 FT_SRCS = ./src/built_in/ft_export.c ./src/built_in/ft_echo.c ./src/built_in/ft_pwd.c \
 ./src/built_in/ft_export_no_args.c ./src/built_in/ft_cd.c  ./utils/clear_data.c src/utils/redire_handler.c
@@ -28,12 +29,12 @@ CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/li
 MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline  -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include # -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline # -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include # -g -fsanitize=address
 # LDFLAGS = -L/usr/include/readline -lreadline
 HEADERS = minishell.h
 SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(REDIR_SECS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) \
 
-NAME = minishell_bonus
+NAME = minishell
 
 OBJS = $(SRC:.c=.o)
 
