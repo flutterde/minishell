@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 19:12:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/08/05 15:52:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:44:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,34 +83,27 @@ char	*old_val(char *str)
 
 int	expand_wildcard(t_wildcard *wild)
 {
+	int	i;
+
+	i = 0;
 	wild->tmp_args = ft_wildcard(get_pattern(wild->cmd->args[wild->i]),
 			getcwd(wild->buff, 1500));
 	if (wild->tmp_args)
 	{
-		wild->tmp = wild->cmd->args[wild->i];
-		wild->cmd->args[wild->i] = ft_join_args(wild->tmp_args, SEP);
-		if (!wild->cmd->args[wild->i])
-			return (0);
-		ft_free((void **) &wild->tmp);
+		while (wild->tmp_args[i])
+		{
+			wild->new = str_lst_new(ft_strdup(wild->tmp_args[i]));
+			str_lst_addback(&wild->list, wild->new);
+			i++;
+		}
+		ft_free_strs(wild->tmp_args);
+		wild->tmp_args = NULL;
 	}
 	else
 	{
-		wild->tmp = wild->cmd->args[wild->i];
-		wild->cmd->args[wild->i] = old_val(wild->cmd->args[wild->i]);
-		if (!wild->cmd->args[wild->i])
-			return (0);
-		ft_free((void **) &wild->tmp);
+		wild->s_tmp = old_val(wild->cmd->args[wild->i]);
+		wild->new = str_lst_new(wild->s_tmp);
+		str_lst_addback(&wild->list, wild->new);
 	}
-	wild->tmp_args = NULL;
-	return (1);
-}
-
-int	get_new_args(t_wildcard *wild)
-{
-	char	*str;
-
-	str = ft_join_args(wild->cmd->args, SEP);
-	wild->cmd->args = ft_split(str, SEP);
-	ft_free((void **) &str);
 	return (1);
 }

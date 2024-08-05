@@ -29,7 +29,7 @@ CMD_SRCS = ./parsing/lists/cmd_utils.c ./parsing/lists/cmd_create.c ./parsing/li
 MORE_LSTS = ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline # -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include # -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/$(USER)/homebrew/opt/readline/lib -I/goinfre/$(USER)/homebrew/opt/readline/include  -g -fsanitize=address
 # LDFLAGS = -L/usr/include/readline -lreadline
 HEADERS = minishell.h
 SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(REDIR_SECS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) \

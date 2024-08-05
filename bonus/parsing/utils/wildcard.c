@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:17:13 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 15:46:43 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:07:25 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,22 @@ int	wildcard_pattern(t_data *data)
 	wild.cmd = data->command;
 	while (wild.cmd)
 	{
-		wild.i = 0;
-		if (!ft_strcmp("export", wild.cmd->cmd))
+		if (!wild.cmd->args)
+		{
+			wild.cmd = wild.cmd->next;
+			continue ;
+		}
+		else if (!ft_strcmp("export", wild.cmd->cmd))
 		{
 			old_value_many(wild.cmd->args);
 			wild.cmd = wild.cmd->next;
 			continue ;
 		}
-		while (wild.cmd->args && wild.cmd->args[wild.i])
-		{
-			if (ft_strchr(wild.cmd->args[wild.i], WILD_C))
-				if (!expand_wildcard(&wild))
-					return (0);
-			wild.i++;
-		}
-		if (!get_new_args(&wild))
-			return (0);
+		wild.i = 0;
+		pattern_helper(&wild);
+		ft_free_strs(wild.cmd->args);
+		wild.cmd->args = str_lst2arr(wild.list);
+		str_lst_clear(&wild.list);
 		wild.cmd = wild.cmd->next;
 	}
 	return (1);

@@ -161,16 +161,6 @@ typedef struct s_lex_env
 	char	*ch;
 }	t_lex_env;
 
-typedef struct s_wildcard {
-	t_cmd	*cmd;
-	char	*joined_args;
-	char	**tmp_args;
-	int		i;
-	char	buff[1500];
-	char	*s_tmp;
-	char	*tmp;
-}	t_wildcard;
-
 typedef struct s_wild_help {
 	DIR				*dir;
 	struct dirent	*entry;
@@ -183,6 +173,18 @@ typedef struct s_str_lst
 	char				*str;
 	struct s_str_lst	*next;
 }	t_str_lst;
+
+typedef struct s_wildcard {
+	t_cmd		*cmd;
+	char		*joined_args;
+	char		**tmp_args;
+	int			i;
+	char		buff[1500];
+	char		*s_tmp;
+	char		*tmp;
+	t_str_lst	*list;
+	t_str_lst	*new;
+}	t_wildcard;
 
 /* -- GLOBAL DATA STRUCT -- */
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 16:43:22 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:07:51 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			wildcard_pattern(t_data *data);
 int			expand_wildcard(t_wildcard *wild);
 int			get_new_args(t_wildcard *wild);
 void		get_pattern_helper(char **str, char **cha, char **ret_str, int *i);
+void		pattern_helper(t_wildcard *wild);
 // bonus - STR LIST
 t_str_lst	*str_lst_new(char *str);
 t_str_lst	*str_lst_last(t_str_lst *lst);
