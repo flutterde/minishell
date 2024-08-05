@@ -34,7 +34,7 @@ CFLAGS = -Wall -Wextra -Werror -lreadline -L/goinfre/$(USER)/homebrew/opt/readli
 HEADERS = minishell.h
 SRC = main.c $(PARSING) $(MORE_LSTS) $(UTILS) $(REDIR_SECS) $(FT_SRCS) $(LEX_SRCS) $(ADD_ONS) $(CMD_SRCS) \
 
-NAME = minishell
+NAME = minishell_bonus
 
 OBJS = $(SRC:.c=.o)
 

@@ -6,12 +6,12 @@
 #    By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 19:58:25 by ochouati          #+#    #+#              #
-#    Updated: 2024/08/05 15:42:39 by mboujama         ###   ########.fr        #
+#    Updated: 2024/08/05 19:13:02 by mboujama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror # -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
 # LDFLAGS = -L/usr/include/readline -lreadline
 
@@ -41,8 +41,8 @@ SRC = main.c ./utils/ft_exit.c ./utils/lists/linked_utils1_env.c ./utils/lists/r
 
 NAME = minishell
 
-READ_LINE_LIB =# -L/goinfre/$(USER)/homebrew/opt/readline/lib 
-READ_LINE_INC = # -I/goinfre/$(USER)/homebrew/opt/readline/include
+READ_LINE_LIB = -L/goinfre/$(USER)/homebrew/opt/readline/lib 
+READ_LINE_INC = -I/goinfre/$(USER)/homebrew/opt/readline/include
 
 OBJS = $(SRC:.c=.o)
 
@@ -57,12 +57,17 @@ $(NAME): $(OBJS) $(HEADERS)
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) $(READ_LINE_INC)  -c $< -o $@
 
+bonus :
+	make -C bonus
+
 clean:
 	make clean -C libft
+	make clean -C bonus
 	rm -rf $(OBJS)
 
 fclean: clean
 	make fclean -C libft
+	make fclean -C bonus
 	rm -rf $(NAME)
 
 run : all
@@ -71,4 +76,4 @@ run : all
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

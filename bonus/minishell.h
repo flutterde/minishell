@@ -6,14 +6,14 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:12:59 by ochouati          #+#    #+#             */
-/*   Updated: 2024/08/05 19:07:51 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:14:50 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define M_NAME "\033[0;92mminishell$\033[0m "
+# define M_NAME "\033[0;92mMinishell-Bonus$\033[0m "
 # include "../libft/libft.h"
 # include "minishell_data.h"
 # include <readline/history.h>
@@ -114,8 +114,6 @@ void		ft_print_lexer(t_lex *lex);
 char		*print_token(t_token token);
 
 /* -- SRCS -- */
-void		ft_execve(t_cmd *cmd);
-int			out_handler(t_redir *red);
 int			redire_handler(t_data *data, t_redir *redire, int	*fd);
 
 /* -- BUILT-IN PART -- */
@@ -170,7 +168,6 @@ void		__err_msg(char *msg, int nbr);
 void		__redirections_wrapper(t_data *data);
 
 // testing
-int			ve_handler(t_data *data, char *prompt);
 void		handle_sigint(int sig);
 void		sig_hear(int s);
 
