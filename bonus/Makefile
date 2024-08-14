@@ -25,7 +25,7 @@ src/utils/exec_redirections.c src/herdoc/herdoc_handler.c ./src/utils/redirectio
 ./src/exec/exec_utils.c \
 ./parsing/lists/red_clear.c ./parsing/lists/red_create.c ./parsing/lists/red_utils.c 
 
-NAME = minishell_bonus
+NAME = ../minishell_bonus
 
 READ_LINE_LIB = -L/goinfre/$(USER)/homebrew/opt/readline/lib 
 READ_LINE_INC = -I/goinfre/$(USER)/homebrew/opt/readline/include
